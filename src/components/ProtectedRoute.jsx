@@ -6,16 +6,13 @@ import { Navigate } from 'react-router-dom'
 
 function ProtectedRoute({children}) {
 
-  const isLocal = window.location.hostname === "localhost";
-  const backendUrl = isLocal? "http://localhost:8000" : "https://backend.hellome.site"
-
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [loading, setLoading] = useState(true)
 
   useEffect(()=>{
     const checkAuth = async ()=>{
       try {
-        const admin = await axios.get(`${backendUrl}/admin/getadmin`,{
+        const admin = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/getadmin`,{
           withCredentials : true
         })
         setIsAuthenticated(true)

@@ -10,11 +10,9 @@ function Campaigns() {
   const [title, settitle] = useState([])
   const [cplength, setCplength] = useState(0)
   const [rewards, setRewards] = useState(0)
-  const isLocal = window.location.hostname === "localhost";
-  const backendUrl = isLocal? "http://localhost:8000" : "https://backend.hellome.site"
 
   const fetchCampaigns = async () => {
-    const res = await axios.get(`${backendUrl}/campaign/getallcampaign`);
+    const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getallcampaign`);
     console.log(res);
     const activeCapaigns = res.data.filter(camp => camp.campaignStatus === true);
     settitle(activeCapaigns)

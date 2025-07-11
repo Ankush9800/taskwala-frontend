@@ -17,11 +17,8 @@ function Campaign() {
   const [issubmiting, setIssubmiting] = useState(false)
   const [campUrl, setCampUrl] = useState("")
 
-  const isLocal = window.location.hostname === "localhost";
-  const backendUrl = isLocal? "http://localhost:8000" : "https://backend.hellome.site"
-
   const getCampaignById = async()=>{
-    const res = await axios.get(`${backendUrl}/campaign/getcampaignbyid/${id}`)
+    const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getcampaignbyid/${id}`)
     const camp = res.data.data
     setCampaignData(camp)
     console.log(camp)
@@ -43,7 +40,7 @@ function Campaign() {
     try {
       console.log(campaignData.trackingUrl)
       setIssubmiting(true)
-      const response = await axios.post(`${backendUrl}/campaign/submitcampaign`,{
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/campaign/submitcampaign`,{
         phone: userPhone,
         upi: userupi,
         cName : campaignData.title,

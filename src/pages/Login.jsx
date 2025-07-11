@@ -17,9 +17,6 @@ function Login() {
   const [password, setPassword] = useState("")
   const [show, setShow] = useState(false);
 
-  const isLocal = window.location.hostname === "localhost";
-  const backendUrl = isLocal? "http://localhost:8000" : "https://backend.hellome.site"
-
   const handleLogin = async()=>{
     const data = {
       email : email,
@@ -27,7 +24,7 @@ function Login() {
     }
 
     try {
-      const res = await axios.post(`${backendUrl}/admin/adminlogin`, data,{
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/admin/adminlogin`, data,{
         withCredentials : true
       })
       console.log(res)

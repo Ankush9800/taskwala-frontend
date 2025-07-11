@@ -44,10 +44,6 @@ import { toast } from "sonner";
 
 function Admin() {
   const navigate = useNavigate()
-  const isLocal = window.location.hostname === "localhost";
-  const backendUrl = isLocal
-    ? import.meta.env.VITE_BACKEND_URL
-    : "https://backend.hellome.site";
   const [campaignLength, setCampaignLength] = useState(0);
   const [hiqmobiData, setHiqmobiData] = useState([])
   const [table, setTable] = useState([]);
@@ -86,7 +82,7 @@ function Admin() {
     if (!edit) {
       try {
         const res = await axios.post(
-          `${backendUrl}/campaign/newcampaign`,
+          `${import.meta.env.VITE_BACKEND_URL}/campaign/newcampaign`,
           data
         );
         getAllCampaign();
@@ -118,7 +114,7 @@ function Admin() {
     } else {
       try {
         const res = await axios.post(
-          `${backendUrl}/campaign/updatecamp/${campId}`,
+          `${import.meta.env.VITE_BACKEND_URL}/campaign/updatecamp/${campId}`,
           data
         );
         getAllCampaign();
@@ -153,14 +149,14 @@ function Admin() {
   };
 
   const getAllCampaign = async () => {
-    const res = await axios.get(`${backendUrl}/campaign/getallcampaign`);
+    const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getallcampaign`);
     console.log(res.data);
     setTable(res.data);
     setCampaignLength(res.data.length);
   };
 
   const getAllSubmission = async() =>{
-    const res = await axios.get(`${backendUrl}/campaign/getallsubmission`)
+    const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getallsubmission`)
     const submission = res.data.data
     setSubmissions(submission)
     console.log(submission)
@@ -168,7 +164,7 @@ function Admin() {
 
   const handleLogout = async()=>{
     try {
-      const res = await axios.get(`${backendUrl}/admin/adminlogout`,{
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/adminlogout`,{
         withCredentials : true
       })
       navigate('/login')
@@ -189,7 +185,7 @@ function Admin() {
   const deleteCampaign = async (id) => {
     try {
       const res = await axios.post(
-        `${backendUrl}/campaign/deletecampaign/${id}`
+        `${import.meta.env.VITE_BACKEND_URL}/campaign/deletecampaign/${id}`
       );
       getAllCampaign();
     } catch (error) {
@@ -200,7 +196,7 @@ function Admin() {
   const changeCampaignState = async (id, status) => {
     try {
       const res = await axios.post(
-        `${backendUrl}/campaign/updatecampstatus/${id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/campaign/updatecampstatus/${id}`,
         {
           campaignStatus: status,
         }
@@ -213,10 +209,10 @@ function Admin() {
   };
 
   const HiqmobiTrack = async () =>{
-    const res1 = await axios.get(`${backendUrl}/campaign/gethiqmobidata?page=${page}`)
+    const res1 = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/gethiqmobidata?page=${page}`)
     setHiqmobiData(res1.data.data)
     const length1 = (res1.data.data.length)
-    const res2 = await axios.get(`${backendUrl}/campaign/gethiqmobidata?page=${page+1}`)
+    const res2 = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/gethiqmobidata?page=${page+1}`)
     const length2 = (res2.data.data.length)
     if ((length1 === limit && length2 === 0) || length1 < limit) {
       setDisable(false)
