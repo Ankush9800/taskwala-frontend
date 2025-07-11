@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router'
-import {Admin, AdminLayout, Campaign, Campaigns, Contact, Dashboard, Home, Login } from './pages'
+import {Admin, AdminLayout, Campaign, Campaigns, Contact, Dashboard, Home, Login, Offers, Submission } from './pages'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 
 const router = createBrowserRouter(
@@ -15,8 +15,12 @@ const router = createBrowserRouter(
       <Route path='contact' element={<Contact/>}/>
       <Route path='campaign/:id' element={<Campaign/>}/>
       <Route path='admin' element={<ProtectedRoute><AdminLayout/></ProtectedRoute>}>
+        <Route index element={<Dashboard/>}/>
         <Route path='dashboard' element={<Dashboard/>}/>
+        <Route path='submission' element={<Submission/>}/>
+        <Route path='offers' element={<Offers/>}/>
       </Route>
+      <Route path='admintemp' element={<ProtectedRoute><Admin/></ProtectedRoute>}></Route>
     </Route>
   )
 )

@@ -7,7 +7,10 @@ import Campaign from "./Campaign";
 import Admin from "./AdminDashboard";
 import AdminLayout from "./AdminLayout";
 import Dashboard from "./admin/Dashboard";
+import Submission from "./admin/Submission";
+import Offers from "./admin/Offers";
 
 
 
-export {Login, Home, Contact, Campaigns, Campaign, Admin, AdminLayout, Dashboard}
+
+export {Login, Home, Contact, Campaigns, Campaign, Admin, AdminLayout, Dashboard, Submission, Offers}
