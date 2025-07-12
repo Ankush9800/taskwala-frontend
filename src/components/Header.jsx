@@ -38,7 +38,7 @@ function Header() {
                 <ul className="gap-5 flex flex-col cursor-pointer">
                 <div className="flex justify-end border-b-2 border-[#5d6167] pb-2">
                     <li onClick={() => setMenuOpen(false)}>
-                    <img src="../src/assets/cross.svg"/>
+                    <img src="../public/assets/cross.svg"/>
                 </li>
                 </div>
                 <li><NavLink to={"/"} className={({isActive})=>(
@@ -61,7 +61,7 @@ function Header() {
                 <li>
                     <Link className="bg-gradient-to-r from-[#F97316] to-[#713306] py-2 px-4 rounded-sm font-semibold text-sm hover:scale-105 hidden md:flex transition-all duration-300">Sign up</Link>
                 </li><li>
-                    <Button className="bg-transparent hover:bg-transparent cursor-pointer md:hidden" onClick={() => setMenuOpen(true)}><img src="../src/assets/menu.svg"/></Button>
+                    <Button className="bg-transparent hover:bg-transparent cursor-pointer md:hidden" onClick={() => setMenuOpen(true)}><img src="../public/assets/menu.svg"/></Button>
                 </li>
                 
             </ul>

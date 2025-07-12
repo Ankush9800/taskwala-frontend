@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import { matchPath, Outlet, useLocation } from 'react-router-dom'
 import Header from './components/Header'
@@ -10,7 +8,7 @@ function App() {
   const location = useLocation();
   const path = location.pathname;
 
-  const hidePaths = ['/login', '/register', '/admintemp', '/admin/dashboard','/admin/offers', '/admin/submission'];
+  const hidePaths = ['/login', '/register','/admin', '/admintemp', '/admin/dashboard','/admin/offers', '/admin/submission'];
 
   const hideHeaderFooter =
     hidePaths.includes(path) ||
