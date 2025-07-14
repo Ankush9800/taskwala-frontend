@@ -72,7 +72,7 @@ function Campaign() {
         <img className='h-15 w-15 rounded-full' src={campaignData?.campaignImage} alt="" />
         <h2 className='text-2xl font-bold bg-gradient-to-r from-[#00CFFF] to-[#A855F7] bg-clip-text text-transparent'>{campaignData?.title}</h2>
         <p className='text-sm text-[#9CA3AF]'>{campaignData?.description}</p>
-        <h4 className='text-md font-semibold flex gap-2 justify-center'>Earn up to: <p className='text-[#10B981] font-bold'>{campaignData?.payoutRate}</p></h4>
+        <h4 className='text-md font-semibold flex gap-2 justify-center'>Earn up to: <p className='text-[#10B981] font-bold'>₹{campaignData?.payoutRate}</p></h4>
       </div>
       {/* Second card */}
       <div className='m-10 md:flex justify-center'>
