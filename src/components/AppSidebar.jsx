@@ -29,7 +29,7 @@ const profile = async()=>{
   const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/getadmin`,{
     withCredentials:true
   })
-  console.log(res.data.data)
+  // console.log(res.data.data)
   setProfileData(res.data.data)
 }
 

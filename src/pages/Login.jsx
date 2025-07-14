@@ -33,7 +33,7 @@ function Login() {
     }
 
     auth()
-  })
+  },[])
 
   const handleLogin = async()=>{
     const data = {
