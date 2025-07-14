@@ -30,7 +30,7 @@ function Login() {
       console.log(res)
       navigate('/admin')
     } catch (error) {
-      toast(`Login failed. Please enter correct credentials`, {
+      toast(`Login failed. ${error.response?.data?.message }`, {
       style: {
         backgroundColor: "#BA2D0B",
         color: "#fff",
