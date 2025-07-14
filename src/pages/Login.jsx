@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast, Toaster } from 'sonner'
 import { Eye, EyeOff } from 'lucide-react';
@@ -16,6 +16,24 @@ function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [show, setShow] = useState(false);
+
+  useEffect(()=>{
+    const auth = async()=>{
+      try {
+      const admin = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/getadmin`,{
+          withCredentials : true
+        })
+
+        if (admin) {
+          navigate("/admin")
+        }
+    } catch (error) {
+      console.log("do login")
+    }
+    }
+
+    auth()
+  })
 
   const handleLogin = async()=>{
     const data = {
