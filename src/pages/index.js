@@ -9,8 +9,10 @@ import AdminLayout from "./AdminLayout";
 import Dashboard from "./admin/Dashboard";
 import Submission from "./admin/Submission";
 import Offers from "./admin/Offers";
+import Tracker from "./Tracker";
 
 
 
 
-export {Login, Home, Contact, Campaigns, Campaign, Admin, AdminLayout, Dashboard, Submission, Offers}
+
+export {Login, Home, Contact, Campaigns, Campaign, Admin, AdminLayout, Dashboard, Submission, Offers, Tracker}

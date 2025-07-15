@@ -6,9 +6,9 @@ import { Outlet } from 'react-router-dom'
 function AdminLayout() {
   return (
     <SidebarProvider>
-        <div className='flex'>
+        <div className='flex w-full'>
             <AppSidebar/>
-            <main className="flex-1 p-6">
+            <main className="flex-1 p-6 w-full">
                 <SidebarTrigger/>
                 <Outlet/>
             </main>

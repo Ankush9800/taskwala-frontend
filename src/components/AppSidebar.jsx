@@ -1,36 +1,35 @@
 import React, { useEffect, useState } from 'react'
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem } from './ui/sidebar'
-import { Link } from 'react-router-dom'
-import { ChevronDown, ChevronRight, Plus } from 'lucide-react'
+import { Link, useNavigate } from 'react-router-dom'
+import { ChevronDown, ChevronRight, LogOut, Plus, VerifiedIcon } from 'lucide-react'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import { Button } from './ui/button'
 import axios from 'axios'
+import { Dashboard, Offers, Submission } from '@/pages'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu'
 
 function AppSidebar() {
-const [profileData, setProfileData] = useState(null)
+const navigate = useNavigate()
 
-const pages = [
-    {
-        title : "Dashboard",
-        path : '/admin/dashboard'
-    },
-    {
-        title : "Offers",
-        path : '/admin/offers'
-    },
-    {
-        title : "Submission",
-        path : '/admin/submission'
-    },
-]
+const [profileData, setProfileData] = useState(null)
 
 const profile = async()=>{
   const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/getadmin`,{
     withCredentials:true
   })
-  // console.log(res.data.data)
   setProfileData(res.data.data)
+}
+
+const handleLogout = async()=>{
+  try {
+    await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/adminlogout`,{
+      withCredentials:true
+    })
+    navigate("/login")
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 useEffect(()=>{
@@ -40,22 +39,22 @@ useEffect(()=>{
   return (
     <>
         <Sidebar className='h-screen'>
-          <SidebarContent  className="flex flex-col h-full">
+          <SidebarContent  className="flex flex-col h-full bg-gray-900 text-white focus:bg-white">
             <div className="flex-1">
             <SidebarHeader></SidebarHeader>
             <SidebarGroup>
-              <SidebarGroupLabel>Offers</SidebarGroupLabel>
+              <SidebarGroupLabel className='text-gray-400'>Offers</SidebarGroupLabel>
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
-                      <Link className='font-bold'>Dashboard</Link>
+                      <Link className='font-bold' to={"/admin/dashboard"}>Dashboard</Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <Collapsible className='group/collapsible'>
                   <SidebarMenuItem>
                     <CollapsibleTrigger asChild>
-                    <SidebarMenuButton >
+                    <SidebarMenuButton className='cursor-pointer'>
                       <span className='font-bold'>Campaigns</span>
                        <ChevronRight className="ml-auto transition-transform rotate-0 group-data-[state=open]/collapsible:rotate-90" />
                     </SidebarMenuButton>
@@ -64,19 +63,19 @@ useEffect(()=>{
                     <SidebarMenuSub>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <Link className='font-bold'>All Offers</Link>
+                          <Link className='font-bold text-white' to={"/admin/offers"}>All Offers</Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <Link className='font-bold'>Active Offers</Link>
+                          <Link className='font-bold text-white'>Active Offers</Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
-                      <SidebarMenuSubItem>
+                      {/* <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
                           <Link className='font-bold'>Inactive Offers</Link>
                         </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
+                      </SidebarMenuSubItem> */}
                     </SidebarMenuSub>
                     </CollapsibleContent>
                   </SidebarMenuItem>
@@ -84,21 +83,21 @@ useEffect(()=>{
                   <Collapsible className='group/collapsible'>
                   <SidebarMenuItem>
                     <CollapsibleTrigger asChild>
-                    <SidebarMenuButton asChild>
-                      <Link className='font-bold'>Reports
-                       <ChevronRight className="ml-auto transition-transform rotate-0 group-data-[state=open]/collapsible:rotate-90" /></Link>
+                    <SidebarMenuButton className='cursor-pointer'>
+                      <span className='font-bold'>Reports</span>
+                       <ChevronRight className="ml-auto transition-transform rotate-0 group-data-[state=open]/collapsible:rotate-90" />
                     </SidebarMenuButton>
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                     <SidebarMenuSub>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <Link className='font-bold'>Conversion</Link>
+                          <Link className='font-bold text-white'>Conversion</Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <Link className='font-bold'>Clicks</Link>
+                          <Link className='font-bold text-white' to={"/admin/submission"}>Clicks</Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     </SidebarMenuSub>
@@ -114,7 +113,7 @@ useEffect(()=>{
               </SidebarGroupContent>
             </SidebarGroup>
             <SidebarGroup>
-              <SidebarGroupLabel>Devloper</SidebarGroupLabel>
+              <SidebarGroupLabel className='text-gray-400'>Devloper</SidebarGroupLabel>
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
@@ -141,9 +140,23 @@ useEffect(()=>{
                 </div>
 
                 {/* + Button */}
-                <Button size="icon" variant="ghost" className="h-8 w-8">
-                  <Plus className="h-4 w-4" />
-                </Button>
+                
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                      <Button size="icon" variant="default" className="h-8 w-8 bg-gray-900 cursor-pointer ">
+                        <Plus className='h-4 w-4'/>
+                      </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className='bg-gray-800 border-1 border-gray-600 text-white' side='right'>
+                    <DropdownMenuGroup>
+                      <DropdownMenuItem className='cursor-pointer hover:!bg-gray-700 hover:!text-white'><VerifiedIcon/>Account</DropdownMenuItem>
+                      {/* <DropdownMenuSeparator/> */}
+                      <DropdownMenuItem className='cursor-pointer hover:!bg-gray-700 hover:!text-white'>
+                        <LogOut/> <Button className='bg-transparent p-0 hover:bg-transparent cursor-pointer' onClick={handleLogout}>Logout</Button>
+                      </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             </SidebarFooter>
             </SidebarContent>

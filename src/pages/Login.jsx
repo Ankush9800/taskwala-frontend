@@ -91,6 +91,11 @@ function Login() {
                 type={show ? 'text' : 'password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                onKeyDown={(e)=>{
+                  if (e.key === "Enter") {
+                    handleLogin()
+                  }
+                }}
                 required
                 className="pr-10"
               />
@@ -105,7 +110,7 @@ function Login() {
           </div>
         </CardContent>
         <CardFooter className='flex justify-center'>
-          <Button className='bg-gradient-to-r from-[#F97316] to-[#713306] px-10 cursor-pointer' onClick={handleLogin}>Login</Button>
+          <Button className='bg-gradient-to-r from-[#F97316] to-[#713306] px-10 cursor-pointer' disabled={!email || !password} onClick={handleLogin}>Login</Button>
         </CardFooter>
       </Card>
       </div>

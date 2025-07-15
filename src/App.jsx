@@ -8,7 +8,7 @@ function App() {
   const location = useLocation();
   const path = location.pathname;
 
-  const hidePaths = ['/login', '/register','/admin', '/admintemp', '/admin/dashboard','/admin/offers', '/admin/submission'];
+  const hidePaths = ['/login', '/register','/admin', '/admintemp', '/admin/dashboard','/admin/offers', '/admin/submission', '/tracker'];
 
   const hideHeaderFooter =
     hidePaths.includes(path) ||
