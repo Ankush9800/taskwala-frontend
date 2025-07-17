@@ -56,7 +56,7 @@ function Tracker() {
             <Input className='border-black text-black' value={upiId} onChange={(e)=>setUpiId(e.target.value)} placeholder='Enter your UPI ID'/>
             <Button disabled={!upiId || !campaign} onClick={trackData}>Submit</Button>
         </div> :<div className='w-104 m-4 flex flex-col gap-2 justify-center items-center p-5 rounded-md bg-white text-black'>
-            <div className='flex gap-2 items-center'><img src="/assets/finance_up.svg" alt="finance" className='size-10' /><h1 className='font-bold text-4xl'>Track offer process</h1></div>
+            <div className='flex gap-2 items-center'><img src="/assets/finance_up.svg" alt="finance" className='size-10' /><h1 className='font-bold text-3xl'>Track offer process</h1></div>
             <div className='flex flex-col bg-gray-300 p-3 rounded-md font-bold'>
                 <div className='flex gap-2 justify-start items-center'><img src="/assets/reward.svg" alt="reward" className='size-4'/><p>Offer name: <span className='text-purple-700'>{steps?.[0]?.cName}</span></p></div>
                 <div className='flex gap-2 justify-start items-center'><img src="/assets/upi.svg" alt="reward" className='size-4'/><p>UPI ID: <span className='text-green-700'>{steps?.[0]?.upiId}</span></p></div>
