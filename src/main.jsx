@@ -1,8 +1,8 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router'
-import {Admin, AdminLayout, Campaign, Campaigns, Contact, Dashboard, Home, Login, Offers, Submission, Tracker } from './pages'
+import { createBrowserRouter, createRoutesFromElements, Navigate, Route, RouterProvider } from 'react-router'
+import {Admin, AdminLayout, Campaign, Campaigns, Contact, Conversion, Dashboard, Home, Login, NotFound, Offers, Submission, Tracker } from './pages'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 
 const router = createBrowserRouter(
@@ -20,8 +20,10 @@ const router = createBrowserRouter(
         <Route path='dashboard' element={<Dashboard/>}/>
         <Route path='submission' element={<Submission/>}/>
         <Route path='offers' element={<Offers/>}/>
+        <Route path='conversion' element={<Conversion/>}/>
       </Route>
-      <Route path='admintemp' element={<ProtectedRoute><Admin/></ProtectedRoute>}></Route>
+      <Route path="404" element={<NotFound />} />
+      <Route path='*' element={<Navigate to="/404" replace state={{ from: window.location.pathname }} />}/>
     </Route>
   )
 )

@@ -92,7 +92,7 @@ useEffect(()=>{
                     <SidebarMenuSub>
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
-                          <Link className='font-bold text-white'>Conversion</Link>
+                          <Link className='font-bold text-white' to={"/admin/conversion"}>Conversion</Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                       <SidebarMenuSubItem>

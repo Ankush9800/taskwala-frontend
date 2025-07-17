@@ -625,7 +625,7 @@ function Admin() {
           
               <Pagination>
                 <PaginationContent>
-                  <PaginationItem>
+                  <PaginationItem className="cursor-pointer">
                     <PaginationPrevious
                       onClick={()=> setPage(p => Math.max(p-1,1))}
                     />
@@ -633,7 +633,7 @@ function Admin() {
                   <PaginationItem>
                     <span className="px-4 py-1 text-sm font-medium">Page {page}</span>
                   </PaginationItem>
-                  <PaginationItem>
+                  <PaginationItem className="cursor-pointer">
                     {disable?<PaginationNext onClick={()=> setPage(p => Math.max(p+1,1))}/>:<></>}
                   </PaginationItem>
                 </PaginationContent>
