@@ -64,7 +64,7 @@ function Tracker() {
             </div>
             <div className='flex flex-col gap-2 justify-center items-center'>
                 <h2 className='font-semibold'>Reach to payout state to earn reward</h2>
-                {steps && steps.length> 0?<>{steps?.map((step)=>(<div className='flex gap-5 justify-between font-bold' key={step._id}><p className='bg-gray-400 flex items-center rounded-md px-2 py-1'>{step.goal}</p><div className='flex gap-1 items-center justify-center bg-[#0f5a2d62] px-2 py-1 rounded-md'><img src="/assets/check.svg" alt="" /><p>Tracked</p></div></div>))}</>:(<p className='font-semibold text-red-600 text-xl px-5'>No tracking found please again later.</p>)}
+                {steps && steps.length> 0?<>{steps?.map((step)=>(<div className='flex gap-5 justify-between font-bold' key={step._id}><p className='bg-gray-400 flex items-center rounded-md px-2 py-1'>{step.goal}</p><div className='flex gap-1 items-center justify-center bg-[#0f5a2d62] px-2 py-1 rounded-md'><img src="/assets/check.svg" alt="" /><p>Tracked</p></div></div>))}</>:(<p className='font-semibold text-red-600 text-xl px-5'>No tracking found please try again later.</p>)}
             </div>
         </div>}
         
