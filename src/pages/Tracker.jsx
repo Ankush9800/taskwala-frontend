@@ -158,12 +158,6 @@ function Tracker() {
             {steps.map(step => (
               <li key={step._id} className="mb-6 ml-4 flex items-center group">
                 {/* Circle */}
-                <div
-                  className="flex-1 p-3 rounded-md shadow-sm flex items-center justify-between"
-                  style={{ background: "#222233", color: "#F5F5F5" }}
-                >
-                  <span className="font-medium">{step.goal}</span>
-                  
                 <span
                   className="absolute -left-3 flex items-center justify-center w-6 h-6 border-2 rounded-full "
                   style={{
@@ -173,6 +167,11 @@ function Tracker() {
                 >
                   <img src="/assets/check.svg" className="w-4 h-4" alt="" />
                 </span>
+                <div
+                  className="flex-1 p-3 rounded-md shadow-sm flex items-center justify-between ml-2"
+                  style={{ background: "#222233", color: "#F5F5F5" }}
+                >
+                  <span className="font-medium">{step.goal}</span>
                   <span
                     className="ml-4 inline-block px-3 py-1 rounded text-xs font-bold"
                     style={{
