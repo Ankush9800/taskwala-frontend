@@ -12,6 +12,8 @@ import Offers from "./admin/Offers";
 import Tracker from "./Tracker";
 import Conversion from "./admin/Conversion";
 import NotFound from "./NotFound";
+import Payments from "./admin/Payments";
+import Profile from "./admin/Profile";
 
 
 export {
@@ -28,4 +30,6 @@ export {
   Tracker,
   Conversion,
   NotFound,
+  Payments,
+  Profile,
 };

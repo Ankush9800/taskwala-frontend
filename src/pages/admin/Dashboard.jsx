@@ -7,10 +7,10 @@ function Dashboard() {
 
   const [totalCamp, setTotalCamp] = useState(0)
 
-  const getPostback = async()=>{
-    const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getpostback`)
-    console.log(res.data)
-  }
+  // const getPostback = async()=>{
+  //   const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getpostback`)
+  //   console.log(res.data)
+  // }
 
   const campaigns = async()=>{
     const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getallcampaign`)
@@ -19,7 +19,7 @@ function Dashboard() {
   }
 
   useEffect(()=>{
-    getPostback()
+    // getPostback()
     campaigns()
   },[])
 

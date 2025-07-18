@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Toaster } from '@/components/ui/sonner';
 import { Switch } from '@/components/ui/switch';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -22,28 +23,40 @@ function Offers() {
     const [campId, setCampId] = useState("");
     const [formData, setFormData] = useState({
         title: "",
+        campId: "",
         payoutRate: "",
         trackingUrl: "",
         description: "",
         campaignImage: null,
+        provider: "",
       });
 
       const handleChange = (e) => {
-        const { name, value, type, files } = e.target;
+        const { name, value, type, files, } = e.target;
         setFormData((prev) => ({
           ...prev,
           [name]: type === "file" ? files[0] : value,
         }));
       };
 
+      const handleProviderChange = (newProviderValue) => {
+        setFormData(prev => ({
+          ...prev,
+          provider: newProviderValue,
+        }));
+      };
+
+
       const handleSubmit = async (e) => {
         e.preventDefault();
         const data = new FormData();
         data.append("title", formData.title);
+        data.append("campId", formData.campId);
         data.append("payoutRate", formData.payoutRate);
         data.append("trackingUrl", formData.trackingUrl);
         data.append("description", formData.description);
         data.append("campaignImage", formData.campaignImage);
+        data.append("provider", formData.provider);
 
         if (!edit) {
           try {
@@ -169,9 +182,9 @@ function Offers() {
                 </DialogTrigger>
                 <DialogContent className="bg-black text-white border-gray-500">
                   <DialogHeader>
-                    <DialogTitle>Create Campaign</DialogTitle>
+                    <DialogTitle>{edit? "Update Campaign": "Create Campaign"}</DialogTitle>
                     <DialogDescription>
-                      Use this to add new campaign.
+                      Use this to {edit? "update": "add new"} campaign.
                     </DialogDescription>
                   </DialogHeader>
                   <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -185,6 +198,17 @@ function Offers() {
                         placeholder="Campaign name"
                       />
                     </div>
+                    <div className='flex gap-5 justify-between'>
+                      <div className="flex flex-col gap-2">
+                      <Label>Camp Id</Label>
+                      <Input
+                        name="campId"
+                        value={formData.campId}
+                        onChange={handleChange}
+                        className="border-gray-600 border-2"
+                        placeholder="Camp Id"
+                      />
+                    </div>
                     <div className="flex flex-col gap-2">
                       <Label>Payout Rate</Label>
                       <Input
@@ -193,7 +217,9 @@ function Offers() {
                         onChange={handleChange}
                         className="border-gray-600 border-2"
                         placeholder="Campaign payout rate"
+                        type='number'
                       />
+                    </div>
                     </div>
                     <div className="flex flex-col gap-2">
                       <Label>Tracking URL</Label>
@@ -207,12 +233,26 @@ function Offers() {
                     </div>
                     <div className="flex flex-col gap-2">
                       <Label>Campaign image</Label>
+                    <div className='flex gap-10'>
                       <Input
                         name="campaignImage"
                         onChange={handleChange}
                         className="border-gray-600 border-2 text-white cursor-pointer"
                         type="file"
                       />
+                      <Select onValueChange={handleProviderChange} value={formData.provider} name='provider'>
+                        <SelectTrigger className='border-gray-600 border-2'>
+                          <SelectValue placeholder="Select provider"/>
+                        </SelectTrigger>
+                        <SelectContent className='border-gray-600 border-2 bg-black text-white font-semibold'>
+                          <SelectGroup>
+                            <SelectLabel className='text-gray-500'>Providers</SelectLabel>
+                            <SelectItem value='hiqmobi'>Hiqmobi</SelectItem>
+                            <SelectItem value='sankmo'>Sankmo</SelectItem>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                    </div>
                     </div>
                     <div className="flex flex-col gap-2">
                       <Label>Description</Label>
@@ -230,11 +270,13 @@ function Offers() {
                         onClick={() => {
                           setFormData({
                             title: "",
+                            campId: "",
                             payoutRate: "",
                             trackingUrl: "",
                             description: "",
                             campaignImage: null,
                           });
+                          setEdit(false);
                         }}
                         className="cursor-pointer bg-white text-black filter hover:scale-105 hover:bg-white"
                       >
@@ -257,11 +299,12 @@ function Offers() {
               <TableRow className="sticky z-10 top-0 bg-[#071e23]">
                 <TableHead className="text-white w-[5%]">No</TableHead>
                 <TableHead className="text-white w-[10%]">Name</TableHead>
+                <TableHead className="text-white w-[10%]">Camp Id</TableHead>
                 <TableHead className="text-white w-[10%]">Payout</TableHead>
                 <TableHead className="text-white w-[20%]">
                   Tracking Url
                 </TableHead>
-                <TableHead className="text-white w-[35%]">
+                <TableHead className="text-white w-[25%]">
                   Description
                 </TableHead>
                 <TableHead className="text-white w-[10%]">Status</TableHead>
@@ -276,6 +319,7 @@ function Offers() {
                 >
                   <TableCell>{index + 1}</TableCell>
                   <TableCell>{camp.title}</TableCell>
+                  <TableCell>{camp.campId}</TableCell>
                   <TableCell>₹{camp.payoutRate}</TableCell>
                   <TableCell className="truncate max-w-[50px]">
                     {camp.trackingUrl}
@@ -300,10 +344,12 @@ function Offers() {
                           setEdit(true);
                           setFormData({
                             title: camp.title || "",
+                            campId: camp.campId || "",
                             payoutRate: camp.payoutRate || "",
                             trackingUrl: camp.trackingUrl || "",
                             description: camp.description || "",
                             campaignImage: null,
+                            provider: camp.provider || "",
                           });
                           setCampId(camp._id);
                           setDialogState(true);

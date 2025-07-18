@@ -44,6 +44,7 @@ function Campaign() {
         phone: userPhone,
         upi: userupi,
         cName : campaignData.title,
+        provider : campaignData.provider,
         redirectUrl: campaignData.trackingUrl,
         payoutRate : campaignData.payoutRate,
       })

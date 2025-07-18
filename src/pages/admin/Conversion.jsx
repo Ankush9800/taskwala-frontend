@@ -1,8 +1,11 @@
+import { Button } from '@/components/ui/button'
 import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from '@/components/ui/pagination'
-import { ScrollArea } from '@/components/ui/scroll-area'
+import { Toaster } from '@/components/ui/sonner'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import axios from 'axios'
+import { Clipboard } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
+import { toast } from 'sonner'
 
 function Conversion() {
 
@@ -24,22 +27,48 @@ function Conversion() {
         
     },[page])
 
+    const copy = async(value)=>{
+      try {
+        await navigator.clipboard.writeText(value)
+        toast("Copy successfully", {
+          style: {
+            backgroundColor: "#065f46",
+            color: "#fff",
+            borderColor: "#fff",
+            border: "2px",
+          },
+          duration: 2000,
+          position: "top-right",})
+      } catch (error) {
+        console.log(error)
+        toast("Copy failed", {
+          style: {
+            backgroundColor: "#BA2D0B",
+            color: "#fff",
+            borderColor: "#fff",
+            border: "2px",
+          },
+          duration: 2000,
+          position: "top-right",})
+      }
+    }
+
   return (
     <div>
-        <ScrollArea className="h-104 rounded-md">
+      <Toaster/>
             <div>
               <Table className="min-w-full">
                 <TableHeader>
                   <TableRow className="sticky z-10 top-0 bg-[#071e23]">
                     <TableHead className="text-white w-[5%]">No</TableHead>
-                    <TableHead className="text-white w-[10%]">C-Name</TableHead>
+                    <TableHead className="text-white w-[15%]">C-Name</TableHead>
                     <TableHead className="text-white w-[10%]">Offer-id</TableHead>
                     <TableHead className="text-white w-[10%]">Payout</TableHead>
-                    <TableHead className="text-white w-[10%]">Time</TableHead>
-                    <TableHead className="text-white w-[20%]">
+                    <TableHead className="text-white w-[25%]">Time</TableHead>
+                    <TableHead className="text-white w-[15%]">
                       Phone
                     </TableHead>
-                    <TableHead className="text-white w-[25%]">
+                    <TableHead className="text-white w-[20%]">
                       Upi-id
                     </TableHead>
                   </TableRow>
@@ -57,18 +86,23 @@ function Conversion() {
                         {camp.payout?<>₹{camp.payout}</>:"₹0"}
                       </TableCell>
                       <TableCell>{new Date(camp.createdAt).toLocaleString()}</TableCell>
-                      <TableCell className="truncate max-w-[50px]">
+                      <TableCell className="truncate">
+                        <div className='flex items-center justify-between pr-[20%]'>
                         {camp.phoneNo}
+                        <Button className='bg-transparent p-0 h-auto cursor-pointer' onClick={()=>copy(camp.phoneNo)}><Clipboard/></Button>
+                        </div>
                       </TableCell>
-                      <TableCell>
-                        {camp.upiId}
+                      <TableCell className="truncate">
+                        <div className='flex items-center justify-between pr-[20%]'>
+                          <span>{camp.upiId}</span>
+                        <Button className='bg-transparent p-0 h-auto cursor-pointer' onClick={()=>copy(camp.upiId)}><Clipboard/></Button>
+                        </div>
                       </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
               </Table>
             </div>
-          </ScrollArea>
           
               <Pagination>
                 <PaginationContent>

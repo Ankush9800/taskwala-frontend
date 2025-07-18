@@ -66,12 +66,12 @@ useEffect(()=>{
                           <Link className='font-bold text-white' to={"/admin/offers"}>All Offers</Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
-                      <SidebarMenuSubItem>
+                      {/* <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
                           <Link className='font-bold text-white'>Active Offers</Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
-                      {/* <SidebarMenuSubItem>
+                      <SidebarMenuSubItem>
                         <SidebarMenuSubButton asChild>
                           <Link className='font-bold'>Inactive Offers</Link>
                         </SidebarMenuSubButton>
@@ -105,7 +105,7 @@ useEffect(()=>{
                   </SidebarMenuItem>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
-                      <Link className='font-bold'>Payments</Link>
+                      <Link className='font-bold' to={"/admin/payments"}>Payments</Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   </Collapsible>
@@ -118,7 +118,7 @@ useEffect(()=>{
                 <SidebarMenu>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
-                      <Link className='font-bold'>Account</Link>
+                      <Link className='font-bold'>Images</Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </SidebarMenu>
@@ -149,10 +149,10 @@ useEffect(()=>{
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className='bg-gray-800 border-1 border-gray-600 text-white' side='right'>
                     <DropdownMenuGroup>
-                      <DropdownMenuItem className='cursor-pointer hover:!bg-gray-700 hover:!text-white'><VerifiedIcon/>Account</DropdownMenuItem>
+                      <DropdownMenuItem className='cursor-pointer hover:!bg-gray-700 hover:!text-white'><VerifiedIcon/><Link to={"/admin/profile"}>Account</Link></DropdownMenuItem>
                       {/* <DropdownMenuSeparator/> */}
                       <DropdownMenuItem className='cursor-pointer hover:!bg-gray-700 hover:!text-white'>
-                        <LogOut/> <Button className='bg-transparent p-0 hover:bg-transparent cursor-pointer' onClick={handleLogout}>Logout</Button>
+                        <LogOut/> <Button className='bg-transparent h-3 p-0 hover:bg-transparent cursor-pointer' onClick={handleLogout}>Logout</Button>
                       </DropdownMenuItem>
                     </DropdownMenuGroup>
                   </DropdownMenuContent>

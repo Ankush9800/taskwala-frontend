@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button'
 import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from '@/components/ui/pagination'
-import { ScrollArea } from '@/components/ui/scroll-area'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
@@ -35,8 +34,7 @@ function Submission() {
                   Refresh
                 </Button>
             </div>
-          <ScrollArea className="h-112 rounded-md pb-10">
-            <div>
+            <div className='pb-10'>
               <Table className="min-w-full">
                 <TableHeader>
                   <TableRow className="sticky z-10 top-0 bg-[#071e23]">
@@ -85,7 +83,6 @@ function Submission() {
                 </TableBody>
               </Table>
             </div>
-          </ScrollArea>
           <Pagination>
                 <PaginationContent>
                   <PaginationItem className="cursor-pointer">
