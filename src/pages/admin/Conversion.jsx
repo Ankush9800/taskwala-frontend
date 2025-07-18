@@ -54,7 +54,7 @@ function Conversion() {
                       <TableCell>{camp.cName}</TableCell>
                       <TableCell>{camp.campId}</TableCell>
                       <TableCell>
-                        ₹{camp.payout}
+                        {camp.payout?<>₹{camp.payout}</>:"₹0"}
                       </TableCell>
                       <TableCell>{new Date(camp.createdAt).toLocaleString()}</TableCell>
                       <TableCell className="truncate max-w-[50px]">
