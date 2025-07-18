@@ -102,7 +102,7 @@ function Tracker() {
       />
       {/* CTA */}
       <Button
-        className="w-full font-bold rounded-md py-2 transition"
+        className="w-full font-bold rounded-md py-2 transition cursor-pointer"
         style={{
           background: "#F97316",
           color: "#F5F5F5",
@@ -149,6 +149,11 @@ function Tracker() {
           </div>
         </div>
       </div>
+      {steps?.[steps.length-1]?.payout ? (
+        <p className="font-semibold text-lg px-7 text-center" style={{ color: "#F97316" }}>
+          Hurrey cashback received ₹{steps[steps.length-1].payout}
+        </p>
+  ) : null}
       <div className="flex flex-col items-center gap-4 w-full mt-3">
         <h2 className="font-bold text-lg" style={{ color: "#A855F7" }}>
           Steps to Earn Reward
