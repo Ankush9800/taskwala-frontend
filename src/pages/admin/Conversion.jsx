@@ -13,7 +13,7 @@ function Conversion() {
 
     const conversionData = async()=>{
         const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getpostback?page=${page}`)
-        console.log(res.data.data)
+        console.log(res.data.data,'aa')
         setConversion(res.data.data[0])
         setCountTotal(res.data.data[1])
         setIndexCount((page - 1)*10)
@@ -35,6 +35,7 @@ function Conversion() {
                     <TableHead className="text-white w-[10%]">C-Name</TableHead>
                     <TableHead className="text-white w-[10%]">Offer-id</TableHead>
                     <TableHead className="text-white w-[10%]">Payout</TableHead>
+                    <TableHead className="text-white w-[10%]">Time</TableHead>
                     <TableHead className="text-white w-[20%]">
                       Phone
                     </TableHead>
@@ -55,6 +56,7 @@ function Conversion() {
                       <TableCell>
                         ₹
                       </TableCell>
+                      <TableCell>{new Date(camp.createdAt).toLocaleString()}</TableCell>
                       <TableCell className="truncate max-w-[50px]">
                         {camp.phoneNo}
                       </TableCell>
