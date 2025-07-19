@@ -249,6 +249,7 @@ function Offers() {
                             <SelectLabel className='text-gray-500'>Providers</SelectLabel>
                             <SelectItem value='hiqmobi'>Hiqmobi</SelectItem>
                             <SelectItem value='sankmo'>Sankmo</SelectItem>
+                            <SelectItem value='icd'>Indian-camp</SelectItem>
                           </SelectGroup>
                         </SelectContent>
                       </Select>
