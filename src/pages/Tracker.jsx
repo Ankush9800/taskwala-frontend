@@ -5,12 +5,13 @@ import axios from 'axios'
 import { RotateCcw } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 
-function Tracker() {
+function Tracker({color = "#00CFFF"}) {
 
     const [upiId, setUpiId] = useState("")
     const [campaign, setCampaign] = useState("")
     const [items, setItems] = useState(null)
     const [steps, setSteps] = useState(null)
+    const [reload, setReload] = useState(false)
 
     const date = new Date(steps?.[steps.length - 1]?.updatedAt)
 
@@ -22,6 +23,7 @@ function Tracker() {
 
     const trackData = async()=>{
         try {
+          setReload(true)
             const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/userpostback`,{
                 params:{
                     upiid : upiId,
@@ -30,6 +32,9 @@ function Tracker() {
             })
             setSteps(res.data.data)
             console.log(res.data.data)
+            setTimeout(() => {
+              setReload(false)
+            }, 1000);
         } catch (error) {
             console.log(error)
         }
@@ -178,7 +183,28 @@ function Tracker() {
           Steps to Earn Reward
         </h2>
         {steps && steps.length > 0 ? (
-          <ol className="relative ">
+          <>{reload?(<svg
+      className="animate-spin"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      style={{ color }}
+      fill="none"
+    >
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      />
+      <path
+        className="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+      />
+    </svg>):(<ol className="relative ">
             {steps.map(step => (
               <li key={step._id} className="mb-6 ml-4 flex items-center group">
                 {/* Circle */}
@@ -208,7 +234,7 @@ function Tracker() {
                 </div>
               </li>
             ))}
-          </ol>
+          </ol>)}</>
         ) : (
           <p className="font-semibold text-lg px-7 text-center" style={{ color: "#F97316" }}>
             No tracking found. Please try again later.
