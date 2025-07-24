@@ -124,6 +124,24 @@ function Tracker() {
            color: "#F5F5F5"
          }}
     >
+      <div className="w-full flex justify-between items-center mb-2">
+      <div className="flex gap-3 items-center">
+        <img src="/assets/finance_up.svg" className="w-10 h-10" alt="" />
+        <h1 className="font-extrabold text-2xl" style={{ color: "#00CFFF" }}>
+          Offer Progress
+        </h1>
+      </div>
+      <button
+        className="flex items-center gap-1 px-3 py-1 rounded-lg bg-[#232336] text-[#00CFFF] font-semibold text-sm shadow hover:bg-[#00CFFF22] hover:text-[#00CFFF] transition"
+        title="Reload"
+        type="button"
+        onClick={trackData} // or your reload handler
+      >
+        <RotateCcw className="w-4 h-4" />
+        Reload
+      </button>
+    </div>
+
       <div className="flex flex-col items-center gap-1">
         <div className="flex gap-3 items-center mb-3">
           <img src="/assets/finance_up.svg" className="w-10 h-10" alt="" />
