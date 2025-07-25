@@ -63,6 +63,7 @@ function Conversion() {
                     <TableHead className="text-white w-[5%]">No</TableHead>
                     <TableHead className="text-white w-[15%]">C-Name</TableHead>
                     <TableHead className="text-white w-[10%]">Offer-id</TableHead>
+                    <TableHead className="text-white w-[10%]">Goal</TableHead>
                     <TableHead className="text-white w-[10%]">Payout</TableHead>
                     <TableHead className="text-white w-[25%]">Time</TableHead>
                     <TableHead className="text-white w-[15%]">
@@ -82,6 +83,7 @@ function Conversion() {
                       <TableCell>{indexCount + index + 1}</TableCell>
                       <TableCell>{camp.cName}</TableCell>
                       <TableCell>{camp.campId}</TableCell>
+                      <TableCell>{camp.goal}</TableCell>
                       <TableCell>
                         {camp.payout?<>₹{camp.payout}</>:"₹0"}
                       </TableCell>
