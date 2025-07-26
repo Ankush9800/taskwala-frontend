@@ -40,7 +40,7 @@ function Payments() {
                 <TableCell className="font-medium text-[#F5F5F5]">{idx + 1}</TableCell>
                 <TableCell className="text-[#00CFFF]">{pay.userName}</TableCell>
                 <TableCell className="truncate max-w-[180px]">
-                  {/* <CopyCell value={pay.upiId} label="UPI ID" /> */}
+                  {/* <CopyCell value={pay.upiId} label="UPI ID" /> */}{pay.upiId}
                 </TableCell>
                 <TableCell className="font-semibold text-[#F97316] text-base">
                   ₹{pay.amount}
