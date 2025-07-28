@@ -9,7 +9,7 @@ import { Switch } from '@/components/ui/switch';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Textarea } from '@/components/ui/textarea';
 import axios from 'axios';
-import { Edit, Trash2 } from 'lucide-react';
+import { Edit, Share2, Trash2 } from 'lucide-react';
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner';
 
@@ -163,6 +163,19 @@ function Offers() {
         console.log("error while update campaign status", error);
       }
     };
+
+    const copyUrl = async(value)=>{
+      navigator.clipboard.writeText(value)
+      toast("Copy successfully", {
+                style: {
+                  backgroundColor: "#065f46",
+                  color: "#fff",
+                  borderColor: "#fff",
+                  border: "2px",
+                },
+                duration: 2000,
+      position: "top-right",})
+    }
 
   return (
     <div className='flex flex-col gap-5'>
@@ -333,6 +346,7 @@ function Offers() {
                   </TableCell>
                   <TableCell>
                     <div className="flex gap-2 items-center">
+                      <Button className='bg-transparent hover:bg-[#A855F7]' onClick={()=>copyUrl(`task.hellome.site/campaign/${camp._id}`)}><Share2 className='color-white hover:color-black'/></Button>
                       <Switch
                         checked={camp.campaignStatus}
                         onCheckedChange={(value) =>
