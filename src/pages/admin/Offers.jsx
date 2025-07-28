@@ -165,8 +165,12 @@ function Offers() {
     };
 
     const copyUrl = async(value)=>{
-      navigator.clipboard.writeText(value)
-      toast("Copy successfully", {
+      navigator.share({
+        title:'try this',
+        url:value
+      })
+      // navigator.clipboard.writeText(value)
+      toast("share successfully", {
                 style: {
                   backgroundColor: "#065f46",
                   color: "#fff",
@@ -346,7 +350,7 @@ function Offers() {
                   </TableCell>
                   <TableCell>
                     <div className="flex gap-2 items-center">
-                      <Button className='bg-transparent hover:bg-[#A855F7]' onClick={()=>copyUrl(`task.hellome.site/campaign/${camp._id}`)}><Share2 className='color-white hover:color-black'/></Button>
+                      <Button className='bg-transparent hover:bg-[#A855F7]' onClick={()=>copyUrl(`https://task.hellome.site/campaign/${camp._id}`)}><Share2 className='color-white hover:color-black'/></Button>
                       <Switch
                         checked={camp.campaignStatus}
                         onCheckedChange={(value) =>
