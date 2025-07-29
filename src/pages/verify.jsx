@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Client, Account } from "appwrite";
 
 function verify() {
 
-const client = new Client()
+useEffect(()=>{
+  const client = new Client()
     .setEndpoint(import.meta.env.VITE_APPWRITE_ENDPOINT)
     .setProject(import.meta.env.VITE_APPWRITE_PROJECT_ID);
 
 const account = new Account(client);
+console.log(import.meta.env.VITE_APPWRITE_PROJECT_ID)
 
 const urlParams = new URLSearchParams(window.location.search);
 const secret = urlParams.get('secret');
@@ -20,6 +22,7 @@ promise.then(function (response) {
 }, function (error) {
     console.log(error); // Failure
 });
+},[])
 
   return (
     <div>verify</div>
