@@ -1,11 +1,8 @@
-import { View, Text } from 'react-native'
 import React from 'react'
 
-const verify = () => {
+function verify() {
   return (
-    <View>
-      <Text>verify</Text>
-    </View>
+    <div>verify</div>
   )
 }
 
