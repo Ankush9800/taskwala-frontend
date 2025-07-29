@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import { createBrowserRouter, createRoutesFromElements, Navigate, Route, RouterProvider } from 'react-router'
-import {Admin, AdminLayout, Campaign, Campaigns, Contact, Conversion, Dashboard, Home, Login, NotFound, Offers, Payments, Profile, Submission, Tracker } from './pages'
+import {Admin, AdminLayout, Campaign, Campaigns, Contact, Conversion, Dashboard, Home, Login, NotFound, Offers, Payments, Profile, Submission, Tracker, Verify } from './pages'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 
 const router = createBrowserRouter(
@@ -10,6 +10,7 @@ const router = createBrowserRouter(
     <Route path='/' element={<App/>}>
       <Route index element={<Home/>}/>
       <Route path='home' element={<Home/>}/>
+      <Route path='verify' element={<Verify/>}/>
       <Route path='login' element={<Login/>}/>
       <Route path='campaigns' element={<Campaigns/>}/>
       <Route path='contact' element={<Contact/>}/>

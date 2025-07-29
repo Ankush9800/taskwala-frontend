@@ -14,6 +14,7 @@ import Conversion from "./admin/Conversion";
 import NotFound from "./NotFound";
 import Payments from "./admin/Payments";
 import Profile from "./admin/Profile";
+import Verify from "./verify";
 
 
 export {
@@ -32,4 +33,5 @@ export {
   NotFound,
   Payments,
   Profile,
+  Verify,
 };
