@@ -15,6 +15,7 @@ import NotFound from "./NotFound";
 import Payments from "./admin/Payments";
 import Profile from "./admin/Profile";
 import Verify from "./verify";
+import Test from "./test";
 
 
 export {
@@ -34,4 +35,5 @@ export {
   Payments,
   Profile,
   Verify,
+  Test,
 };
