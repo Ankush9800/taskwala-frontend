@@ -16,11 +16,13 @@ function Campaign() {
   const [userupi, setUpi] = useState("")
   const [issubmiting, setIssubmiting] = useState(false)
   const [campUrl, setCampUrl] = useState("")
+  const [isActive, setIsActive] = useState(false)
 
   const getCampaignById = async()=>{
     const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getcampaignbyid/${id}`)
     const camp = res.data.data
     setCampaignData(camp)
+    setIsActive(res.data.data.campaignStatus)
     console.log(camp)
   }
 
@@ -68,7 +70,30 @@ function Campaign() {
   return (
     <>
       <Toaster/>
-      {/* first card */} 
+
+      {isActive? <div className='flex h-screen items-center justify-center'>
+       <div className="flex flex-col items-center justify-center min-h-[50vh] max-h-[50%] gap-4 p-8 bg-[#071e23] rounded-xl shadow-md border-2 border-[#F97316]/10 my-7 mx-auto max-w-md">
+    {/* <img
+      src="/unavailable.svg" // or any icon you like, or replace with an icon component
+      alt="Unavailable"
+      className="w-20 h-20 opacity-80"
+    /> */}
+    <h2 className="text-2xl font-bold text-[#F97316] text-center">
+      Campaign Unavailable
+    </h2>
+    <p className="text-base text-[#9CA3AF] text-center">
+      This campaign is no longer available.<br />
+      Please check back later or explore other offers.
+    </p>
+    <Button
+      className="mt-4 bg-gradient-to-r from-[#F97316] to-[#713306] px-6"
+      onClick={() => window.location.href = '/campaigns'} // customize or use router
+    >
+      Browse Campaigns
+    </Button>
+  </div>
+     </div>:<>
+     {/* first card */} 
       <div className='flex flex-col items-center gap-1 py-5'>
         <img className='h-15 w-15 rounded-full' src={campaignData?.campaignImage} alt="" />
         <h2 className='text-2xl font-bold bg-gradient-to-r from-[#00CFFF] to-[#A855F7] bg-clip-text text-transparent'>{campaignData?.title}</h2>
@@ -166,6 +191,8 @@ function Campaign() {
           </CardContent>
         </Card>
       </div>
+     </>}
+
     </>
   )
 }
