@@ -71,7 +71,7 @@ function Campaign() {
     <>
       <Toaster/>
 
-      {isActive? <div className='flex h-screen items-center justify-center'>
+      {!isActive? <div className='flex h-screen items-center justify-center'>
        <div className="flex flex-col items-center justify-center min-h-[50vh] max-h-[50%] gap-4 p-8 bg-[#071e23] rounded-xl shadow-md border-2 border-[#F97316]/10 my-7 mx-auto max-w-md">
     {/* <img
       src="/unavailable.svg" // or any icon you like, or replace with an icon component
