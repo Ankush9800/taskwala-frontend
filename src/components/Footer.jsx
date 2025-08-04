@@ -21,11 +21,11 @@ function Footer() {
           <Link to={'https://www.facebook.com/profile.php?id=61574122799682'} className='text-[#9CA3AF] text-md'>About</Link>
           {/* <Link className='text-[#9CA3AF] text-md'>Blog</Link> */}
           {/* <Link className='text-[#9CA3AF] text-md'>Careers</Link> */}
-          <Link to={'mailto:someone@example.com'} className='text-[#9CA3AF] text-md'>Contact</Link>
+          <Link to={'mailto:connect@twcampaign.in'} className='text-[#9CA3AF] text-md'>Contact</Link>
         </div>
         <div className='flex flex-col md:w-1/4'>
           <h4 className='font-bold text-[#F5F5F5] text-lg'>Support</h4>
-          <Link to={'mailto:someone@example.com'} className='text-[#9CA3AF] text-md'>Help Center</Link>
+          <Link to={'mailto:connect@twcampaign.in'} className='text-[#9CA3AF] text-md'>Help Center</Link>
           {/* <Link className='text-[#9CA3AF] text-md'>Documentation</Link> */}
           <Link className='text-[#9CA3AF] text-md'>Status</Link>
           <Link className='text-[#9CA3AF] text-md'>Privacy</Link>
