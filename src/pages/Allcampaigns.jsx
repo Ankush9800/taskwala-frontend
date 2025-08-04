@@ -12,7 +12,7 @@ function Campaigns() {
   const [rewards, setRewards] = useState(0)
 
   const fetchCampaigns = async () => {
-    // const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getallcampaign`);
+    const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getallcampaign`);
     console.log(res);
     const activeCapaigns = res.data.filter(camp => camp.campaignStatus === true);
     settitle(activeCapaigns)
