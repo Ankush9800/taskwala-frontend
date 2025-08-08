@@ -15,7 +15,7 @@ function Conversion() {
     const [indexCount, setIndexCount] = useState(1)
 
     const conversionData = async()=>{
-        // const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getpostback?page=${page}`)
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getconversion?page=${page}`)
         console.log(res.data.data,'aa')
         setConversion(res.data.data[0])
         setCountTotal(res.data.data[1])
@@ -23,8 +23,7 @@ function Conversion() {
     }
 
     useEffect(()=>{
-        // conversionData()
-        
+        conversionData()
     },[page])
 
     const copy = async(value)=>{
