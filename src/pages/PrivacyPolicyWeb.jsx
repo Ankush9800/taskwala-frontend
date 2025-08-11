@@ -26,7 +26,6 @@ const PrivacyPolicyWeb = () => {
             <li>Personal information (email address, name)</li>
             <li>Device information (device ID, operating system)</li>
             <li>Usage data (app interactions, rewards earned)</li>
-            <li>Location data (if permitted by user)</li>
           </ul>
         </section>
 
@@ -111,10 +110,10 @@ const PrivacyPolicyWeb = () => {
           <p className="text-gray-700 ml-4">
             Email:{' '}
             <a 
-              href="mailto:[Your Contact Email]" 
+              href="mailto:connect@twcampaign.in" 
               className="text-blue-600 hover:text-blue-800 underline"
             >
-              [Your Contact Email]
+              connect@twcampaign.in
             </a>
           </p>
         </section>
