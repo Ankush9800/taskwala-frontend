@@ -16,6 +16,7 @@ import Payments from "./admin/Payments";
 import Profile from "./admin/Profile";
 import Verify from "./verify";
 import Test from "./test";
+import PrivacyPolicy from "./PrivacyPolicyWeb";
 
 
 export {
@@ -36,4 +37,5 @@ export {
   Profile,
   Verify,
   Test,
+  PrivacyPolicy,
 };
