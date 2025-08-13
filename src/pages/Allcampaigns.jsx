@@ -10,27 +10,40 @@ function Campaigns() {
   const [title, settitle] = useState([])
   const [cplength, setCplength] = useState(0)
   const [rewards, setRewards] = useState(0)
+  const [loading, setLoading] = useState(true)
 
   const fetchCampaigns = async () => {
-    const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getallcampaign`);
-    console.log(res);
-    const activeCapaigns = res.data.filter(camp => camp.campaignStatus === true);
-    settitle(activeCapaigns)
-    setCplength(activeCapaigns.length)
-    let rewards = 0
-    for (let i = 0; i < activeCapaigns.length; i++) {
-    rewards += activeCapaigns[i].payoutRate
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getallcampaign`);
+      console.log(res);
+      const activeCapaigns = res.data.filter(camp => camp.campaignStatus === true);
+      setLoading(false)
+      settitle(activeCapaigns)
+      setCplength(activeCapaigns.length)
+      let rewards = 0
+      for (let i = 0; i < activeCapaigns.length; i++) {
+      rewards += activeCapaigns[i].payoutRate
+      }
+      const formated = rewards.toLocaleString()
+      setRewards(formated)
+    } catch (error) {
+      console.log(error)
     }
-    const formated = rewards.toLocaleString()
-    setRewards(formated)
   };
 
   useEffect(() => {
     fetchCampaigns(); // Run this when the page opens
   }, []);
 
-  
-
+  if (loading) {
+    return <>
+    <div className='flex h-screen w-screen justify-center items-center'>
+      <div className='flex animate-spin h-12 w-12 border-3 border-transparent border-t-red-500 border-l-red-500 rounded-full justify-center items-center'>
+        <div className='animate-spin-reverse h-10 w-10 border-3 border-transparent border-t-green-500 border-l-green-500 rounded-full'></div>
+      </div>
+    </div>
+    </>
+  }
 
   return (
     <>

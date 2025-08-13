@@ -9,6 +9,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 
+
 function Campaign() {
   const {id} = useParams()
   const [campaignData, setCampaignData] = useState(null)
@@ -16,14 +17,22 @@ function Campaign() {
   const [userupi, setUpi] = useState("")
   const [issubmiting, setIssubmiting] = useState(false)
   const [campUrl, setCampUrl] = useState("")
-  const [isActive, setIsActive] = useState(false)
+  const [isActive, setIsActive] = useState(true)
+  const [loading, setLoading] = useState(true)
 
   const getCampaignById = async()=>{
-    const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getcampaignbyid/${id}`)
-    const camp = res.data.data
-    setCampaignData(camp)
-    setIsActive(res.data.data.campaignStatus)
-    console.log(camp)
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getcampaignbyid/${id}`)
+      const camp = res.data.data
+      setCampaignData(camp)
+      setIsActive(res.data.data.campaignStatus)
+      setLoading(false)
+      console.log(camp)
+    } catch (error) {
+      console.log(error)
+      setIsActive(false)
+      setLoading(false)
+    }
   }
 
   useEffect(()=>{
@@ -66,6 +75,15 @@ function Campaign() {
     }
   }
 
+  if (loading) {
+    return <>
+    <div className='flex h-screen w-screen justify-center items-center'>
+      <div className='flex animate-spin h-12 w-12 border-3 border-transparent border-t-red-500 border-l-red-500 rounded-full justify-center items-center'>
+        <div className='animate-spin-reverse h-10 w-10 border-3 border-transparent border-t-green-500 border-l-green-500 rounded-full'></div>
+      </div>
+    </div>
+    </>
+  }
 
   return (
     <>
