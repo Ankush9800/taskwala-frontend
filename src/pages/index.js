@@ -14,7 +14,8 @@ import Conversion from "./admin/Conversion";
 import NotFound from "./NotFound";
 import Payments from "./admin/Payments";
 import Profile from "./admin/Profile";
-import AdminContact from "./admin/admincontact";
+import AdminContact from "./admin/AdminContact";
+
 
 
 export {
