@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import { createBrowserRouter, createRoutesFromElements, Navigate, Route, RouterProvider } from 'react-router'
-import {Admin, AdminLayout, Campaign, Campaigns, Contact, Conversion, Dashboard, Home, Login, NotFound, Offers, Payments, Profile, Submission, Test, Tracker, Verify } from './pages'
+import {Admin, AdminContact, AdminLayout, Campaign, Campaigns, Contact, Conversion, Dashboard, Home, Login, NotFound, Offers, Payments, Profile, Submission, Tracker } from './pages'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import "./App.css";
 
@@ -11,8 +11,6 @@ const router = createBrowserRouter(
     <Route path='/' element={<App/>}>
       <Route index element={<Home/>}/>
       <Route path='home' element={<Home/>}/>
-      <Route path='verify' element={<Verify/>}/>
-      <Route path='test' element={<Test/>}/>
       <Route path='login' element={<Login/>}/>
       <Route path='campaigns' element={<Campaigns/>}/>
       <Route path='contact' element={<Contact/>}/>
@@ -26,6 +24,7 @@ const router = createBrowserRouter(
         <Route path='conversion' element={<Conversion/>}/>
         <Route path='payments' element={<Payments/>}/>
         <Route path='profile' element={<Profile/>}/>
+        <Route path='admincontact' element={<AdminContact/>}/>
       </Route>
       <Route path="404" element={<NotFound />} />
       <Route path='*' element={<Navigate to="/404" replace state={{ from: window.location.pathname }} />}/>

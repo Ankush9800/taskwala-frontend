@@ -28,7 +28,13 @@ function ProtectedRoute({children}) {
   },[])
 
   if (loading) {
-    return <div className="text-center mt-10 text-white">Checking access...</div>;
+    return <>
+    <div className='flex h-screen w-screen justify-center items-center'>
+      <div className='flex animate-spin h-12 w-12 border-3 border-transparent border-t-red-500 border-l-red-500 rounded-full justify-center items-center'>
+        <div className='animate-spin-reverse h-10 w-10 border-3 border-transparent border-t-green-500 border-l-green-500 rounded-full'></div>
+      </div>
+    </div>
+    </>
   }
 
   return isAuthenticated? children : <Navigate to="/login"/>

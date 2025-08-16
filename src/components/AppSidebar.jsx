@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem } from './ui/sidebar'
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem, SidebarProvider } from './ui/sidebar'
 import { Link, useNavigate } from 'react-router-dom'
 import { ChevronDown, ChevronRight, LogOut, Plus, VerifiedIcon } from 'lucide-react'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible'
@@ -13,6 +13,7 @@ function AppSidebar() {
 const navigate = useNavigate()
 
 const [profileData, setProfileData] = useState(null)
+const [open, setOpen] = useState(true)
 
 const profile = async()=>{
   const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/getadmin`,{
@@ -41,7 +42,8 @@ useEffect(()=>{
         <Sidebar className='h-screen'>
           <SidebarContent  className="flex flex-col h-full bg-gray-900 text-white focus:bg-white">
             <div className="flex-1">
-            <SidebarHeader></SidebarHeader>
+            <SidebarHeader>
+            </SidebarHeader>
             <SidebarGroup>
               <SidebarGroupLabel className='text-gray-400'>Offers</SidebarGroupLabel>
               <SidebarGroupContent>
@@ -66,16 +68,6 @@ useEffect(()=>{
                           <Link className='font-bold text-white' to={"/admin/offers"}>All Offers</Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
-                      {/* <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <Link className='font-bold text-white'>Active Offers</Link>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton asChild>
-                          <Link className='font-bold'>Inactive Offers</Link>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem> */}
                     </SidebarMenuSub>
                     </CollapsibleContent>
                   </SidebarMenuItem>
@@ -113,12 +105,12 @@ useEffect(()=>{
               </SidebarGroupContent>
             </SidebarGroup>
             <SidebarGroup>
-              <SidebarGroupLabel className='text-gray-400'>Devloper</SidebarGroupLabel>
+              <SidebarGroupLabel className='text-gray-400'>Others</SidebarGroupLabel>
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
-                      <Link className='font-bold'>Images</Link>
+                      <Link className='font-bold' to={"/admin/admincontact"}>Contact</Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </SidebarMenu>
