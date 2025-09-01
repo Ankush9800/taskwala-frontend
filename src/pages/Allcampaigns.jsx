@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 function Campaigns() {
 
-  const [title, settitle] = useState([])
+  const [campaign, setCampaign] = useState([])
   const [cplength, setCplength] = useState(0)
   const [rewards, setRewards] = useState(0)
   const [loading, setLoading] = useState(true)
@@ -16,9 +16,9 @@ function Campaigns() {
     try {
       const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getallcampaign`);
       console.log(res);
-      const activeCapaigns = res.data.filter(camp => camp.campaignStatus === true);
+      const activeCapaigns = await res?.data.filter(camp => camp.campaignStatus === true);
       setLoading(false)
-      settitle(activeCapaigns)
+      setCampaign(activeCapaigns)
       setCplength(activeCapaigns.length)
       let rewards = 0
       for (let i = 0; i < activeCapaigns.length; i++) {
@@ -30,7 +30,7 @@ function Campaigns() {
       console.log(error)
     }
   };
-
+console.log(campaign)
   useEffect(() => {
     fetchCampaigns(); // Run this when the page opens
   }, []);
@@ -74,7 +74,7 @@ function Campaigns() {
 
       {/* this is card section */}
       <div className="mx-auto grid [grid-template-columns:repeat(auto-fit,_minmax(250px,_1fr))] gap-5 px-4 w-full justify-items-center">
-        {title.map((camp)=>(<div key={camp._id}  className='w-full md:max-w-80'><Card className="bg-[#071e23] border-none text-white w-full">
+        {campaign.map((camp)=>(<div key={camp._id}  className='w-full md:max-w-80'><Card className="bg-[#071e23] border-none text-white w-full">
         <CardHeader className="flex flex-col gap-2">
           <div className="flex justify-between items-center w-full">
           <CardTitle className="text-[#10B981] font-bold">{camp.title}</CardTitle>

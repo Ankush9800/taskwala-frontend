@@ -10,6 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { auth, googleProvider } from "@/lib/Firebase";
 import { socket } from "@/lib/Socket";
+import axios from "axios";
 import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 import {
   Clock,
@@ -32,8 +33,9 @@ function Contact() {
   const [user, setUser] = useState(null)
 
   useEffect(()=>{
-    socket.on("get-private-message",(messages)=>{
+    socket.on("get-private-message",async(messages)=>{
       setMessages((prev)=>[...prev,messages])
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/contact/setdel`,{id:messages.id})
       console.log(messages)
     })
 
@@ -67,7 +69,8 @@ function Contact() {
     };
     setMessages((prev)=>[...prev,messagess])
     socket.emit("send-private-message",{
-      id:"6874bec6ca2af2a1af7b89b6",
+      senderId:user.uid,
+      receiverId:"6874b8daac189c32a1da72aa",
       messagess
     })
     console.log(messages);

@@ -36,9 +36,10 @@ function AdminContact() {
   }, []);
 
   useEffect(() => {
-    socket.on("get-private-message", (messages) => {
-      setMessages((prev) => [...prev, messages]);
-      console.log(messages);
+    socket.on("get-private-message", async(messagess) => {
+      setMessages((prev) => [...prev, messagess]);
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/contact/setdel`,{id:messagess.id})
+      console.log(messagess.id);
     });
 
     return () => {
@@ -64,7 +65,8 @@ function AdminContact() {
       };
       setMessages((prev) => [...prev, messagess]);
       socket.emit("send-private-message", {
-        id: selectedUser.userId,
+        senderId:"6874b8daac189c32a1da72aa",
+        receiverId: selectedUser.userId,
         messagess,
       });
       setChat("");
