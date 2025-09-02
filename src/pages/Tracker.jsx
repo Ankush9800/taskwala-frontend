@@ -1,9 +1,11 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Toaster } from '@/components/ui/sonner'
 import axios from 'axios'
 import { RotateCcw } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
+import { toast } from 'sonner'
 
 function Tracker({color = "#00CFFF"}) {
 
@@ -35,8 +37,20 @@ function Tracker({color = "#00CFFF"}) {
             setTimeout(() => {
               setReload(false)
             }, 1000);
+            toast("Get traking data successfully",{
+              style:{backgroundColor:"#0F4D0F",
+                border:'none',
+                color:"#ffffff"
+              }
+            })
         } catch (error) {
             console.log(error)
+            toast("Failed to get tracking",{
+              style:{backgroundColor:"#A1222F",
+                border:'none',
+                color:"#ffffff"
+              }
+            })
         }
     }
 
@@ -50,6 +64,7 @@ function Tracker({color = "#00CFFF"}) {
   className="min-h-screen flex items-center justify-center w-full px-2"
   style={{ background: '#1E1E2F' }}
 >
+  <Toaster position='top-right'/>
   {!steps ? (
     // --- ENTRY CARD ---
     <div className="w-[340px] max-w-full flex flex-col gap-6 justify-center items-center p-8 rounded-2xl"
