@@ -60,11 +60,12 @@ function Conversion() {
                 <TableHeader>
                   <TableRow className="sticky z-10 top-0 bg-[#071e23]">
                     <TableHead className="text-white w-[5%]">No</TableHead>
-                    <TableHead className="text-white w-[15%]">C-Name</TableHead>
-                    <TableHead className="text-white w-[10%]">Offer-id</TableHead>
+                    <TableHead className="text-white w-[10%]">C-Name</TableHead>
+                    <TableHead className="text-white w-[5%]">Offer-id</TableHead>
                     <TableHead className="text-white w-[10%]">Goal</TableHead>
                     <TableHead className="text-white w-[10%]">Payout</TableHead>
                     <TableHead className="text-white w-[25%]">Time</TableHead>
+                    <TableHead className="text-white w-[10%]">Provider</TableHead>
                     <TableHead className="text-white w-[15%]">
                       Phone
                     </TableHead>
@@ -87,6 +88,7 @@ function Conversion() {
                         {camp.payout?<>₹{camp.payout}</>:"₹0"}
                       </TableCell>
                       <TableCell>{new Date(camp.createdAt).toLocaleString()}</TableCell>
+                      <TableCell>{camp.provider}</TableCell>
                       <TableCell className="truncate">
                         <div className='flex items-center justify-between pr-[20%]'>
                         {camp.phoneNo}

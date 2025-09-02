@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { auth, googleProvider } from "@/lib/Firebase";
-import { socket } from "@/lib/Socket";
 import axios from "axios";
 import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 import {
@@ -27,90 +26,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 function Contact() {
-  const [messages, setMessages] = useState([]);
-  const [chat, setChat] = useState("");
-  const bottomRef = useRef(null)
-  const [user, setUser] = useState(null)
 
-  useEffect(()=>{
-    socket.on("get-private-message",async(messages)=>{
-      setMessages((prev)=>[...prev,messages])
-      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/contact/setdel`,{id:messages.id})
-      console.log(messages)
-    })
-
-    return ()=>{
-      socket.off("get-private-message")
-    }
-  },[])
-
-  useEffect(()=>{
-    const unsubscribe = onAuthStateChanged(auth,(currentUser)=>{
-      setUser(currentUser)
-      console.log(currentUser)
-      const userData = {
-        name:currentUser.displayName,
-        email:currentUser.email,
-        uid:currentUser.uid
-      }
-      socket.emit("register-user", userData);  
-    })
-  },[])
-
-  const chatMessage = () => {
-    if (chat.trim()) {
-      const currentTime = new Date().toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-    const messagess = {
-      message: chat,
-      time: currentTime,
-    };
-    setMessages((prev)=>[...prev,messagess])
-    socket.emit("send-private-message",{
-      senderId:user.uid,
-      receiverId:"6874b8daac189c32a1da72aa",
-      messagess
-    })
-    console.log(messages);
-    setChat("")
-    }else{
-      console.log("Input is empty")
-    }
-  };
-
-  useEffect(() => {
-    if (bottomRef.current) {
-      const scrollContainer = bottomRef.current.closest('.overflow-y-auto');
-      if (scrollContainer) {
-        scrollContainer.scrollTo({
-          top: scrollContainer.scrollHeight,
-          behavior: 'smooth'
-        });
-      }
-    }
-  }, [messages])
-
-
-  const googleLogin = async()=>{
-    try {
-      const res = await signInWithPopup(auth, googleProvider)
-      const user = res.user
-      console.log(user)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const logOut = async()=>{
-    try {
-      await signOut(auth)
-      console.log("logout success")
-    } catch (error) {
-      console.error
-    }
-  }
   return (
     <>
       <div className="py-20 flex justify-center flex-col items-center mx-5 text-center">
@@ -120,7 +36,7 @@ function Contact() {
           through our other contact channels.
         </p>
       </div>
-      <div className="flex md:flex-row flex-col md:gap-0 gap-5">
+      <div className="flex justify-center">
         <Card className="bg-black text-white mx-5 md:w-2/5">
           <CardHeader>
             <CardTitle>Get in Touch</CardTitle>
@@ -134,7 +50,7 @@ function Contact() {
               <div>
                 <p className="font-medium">Live Chat</p>
                 <p className="text-sm text-gray-300">
-                  Available 24/7 for instant support
+                  Comming soon
                 </p>
               </div>
             </div>
@@ -162,7 +78,7 @@ function Contact() {
               <div>
                 <p className="font-medium">Address</p>
                 <p className="text-sm text-gray-300">
-                  Available 24/7 for instant support
+                  Durgapur
                 </p>
               </div>
             </div>
@@ -178,7 +94,7 @@ function Contact() {
             </div>
           </CardContent>
         </Card>
-        <Card className="bg-black text-white mx-5 md:w-3/5">
+        {/* <Card className="bg-black text-white mx-5 md:w-3/5">
           <CardHeader className="flex items-center gap-5">
             <Avatar>
               <AvatarFallback className="bg-black border-2">AP</AvatarFallback>
@@ -221,7 +137,7 @@ function Contact() {
                 <Button onClick={googleLogin} className="bg-[#F97316] cursor-pointer hover:bg-white hover:text-black">Login</Button>
               </div>}
           </CardContent>
-        </Card>
+        </Card> */}
       </div>
     </>
   );
