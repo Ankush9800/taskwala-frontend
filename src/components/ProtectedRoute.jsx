@@ -1,3 +1,4 @@
+import { account } from '@/lib/Appwrite'
 import { Login } from '@/pages'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
@@ -12,9 +13,7 @@ function ProtectedRoute({children}) {
   useEffect(()=>{
     const checkAuth = async ()=>{
       try {
-        const admin = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/getadmin`,{
-          withCredentials : true
-        })
+        const admin = await account.get()
         setIsAuthenticated(true)
       } catch (error) {
         console.log("admin not found");

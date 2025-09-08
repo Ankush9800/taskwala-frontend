@@ -8,6 +8,7 @@ import { Button } from './ui/button'
 import axios from 'axios'
 import { Dashboard, Offers, Submission } from '@/pages'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu'
+import { account } from '@/lib/Appwrite'
 
 function AppSidebar() {
 const navigate = useNavigate()
@@ -16,17 +17,14 @@ const [profileData, setProfileData] = useState(null)
 const [open, setOpen] = useState(true)
 
 const profile = async()=>{
-  const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/getadmin`,{
-    withCredentials:true
-  })
-  setProfileData(res.data.data)
+  const res = await account.get()
+  console.log(res)
+  setProfileData(res)
 }
 
 const handleLogout = async()=>{
   try {
-    await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/adminlogout`,{
-      withCredentials:true
-    })
+    await account.deleteSession('current')
     navigate("/login")
   } catch (error) {
     console.log(error)

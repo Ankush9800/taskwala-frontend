@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast, Toaster } from 'sonner'
 import { Eye, EyeOff } from 'lucide-react';
+import { account } from '@/lib/Appwrite'
 
 
 function Login() {
@@ -20,9 +21,7 @@ function Login() {
   useEffect(()=>{
     const auth = async()=>{
       try {
-      const admin = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/getadmin`,{
-          withCredentials : true
-        })
+      const admin = await account.get()
 
         if (admin) {
           navigate("/admin")
@@ -36,30 +35,9 @@ function Login() {
   },[])
 
   const handleLogin = async()=>{
-    const data = {
-      email : email,
-      password : password
-    }
-
-    try {
-      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/admin/adminlogin`, data,{
-        withCredentials : true
-      })
-      console.log(res)
-      navigate('/admin')
-    } catch (error) {
-      toast(`Login failed. ${error.response?.data?.message }`, {
-      style: {
-        backgroundColor: "#BA2D0B",
-        color: "#fff",
-        borderColor: "#fff",
-        border: "2px",
-      },
-      duration: 2000,
-      position: "top-right",
-    });
-      console.log(error)
-    }
+    await account.createEmailPasswordSession(
+      email,
+      password)
   }
 
   return (

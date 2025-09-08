@@ -8,9 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { auth, googleProvider } from "@/lib/Firebase";
 import axios from "axios";
-import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 import {
   Clock,
   IndianRupee,
