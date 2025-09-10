@@ -120,7 +120,7 @@ useEffect(()=>{
                 {/* Profile Avatar */}
                 <div className="flex items-center gap-3">
                   <Avatar className="h-8 w-8 rounded-md">
-                    <AvatarImage src={profileData?.avatar} alt="User" className=' object-cover' />
+                    <AvatarImage src={profileData?.prefs?.avatar} alt="User" className=' object-cover' />
                     <AvatarFallback>AB</AvatarFallback>
                   </Avatar>
                   <div className='flex flex-col'>
