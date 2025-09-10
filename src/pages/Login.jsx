@@ -35,10 +35,15 @@ function Login() {
   },[])
 
   const handleLogin = async()=>{
-    await account.createEmailPasswordSession(
-      email,
-      password)
-  }
+    try {
+      const res = await account.createEmailPasswordSession(
+        email,
+        password)
+        navigate("/admin")
+    } catch (error) {
+      console.log(error)
+    }
+    }
 
   return (
     <>
