@@ -99,7 +99,7 @@ function Profile() {
             <span className="text-[#9CA3AF] font-medium">Phone Number:</span>
             <div className="flex items-center gap-1">
               <span className="font-semibold" style={{ color: "#10B981" }}>{profile.phone?.replace(/^\+91/, "")}</span>
-              <button
+              {!profile?.phone?<button
                 onClick={() => {
                   setEditPhone(true)
                 }}
@@ -108,7 +108,7 @@ function Profile() {
                 type="button"
               >
                 <Pencil className="w-4 h-4 text-[#10B981]" />
-              </button>
+              </button>:<></>}
             </div>
           </div>
           <Dialog open={editPhone} onOpenChange={setEditPhone}>
