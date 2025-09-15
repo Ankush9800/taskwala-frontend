@@ -268,7 +268,7 @@ const navigate = useNavigate()
           </p>
         </div>
         <div className="flex flex-col sm:flex-row justify-center gap-8 px-10">
-          <Button size="lg" className="bg-gradient-to-r from-[#F97316] to-[#713306] border-0 hover:scale-110 transition-all duration-300 cursor-pointer"> <ArrowRight className="w-5 h-5"/>Start Free Trial</Button>
+          <Button size="lg" className="bg-gradient-to-r from-[#F97316] to-[#713306] border-0 hover:scale-110 transition-all duration-300 cursor-pointer" onClick={()=>navigate("/campaign")}> <ArrowRight className="w-5 h-5"/>Start now</Button>
           <Button size="lg" variant="outline" className="bg-transparent hover:scale-110 transition-all duration-300 cursor-pointer">Schedule Demo</Button>
         </div>
       </div>
