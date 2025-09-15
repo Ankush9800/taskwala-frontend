@@ -21,8 +21,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+const navigate = useNavigate()
   return (
     <>
       {/* first part */}
@@ -50,6 +52,7 @@ function Home() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 place-items-center">
           <Button
+            onClick={()=>navigate("/campaigns")}
             variant="outline"
             size="lg"
             className="cursor-pointer hover:text-white  bg-gradient-to-r from-[#F97316] to-[#713306] border-0 transition-all duration-300 transform hover:scale-110"

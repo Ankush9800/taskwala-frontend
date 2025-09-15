@@ -3,7 +3,7 @@ import { Pagination, PaginationContent, PaginationItem, PaginationNext, Paginati
 import { Toaster } from '@/components/ui/sonner'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import axios from 'axios'
-import { Clipboard } from 'lucide-react'
+import { Clipboard, Trash2 } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
@@ -13,6 +13,7 @@ function Conversion() {
     const [page, setPage] = useState(1)
     const [countTotal, setCountTotal] = useState(0)
     const [indexCount, setIndexCount] = useState(1)
+    // const [delState, setDelState] = useState(null)
 
     const conversionData = async()=>{
         const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getpostback?page=${page}`)
@@ -52,6 +53,12 @@ function Conversion() {
       }
     }
 
+    // const deletepb = async(value)=>{
+    //   const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/delpb?id=${value}`)
+    //   setDelState(res)
+    //   console.log(res)
+    // }
+
   return (
     <div>
       <Toaster/>
@@ -64,14 +71,17 @@ function Conversion() {
                     <TableHead className="text-white w-[5%]">Offer-id</TableHead>
                     <TableHead className="text-white w-[10%]">Goal</TableHead>
                     <TableHead className="text-white w-[10%]">Payout</TableHead>
-                    <TableHead className="text-white w-[25%]">Time</TableHead>
+                    <TableHead className="text-white w-[20%]">Time</TableHead>
                     <TableHead className="text-white w-[10%]">Provider</TableHead>
-                    <TableHead className="text-white w-[15%]">
+                    <TableHead className="text-white w-[10%]">
                       Phone
                     </TableHead>
-                    <TableHead className="text-white w-[20%]">
+                    <TableHead className="text-white w-[15%]">
                       Upi-id
                     </TableHead>
+                    {/* <TableHead className="text-white w-[5%]">
+                      Event
+                    </TableHead> */}
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -100,6 +110,9 @@ function Conversion() {
                           <span>{camp.upiId}</span>
                         <Button className='bg-transparent p-0 h-auto cursor-pointer' onClick={()=>copy(camp.upiId)}><Clipboard/></Button>
                         </div>
+                      </TableCell>
+                      <TableCell>
+                        {/* <Trash2 onClick={()=>deletepb(camp._id)}/> */}
                       </TableCell>
                     </TableRow>
                   ))}
