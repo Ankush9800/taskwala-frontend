@@ -46,7 +46,7 @@ function Contact() {
             <div className="flex gap-2 items-start ">
               <MessageSquare className="size-6 pt-1" />
               <div>
-                <p className="font-medium">Live Chat</p>
+                <p className="font-medium">Chat</p>
                 <p className="text-sm text-gray-300">
                   Comming soon
                 </p>

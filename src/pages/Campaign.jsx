@@ -6,7 +6,7 @@ import { Toaster } from '@/components/ui/sonner'
 import axios from 'axios'
 import { AlertCircle, ArrowRight, CreditCard, Loader2Icon, Phone, Zap } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 
 
@@ -159,7 +159,7 @@ function Campaign() {
               />
               <p className='text-sm text-[#9CA3AF]'>Rewards will be sent to this UPI ID</p>
             </div>
-            <div className='flex justify-center pt-2'>{campUrl?<><p className='text-center'>Redirecting...</p></>:<Button className='bg-gradient-to-r from-[#F97316] to-[#713306] cursor-pointer' onClick={handleSubmit} disabled={issubmiting}>{issubmiting? <><Loader2Icon className='animate-spin mr-2'/> Submitting... </>: <>Continue to offer <ArrowRight className='ml-1'/></> } </Button>}</div>
+            <div className='flex justify-center pt-2'>{campUrl?<><p className='text-center'><Button onClick={()=>window.open(campUrl,"_blank")}>Redirecting...</Button></p></>:<Button className='bg-gradient-to-r from-[#F97316] to-[#713306] cursor-pointer' onClick={handleSubmit} disabled={issubmiting}>{issubmiting? <><Loader2Icon className='animate-spin mr-2'/> Submitting... </>: <>Continue to offer <ArrowRight className='ml-1'/></> } </Button>}</div>
           </CardContent>
         </Card>
       </div>
