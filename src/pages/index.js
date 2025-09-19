@@ -4,7 +4,6 @@ import Home from "./Home";
 import Contact from "./Contact";
 import Campaigns from "./Allcampaigns";
 import Campaign from "./Campaign";
-import Admin from "./AdminDashboard";
 import AdminLayout from "./AdminLayout";
 import Dashboard from "./admin/Dashboard";
 import Submission from "./admin/Submission";
@@ -14,7 +13,7 @@ import Conversion from "./admin/Conversion";
 import NotFound from "./NotFound";
 import Payments from "./admin/Payments";
 import Profile from "./admin/Profile";
-import AdminContact from "./admin/AdminContact";
+import Refer from "./Refer";
 
 
 
@@ -24,7 +23,6 @@ export {
   Contact,
   Campaigns,
   Campaign,
-  Admin,
   AdminLayout,
   Dashboard,
   Submission,
@@ -34,5 +32,5 @@ export {
   NotFound,
   Payments,
   Profile,
-  AdminContact,
+  Refer,
 };

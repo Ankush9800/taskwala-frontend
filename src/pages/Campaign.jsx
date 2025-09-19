@@ -4,14 +4,15 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Toaster } from '@/components/ui/sonner'
 import axios from 'axios'
-import { AlertCircle, ArrowRight, CreditCard, Loader2Icon, Phone, Zap } from 'lucide-react'
+import { AlertCircle, ArrowRight, CreditCard, Loader2Icon, Phone, Zap, CheckCircle, Target, Gift } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { toast } from 'sonner'
 
 
 function Campaign() {
-  const {id} = useParams()
+  const [searchParams] = useSearchParams()
+  const id = searchParams.get("id")
   const [campaignData, setCampaignData] = useState(null)
   const [userPhone, setPhone] = useState("")
   const [userupi, setUpi] = useState("")
@@ -76,142 +77,220 @@ function Campaign() {
   }
 
   if (loading) {
-    return <>
-    <div className='flex h-screen w-screen justify-center items-center'>
-      <div className='flex animate-spin h-12 w-12 border-3 border-transparent border-t-red-500 border-l-red-500 rounded-full justify-center items-center'>
-        <div className='animate-spin-reverse h-10 w-10 border-3 border-transparent border-t-green-500 border-l-green-500 rounded-full'></div>
+    return (
+      <div className='min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 pt-16 flex justify-center items-center'>
+        <div className='flex flex-col items-center gap-4'>
+          <div className='flex animate-spin h-16 w-16 border-4 border-transparent border-t-[#F97316] border-l-[#F97316] rounded-full justify-center items-center'>
+            <div className='animate-spin-reverse h-12 w-12 border-4 border-transparent border-t-[#155a69] border-l-[#155a69] rounded-full'></div>
+          </div>
+          <p className='text-white text-sm'>Loading campaign...</p>
+        </div>
       </div>
-    </div>
-    </>
+    )
   }
 
   return (
-    <>
+    <div className='min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 pt-16 relative z-0'>
       <Toaster/>
 
-      {!isActive? <div className='flex h-screen items-center justify-center'>
-       <div className="flex flex-col items-center justify-center min-h-[50vh] max-h-[50%] gap-4 p-8 bg-[#071e23] rounded-xl shadow-md border-2 border-[#F97316]/10 my-7 mx-auto max-w-md">
-    {/* <img
-      src="/unavailable.svg" // or any icon you like, or replace with an icon component
-      alt="Unavailable"
-      className="w-20 h-20 opacity-80"
-    /> */}
-    <h2 className="text-2xl font-bold text-[#F97316] text-center">
-      Campaign Unavailable
-    </h2>
-    <p className="text-base text-[#9CA3AF] text-center">
-      This campaign is no longer available.<br />
-      Please check back later or explore other offers.
-    </p>
-    <Button
-      className="mt-4 bg-gradient-to-r from-[#F97316] to-[#713306] px-6"
-      onClick={() => window.location.href = '/campaigns'} // customize or use router
-    >
-      Browse Campaigns
-    </Button>
-  </div>
-     </div>:<>
-     {/* first card */} 
-      <div className='flex flex-col items-center gap-1 py-5'>
-        <img className='h-15 w-15 rounded-full' src={campaignData?.campaignImage} alt="" />
-        <h2 className='text-2xl font-bold bg-gradient-to-r from-[#00CFFF] to-[#A855F7] bg-clip-text text-transparent'>{campaignData?.title}</h2>
-        <p className='text-sm text-[#9CA3AF] px-5 text-center'>{campaignData?.description}</p>
-        <h4 className='text-md font-semibold flex gap-2 justify-center'>Earn up to: <p className='text-[#10B981] font-bold'>₹{campaignData?.payoutRate}</p></h4>
-      </div>
-      {/* Second card */}
-      <div className='m-10 md:flex justify-center'>
-        <Card className='bg-[#071e23] text-white border-0 md:w-100'>
-          <CardHeader>
-            <CardTitle className='flex gap-2 items-center'>
-            <Zap className='text-cyan-400'/> Join Campaign
-            </CardTitle>
-            <CardDescription>
-              Provide your details to participate in this campaign
-            </CardDescription>
-          </CardHeader>
-          <CardContent className='flex flex-col gap-2'>
-            <div className='space-y-2'>
-              <Label className='text-sm'>
-                <Phone className='size-4'/>
-                Phone Number*
-              </Label>
-              <Input
-              className='border-cyan-950 border-2 focus-visible:border-cyan-500'
-              placeholder='9876543210'
-              id='phone'
-              type='tel'
-              value={userPhone}
-              onChange={(e)=>setPhone(e.target.value)}
-              />
-              <p className='text-sm text-[#9CA3AF]'>Used for verification and campaign updates</p>
+      {!isActive ? (
+        <div className='min-h-[calc(100vh-4rem)] flex items-center justify-center p-4 relative z-10'>
+          <div className="flex flex-col items-center justify-center gap-6 p-8 bg-black/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-gray-800 max-w-md mx-auto">
+            <div className='bg-red-500/20 p-4 rounded-full border border-red-500/30'>
+              <AlertCircle className="w-12 h-12 text-red-400" />
             </div>
-            <div className='space-y-2'>
-              <Label className='text-sm'>
-              <CreditCard className='size-4'/>
-                UPI ID*
-              </Label>
-              <Input
-              className='border-cyan-950 border-2 focus-visible:border-cyan-500'
-              placeholder='9876543210@ptsbi'
-              id='UPI'
-              value={userupi}
-              onChange={(e)=>setUpi(e.target.value)}
-              />
-              <p className='text-sm text-[#9CA3AF]'>Rewards will be sent to this UPI ID</p>
+            <div className='text-center space-y-2'>
+              <h2 className="text-2xl font-bold text-white">
+                Campaign Unavailable
+              </h2>
+              <p className="text-gray-400">
+                This campaign is no longer available.<br />
+                Please check back later or explore other offers.
+              </p>
             </div>
-            <div className='flex justify-center pt-2'>{campUrl?<><p className='text-center'><Button onClick={()=>window.open(campUrl,"_blank")}>Redirecting...</Button></p></>:<Button className='bg-gradient-to-r from-[#F97316] to-[#713306] cursor-pointer' onClick={handleSubmit} disabled={issubmiting}>{issubmiting? <><Loader2Icon className='animate-spin mr-2'/> Submitting... </>: <>Continue to offer <ArrowRight className='ml-1'/></> } </Button>}</div>
-          </CardContent>
-        </Card>
-      </div>
-      {/* Third card */}
-      <div className='m-10 md:flex justify-center'>
-        <Card className='bg-[#071e23] border-0 text-white md:w-100'>
-          <CardHeader>
-            <CardTitle>
-              Offer process
-            </CardTitle>
-            <CardDescription>
-              Follow these steps to successfully complete the offer
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-              
-          </CardContent>
-        </Card>
-      </div>
-      {/* fourth card */}
-      <div className='m-10 md:flex justify-center'>
-        <Card className='bg-[#071e23] border-0 text-white'>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <AlertCircle className="w-5 h-5" />
-              Rules & Guidelines
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-2 text-sm text-[#9CA3AF] list-disc px-5">
-              <li>
-                All content must be original and follow platform community guidelines
-              </li>
-              <li>
-                No fake engagement or bot interactions allowed
-              </li>
-              <li>
-                Must maintain account activity throughout campaign duration
-                </li>
-              <li>
-                Payments processed within 7 days of campaign completion
-                </li>
-              <li>
-                Participants must be 18+ with valid government ID
-                </li>
-            </ul>
-          </CardContent>
-        </Card>
-      </div>
-     </>}
+            <Button
+              className="bg-gradient-to-r from-[#F97316] to-[#713306] hover:from-[#F97316]/80 hover:to-[#713306]/80 px-8 py-3 font-medium"
+              onClick={() => window.location.href = '/campaigns'}
+            >
+              Browse Campaigns
+            </Button>
+          </div>
+        </div>
+      ) : (
+        <div className='p-4 space-y-6 relative z-10'>
+          {/* Campaign Header */}
+          <div className='text-center pt-8 pb-6 relative z-10'>
+            <div className='flex justify-center mb-6'>
+              <div className='relative'>
+                <img 
+                  className='h-20 w-20 rounded-2xl border-4 border-[#F97316]/20 shadow-lg' 
+                  src={campaignData?.campaignImage} 
+                  alt="Campaign" 
+                />
+                <div className='absolute -bottom-2 -right-2 bg-[#F97316] p-1.5 rounded-full'>
+                  <Target className='w-4 h-4 text-white' />
+                </div>
+              </div>
+            </div>
+            <h1 className='text-3xl font-bold text-white mb-3'>{campaignData?.title}</h1>
+            <p className='text-gray-400 text-sm mb-4 max-w-sm mx-auto'>{campaignData?.description}</p>
+            
+            {/* Earnings Badge */}
+            <div className='inline-flex items-center gap-2 bg-gradient-to-r from-[#F97316]/20 to-[#713306]/20 border border-[#F97316]/30 rounded-full px-4 py-2'>
+              <Gift className='w-5 h-5 text-[#F97316]' />
+              <span className='text-white font-medium'>Earn up to </span>
+              <span className='text-[#F97316] font-bold text-lg'>₹{campaignData?.payoutRate}</span>
+            </div>
+          </div>
 
-    </>
+          {/* Join Campaign Card */}
+          <Card className='bg-black/80 backdrop-blur-sm border-gray-800 text-white max-w-md mx-auto'>
+            <CardHeader className='pb-4'>
+              <CardTitle className='flex items-center gap-3 text-xl'>
+                <div className='bg-[#F97316]/20 p-2 rounded-lg'>
+                  <Zap className='w-5 h-5 text-[#F97316]'/>
+                </div>
+                Join Campaign
+              </CardTitle>
+              <CardDescription className='text-gray-400'>
+                Provide your details to participate in this campaign
+              </CardDescription>
+            </CardHeader>
+            <CardContent className='space-y-6'>
+              {/* Phone Number */}
+              <div className='space-y-3'>
+                <Label className='flex items-center gap-2 text-sm font-medium text-gray-300'>
+                  <Phone className='w-4 h-4 text-[#F97316]'/>
+                  Phone Number *
+                </Label>
+                <Input
+                  className='bg-gray-900 border-gray-700 text-white placeholder:text-gray-500 focus:border-[#F97316] focus:ring-[#F97316]/20'
+                  placeholder='Enter your phone number'
+                  type='tel'
+                  value={userPhone}
+                  onChange={(e)=>setPhone(e.target.value)}
+                />
+                <p className='text-xs text-gray-500'>Used for verification and campaign updates</p>
+              </div>
+
+              {/* UPI ID */}
+              <div className='space-y-3'>
+                <Label className='flex items-center gap-2 text-sm font-medium text-gray-300'>
+                  <CreditCard className='w-4 h-4 text-[#F97316]'/>
+                  UPI ID *
+                </Label>
+                <Input
+                  className='bg-gray-900 border-gray-700 text-white placeholder:text-gray-500 focus:border-[#F97316] focus:ring-[#F97316]/20'
+                  placeholder='yourname@paytm'
+                  value={userupi}
+                  onChange={(e)=>setUpi(e.target.value)}
+                />
+                <p className='text-xs text-gray-500'>Rewards will be sent to this UPI ID</p>
+              </div>
+
+              {/* Submit Button */}
+              <div className='pt-4'>
+                {campUrl ? (
+                  <Button 
+                    className='w-full bg-green-600 hover:bg-green-700 py-3 font-medium'
+                    onClick={()=>window.open(campUrl,"_blank")}
+                  >
+                    <CheckCircle className='w-4 h-4 mr-2' />
+                    Redirecting to offer...
+                  </Button>
+                ) : (
+                  <Button 
+                    className='w-full bg-gradient-to-r from-[#F97316] to-[#713306] hover:from-[#F97316]/80 hover:to-[#713306]/80 py-3 font-medium' 
+                    onClick={handleSubmit} 
+                    disabled={issubmiting || !userPhone.trim() || !userupi.trim()}
+                  >
+                    {issubmiting ? (
+                      <>
+                        <Loader2Icon className='w-4 h-4 mr-2 animate-spin'/> 
+                        Submitting...
+                      </>
+                    ) : (
+                      <>
+                        Continue to offer 
+                        <ArrowRight className='w-4 h-4 ml-2'/>
+                      </>
+                    )}
+                  </Button>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Process Steps */}
+          <Card className='bg-black/80 backdrop-blur-sm border-gray-800 text-white max-w-md mx-auto'>
+            <CardHeader>
+              <CardTitle className='flex items-center gap-3'>
+                <div className='bg-[#155a69]/20 p-2 rounded-lg'>
+                  <Target className='w-5 h-5 text-[#155a69]'/>
+                </div>
+                How It Works
+              </CardTitle>
+              <CardDescription className='text-gray-400'>
+                Follow these simple steps to earn your reward
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className='space-y-4'>
+                <div className='flex items-start gap-3'>
+                  <div className='bg-[#F97316] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mt-1'>1</div>
+                  <div>
+                    <p className='font-medium text-white'>Submit Details</p>
+                    <p className='text-sm text-gray-400'>Enter your phone and UPI information</p>
+                  </div>
+                </div>
+                <div className='flex items-start gap-3'>
+                  <div className='bg-[#F97316] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mt-1'>2</div>
+                  <div>
+                    <p className='font-medium text-white'>Complete Offer</p>
+                    <p className='text-sm text-gray-400'>Follow the campaign requirements</p>
+                  </div>
+                </div>
+                <div className='flex items-start gap-3'>
+                  <div className='bg-[#F97316] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mt-1'>3</div>
+                  <div>
+                    <p className='font-medium text-white'>Get Rewarded</p>
+                    <p className='text-sm text-gray-400'>Receive payment in your UPI account</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Rules & Guidelines */}
+          <Card className='bg-black/80 backdrop-blur-sm border-gray-800 text-white max-w-md mx-auto'>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3">
+                <div className='bg-yellow-500/20 p-2 rounded-lg'>
+                  <AlertCircle className="w-5 h-5 text-yellow-400" />
+                </div>
+                Rules & Guidelines
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-3 text-sm text-gray-400">
+                {[
+                  "All details must be original and follow platform guidelines",
+                  "No fake engagement or bot interactions allowed", 
+                  "Must maintain account activity throughout campaign duration",
+                  "Payments processed within 14 days of completion",
+                  "Participants must be 18+"
+                ].map((rule, index) => (
+                  <li key={index} className='flex items-start gap-3'>
+                    <CheckCircle className='w-4 h-4 text-green-400 mt-0.5 flex-shrink-0' />
+                    <span>{rule}</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+    </div>
   )
 }
 

@@ -1,111 +1,147 @@
-// components/NotFound.jsx
-import { Link, useLocation } from "react-router-dom";
+import React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Button } from "../components/ui/button";
+import { Card, CardContent } from "../components/ui/card";
+import { 
+    Home, 
+    ArrowLeft, 
+    RefreshCw, 
+    Search, 
+    AlertTriangle, 
+    Compass 
+} from "lucide-react";
 
 const NotFound = () => {
-  const location = useLocation();
-  const attemptedPath = location.state?.from || "/404";
-  return (
-    <div
-      className="min-h-screen flex flex-col items-center justify-center px-4"
-      style={{
-        background: "#1E1E2F",
-        fontFamily: "Inter, sans-serif",
-      }}
-    >
-      {/* SVG Illustration */}
-      <div className="mb-8 w-64 h-64 flex justify-center items-center">
-        <svg width="100%" height="100%" viewBox="0 0 512 512">
-          <circle cx="256" cy="256" r="256" fill="#262649" />
-          <text
-            x="50%"
-            y="58%"
-            textAnchor="middle"
-            fill="#00CFFF"
-            fontSize="120"
-            fontWeight="bold"
-            style={{
-              filter: "drop-shadow(0 2px 12px #00cfffcc)",
-              letterSpacing: "6px",
-            }}
-          >
-            404
-          </text>
-          {/* Eyes */}
-          <ellipse cx="180" cy="310" rx="16" ry="7" fill="#A855F7" opacity="0.7" />
-          <ellipse cx="332" cy="310" rx="16" ry="7" fill="#A855F7" opacity="0.7" />
-          {/* Green tick for success in the mascot */}
-          <circle cx="220" cy="215" r="10" fill="#10B981" opacity="0.7" />
-          {/* Smile */}
-          <ellipse cx="256" cy="360" rx="34" ry="14" fill="#9CA3AF" opacity="0.18" />
-        </svg>
-      </div>
-      <h1
-        className="text-6xl font-black mb-2 tracking-tight drop-shadow-lg"
-        style={{
-          color: "#00CFFF",
-          letterSpacing: "0.05em",
-          marginBottom: "0.5rem",
-          textShadow: "0 6px 20px #00CFFF44",
-        }}
-      >
-        Oops!
-      </h1>
-      <h2
-        className="text-2xl font-semibold mb-3"
-        style={{
-          color: "#A855F7",
-        }}
-      >
-        Page not found
-      </h2>
-      <p
-        className="text-lg mb-8 text-center max-w-lg"
-        style={{ color: "#9CA3AF" }}
-      >
-        Sorry, the page{" "}
-        <span
-          className="rounded px-2"
-          style={{ background: "#262649", color: "#F97316", fontWeight: 600 }}
-        >
-          {attemptedPath}
-        </span>{" "}
-        does not exist.
-        <br />
-        Let’s help you get back home!
-      </p>
-      <div className="flex gap-4">
-        <Link
-          to="/"
-          className="px-7 py-3 rounded-xl font-bold shadow-lg transition-transform duration-200 hover:scale-105"
-          style={{
-            background: "#F97316",
-            color: "#F5F5F5",
-            boxShadow: "0 4px 32px #F9731633, 0 1px 0 #26264970",
-          }}
-        >
-          Go Back Home
-        </Link>
-        <Link
-          to="/campaigns"
-          className="px-7 py-3 rounded-xl font-bold shadow-lg transition-transform duration-200 hover:scale-105"
-          style={{
-            background: "#00CFFF",
-            color: "#1E1E2F",
-            marginLeft: "12px",
-            boxShadow: "0 4px 32px #00CFFF66, 0 1px 0 #26264980",
-          }}
-        >
-          Explore Campaigns
-        </Link>
-      </div>
-      {/* Optional: Success/encouragement note */}
-      <p className="mt-10 text-sm" style={{ color: "#10B981" }}>
-        <span role="img" aria-label="rocket">
-          🚀
-        </span>{" "}
-        You'll always find something amazing here!
-      </p>
-    </div>
+    const location = useLocation();
+    const navigate = useNavigate();
+    const attemptedPath = location.pathname;
+
+    const handleGoBack = () => {
+        navigate(-1);
+    };
+
+    const handleRefresh = () => {
+        window.location.reload();
+    };
+
+    return (
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
+            {/* Animated Background Elements */}
+            <div className="absolute inset-0">
+                <div className="absolute top-20 left-20 w-72 h-72 bg-[#F97316]/10 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#155a69]/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#10B981]/5 rounded-full blur-3xl animate-pulse delay-500"></div>
+            </div>
+
+            <div className="relative z-10 min-h-screen flex items-center justify-center p-6">
+                <div className="w-full max-w-4xl text-center">
+                    {/* Large 404 with floating icon */}
+                    <div className="relative mb-8">
+                        <div className="text-[180px] md:text-[240px] font-bold text-transparent bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 bg-clip-text leading-none">
+                            404
+                        </div>
+                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                            <AlertTriangle className="w-16 h-16 text-[#F97316] animate-bounce" />
+                        </div>
+                    </div>
+
+                    {/* Error Message */}
+                    <div className="mb-8 space-y-4">
+                        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                            Page Not Found
+                        </h1>
+                        <p className="text-xl text-gray-400 mb-6">
+                            Oops! The page you're looking for seems to have wandered off.
+                        </p>
+                        
+                        {/* Attempted Path Display */}
+                        <Card className="bg-gray-800/50 border-gray-600 backdrop-blur-sm">
+                            <CardContent className="p-4">
+                                <div className="flex items-center justify-center gap-2 text-sm">
+                                    <span className="text-gray-400">Attempted path:</span>
+                                    <code className="px-2 py-1 bg-gray-700 text-[#F97316] rounded font-mono">
+                                        {attemptedPath}
+                                    </code>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                        <Link to="/">
+                            <Button className="w-full bg-[#F97316] hover:bg-[#EA580C] text-white font-semibold py-3 transition-all duration-200 hover:scale-105 shadow-lg">
+                                <Home className="w-4 h-4 mr-2" />
+                                Go Home
+                            </Button>
+                        </Link>
+
+                        <Button 
+                            onClick={handleGoBack}
+                            variant="outline"
+                            className="w-full border-gray-600 text-gray-300 hover:bg-gray-700 py-3 transition-all duration-200 hover:scale-105"
+                        >
+                            <ArrowLeft className="w-4 h-4 mr-2" />
+                            Go Back
+                        </Button>
+
+                        <Link to="/campaigns">
+                            <Button className="w-full bg-[#10B981] hover:bg-[#059669] text-white font-semibold py-3 transition-all duration-200 hover:scale-105 shadow-lg">
+                                <Search className="w-4 h-4 mr-2" />
+                                Campaigns
+                            </Button>
+                        </Link>
+
+                        <Button 
+                            onClick={handleRefresh}
+                            variant="outline"
+                            className="w-full border-[#155a69] text-[#155a69] hover:bg-[#155a69] hover:text-white py-3 transition-all duration-200 hover:scale-105"
+                        >
+                            <RefreshCw className="w-4 h-4 mr-2" />
+                            Refresh
+                        </Button>
+                    </div>
+
+                    {/* Help Section */}
+                    <Card className="bg-gray-800/30 border-gray-600 backdrop-blur-sm">
+                        <CardContent className="p-6">
+                            <div className="flex items-center justify-center mb-4">
+                                <Compass className="w-6 h-6 text-[#F97316] mr-2" />
+                                <h3 className="text-lg font-semibold text-white">Need Help?</h3>
+                            </div>
+                            <p className="text-gray-400 mb-4">
+                                If you believe this is an error, here are some things you can try:
+                            </p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                <div className="flex items-center text-gray-300">
+                                    <div className="w-2 h-2 bg-[#10B981] rounded-full mr-3" />
+                                    Check the URL for typos
+                                </div>
+                                <div className="flex items-center text-gray-300">
+                                    <div className="w-2 h-2 bg-[#10B981] rounded-full mr-3" />
+                                    Try refreshing the page
+                                </div>
+                                <div className="flex items-center text-gray-300">
+                                    <div className="w-2 h-2 bg-[#10B981] rounded-full mr-3" />
+                                    Go back to the homepage
+                                </div>
+                                <div className="flex items-center text-gray-300">
+                                    <div className="w-2 h-2 bg-[#10B981] rounded-full mr-3" />
+                                    Contact support if needed
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    {/* Footer Message */}
+                    <div className="mt-8 flex items-center justify-center gap-2 text-gray-500">
+                        <span>✨</span>
+                        <span>Don't worry, even the best explorers get lost sometimes!</span>
+                        <span>🚀</span>
+                    </div>
+                </div>
+            </div>
+        </div>
   );
 };
 
