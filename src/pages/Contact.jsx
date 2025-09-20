@@ -51,10 +51,10 @@ function Contact() {
       <section className="relative overflow-hidden py-20 px-4">
         <div className="max-w-6xl mx-auto text-center">
           {/* Announcement Badge */}
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#F97316]/20 to-[#713306]/20 border border-[#F97316]/30 rounded-full px-4 py-2 mb-8">
-            <Headphones className="w-4 h-4 text-[#F97316]" />
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#0B7A75]/20 to-[#054f4c]/20 border border-[#0B7A75]/30 rounded-full px-4 py-2 mb-8">
+            <Headphones className="w-4 h-4 text-[#0B7A75]" />
             <span className="text-sm font-medium text-white">24/7 Support Available</span>
-            <Sparkles className="w-4 h-4 text-[#F97316]" />
+            <Sparkles className="w-4 h-4 text-[#0B7A75]" />
           </div>
 
           {/* Main Heading */}

@@ -12,10 +12,10 @@ function Footer() {
           {/* Brand Section */}
           <div className='lg:col-span-1 space-y-4'>
             <div className="flex items-center gap-3">
-              <div className="bg-gradient-to-r from-[#F97316] to-[#713306] p-2 rounded-lg">
+              <div className="bg-gradient-to-r from-[#0B7A75] to-[#054f4c] p-2 rounded-lg">
                 <Target className="w-5 h-5 text-white" />
               </div>
-              <h2 className="font-bold text-xl bg-gradient-to-r from-[#F97316] to-[#713306] bg-clip-text text-transparent">
+              <h2 className="font-bold text-xl bg-gradient-to-r from-[#0B7A75] to-[#054f4c] bg-clip-text text-transparent">
                 TaskWala
               </h2>
             </div>

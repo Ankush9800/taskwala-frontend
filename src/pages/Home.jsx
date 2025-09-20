@@ -35,17 +35,17 @@ function Home() {
       <section className="relative overflow-hidden py-20 px-4">
         <div className="max-w-6xl mx-auto text-center">
           {/* Announcement Badge */}
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#F97316]/20 to-[#713306]/20 border border-[#F97316]/30 rounded-full px-4 py-2 mb-8">
-            <Rocket className="w-4 h-4 text-[#F97316]" />
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#0B7A75]/20 to-[#054f4c]/20 border border-[#0B7A75]/30 rounded-full px-4 py-2 mb-8">
+            <Rocket className="w-4 h-4 text-[#0B7A75]" />
             <span className="text-sm font-medium text-white">Revolutionizing Campaign Rewards</span>
-            <Sparkles className="w-4 h-4 text-[#F97316]" />
+            <Sparkles className="w-4 h-4 text-[#0B7A75]" />
           </div>
 
           {/* Main Heading */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
             <span className="text-white">Transform</span>
             <br />
-            <span className="bg-gradient-to-r from-[#F97316] to-[#713306] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#0B7A75] to-[#054f4c] bg-clip-text text-transparent">
               Engagement
             </span>
             <br />
@@ -62,7 +62,7 @@ function Home() {
             <Button
               onClick={() => navigate("/campaigns")}
               size="lg"
-              className="bg-gradient-to-r from-[#F97316] to-[#713306] hover:from-[#F97316]/80 hover:to-[#713306]/80 px-8 py-4 text-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="bg-gradient-to-r from-[#0B7A75] to-[#054f4c] hover:from-[#0B7A75]/80 hover:to-[#054f4c]/80 px-8 py-4 text-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               <Target className="w-5 h-5 mr-2" />
               Start Your Journey
@@ -81,15 +81,15 @@ function Home() {
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="text-center">
-              <h3 className="text-4xl font-bold text-[#F97316] mb-2">10K+</h3>
+              <h3 className="text-4xl font-bold text-[#0B7A75] mb-2">10K+</h3>
               <p className="text-gray-400">Active Campaigns</p>
             </div>
             <div className="text-center">
-              <h3 className="text-4xl font-bold text-[#F97316] mb-2">500K+</h3>
+              <h3 className="text-4xl font-bold text-[#0B7A75] mb-2">500K+</h3>
               <p className="text-gray-400">Rewards Distributed</p>
             </div>
             <div className="text-center">
-              <h3 className="text-4xl font-bold text-[#F97316] mb-2">98%</h3>
+              <h3 className="text-4xl font-bold text-[#0B7A75] mb-2">98%</h3>
               <p className="text-gray-400">Satisfaction Rate</p>
             </div>
           </div>
@@ -108,7 +108,7 @@ function Home() {
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               <span className="text-white">Everything You Need to</span>
               <br />
-              <span className="bg-gradient-to-r from-[#F97316] to-[#713306] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#0B7A75] to-[#054f4c] bg-clip-text text-transparent">
                 Succeed
               </span>
             </h2>
@@ -119,9 +119,9 @@ function Home() {
 
           {/* Features Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#F97316]/30 transition-all duration-300 group">
+            <Card className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#0B7A75]/30 transition-all duration-300 group">
               <CardHeader className="pb-4">
-                <div className="bg-gradient-to-r from-[#F97316] to-[#713306] p-3 rounded-lg w-fit mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="bg-gradient-to-r from-[#0B7A75] to-[#054f4c] p-3 rounded-lg w-fit mb-4 group-hover:scale-110 transition-transform duration-300">
                   <Zap className="w-6 h-6 text-white" />
                 </div>
                 <CardTitle className="text-white text-xl mb-2">Smart Campaign Creation</CardTitle>
@@ -131,9 +131,9 @@ function Home() {
               </CardHeader>
             </Card>
 
-            <Card className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#F97316]/30 transition-all duration-300 group">
+            <Card className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#0B7A75]/30 transition-all duration-300 group">
               <CardHeader className="pb-4">
-                <div className="bg-gradient-to-r from-[#155a69] to-[#F97316] p-3 rounded-lg w-fit mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="bg-gradient-to-r from-[#0B7A75] to-[#054f4c] p-3 rounded-lg w-fit mb-4 group-hover:scale-110 transition-transform duration-300">
                   <BarChart3 className="w-6 h-6 text-white" />
                 </div>
                 <CardTitle className="text-white text-xl mb-2">Real-time Analytics</CardTitle>
@@ -143,9 +143,9 @@ function Home() {
               </CardHeader>
             </Card>
 
-            <Card className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#F97316]/30 transition-all duration-300 group">
+            <Card className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#0B7A75]/30 transition-all duration-300 group">
               <CardHeader className="pb-4">
-                <div className="bg-gradient-to-r from-[#10B981] to-[#155a69] p-3 rounded-lg w-fit mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="bg-gradient-to-r from-[#22D186] to-[#0B7A75] p-3 rounded-lg w-fit mb-4 group-hover:scale-110 transition-transform duration-300">
                   <Gift className="w-6 h-6 text-white" />
                 </div>
                 <CardTitle className="text-white text-xl mb-2">Automated Rewards</CardTitle>
@@ -155,9 +155,9 @@ function Home() {
               </CardHeader>
             </Card>
 
-            <Card className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#F97316]/30 transition-all duration-300 group">
+            <Card className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#0B7A75]/30 transition-all duration-300 group">
               <CardHeader className="pb-4">
-                <div className="bg-gradient-to-r from-[#F97316] to-[#155a69] p-3 rounded-lg w-fit mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="bg-gradient-to-r from-[#0B7A75] to-[#054f4c] p-3 rounded-lg w-fit mb-4 group-hover:scale-110 transition-transform duration-300">
                   <Shield className="w-6 h-6 text-white" />
                 </div>
                 <CardTitle className="text-white text-xl mb-2">Fraud Protection</CardTitle>
@@ -167,9 +167,9 @@ function Home() {
               </CardHeader>
             </Card>
 
-            <Card className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#F97316]/30 transition-all duration-300 group">
+            <Card className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#0B7A75]/30 transition-all duration-300 group">
               <CardHeader className="pb-4">
-                <div className="bg-gradient-to-r from-[#155a69] to-[#10B981] p-3 rounded-lg w-fit mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="bg-gradient-to-r from-[#0B7A75] to-[#22D186] p-3 rounded-lg w-fit mb-4 group-hover:scale-110 transition-transform duration-300">
                   <TrendingUp className="w-6 h-6 text-white" />
                 </div>
                 <CardTitle className="text-white text-xl mb-2">Performance Optimization</CardTitle>
@@ -179,9 +179,9 @@ function Home() {
               </CardHeader>
             </Card>
 
-            <Card className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#F97316]/30 transition-all duration-300 group">
+            <Card className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#0B7A75]/30 transition-all duration-300 group">
               <CardHeader className="pb-4">
-                <div className="bg-gradient-to-r from-[#10B981] to-[#F97316] p-3 rounded-lg w-fit mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="bg-gradient-to-r from-[#22D186] to-[#0B7A75] p-3 rounded-lg w-fit mb-4 group-hover:scale-110 transition-transform duration-300">
                   <Star className="w-6 h-6 text-white" />
                 </div>
                 <CardTitle className="text-white text-xl mb-2">Custom Integrations</CardTitle>
@@ -206,7 +206,7 @@ function Home() {
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               <span className="text-white">Simple Steps to</span>
               <br />
-              <span className="bg-gradient-to-r from-[#F97316] to-[#713306] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#0B7A75] to-[#054f4c] bg-clip-text text-transparent">
                 Success
               </span>
             </h2>
@@ -215,7 +215,7 @@ function Home() {
           {/* Process Steps */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center group">
-              <div className="bg-gradient-to-r from-[#F97316] to-[#713306] w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl text-white mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <div className="bg-gradient-to-r from-[#0B7A75] to-[#054f4c] w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl text-white mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                 1
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">Create Campaign</h3>
@@ -225,7 +225,7 @@ function Home() {
             </div>
 
             <div className="text-center group">
-              <div className="bg-gradient-to-r from-[#155a69] to-[#F97316] w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl text-white mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <div className="bg-gradient-to-r from-[#0B7A75] to-[#054f4c] w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl text-white mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                 2
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">Drive Engagement</h3>
@@ -235,7 +235,7 @@ function Home() {
             </div>
 
             <div className="text-center group">
-              <div className="bg-gradient-to-r from-[#10B981] to-[#155a69] w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl text-white mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <div className="bg-gradient-to-r from-[#22D186] to-[#0B7A75] w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl text-white mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                 3
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">Distribute Rewards</h3>
@@ -254,7 +254,7 @@ function Home() {
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               <span className="text-white">Ready to Transform Your</span>
               <br />
-              <span className="bg-gradient-to-r from-[#F97316] to-[#713306] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#0B7A75] to-[#054f4c] bg-clip-text text-transparent">
                 Campaigns?
               </span>
             </h2>
@@ -265,7 +265,7 @@ function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-[#F97316] to-[#713306] hover:from-[#F97316]/80 hover:to-[#713306]/80 px-8 py-4 text-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl" 
+                className="bg-gradient-to-r from-[#0B7A75] to-[#054f4c] hover:from-[#0B7A75]/80 hover:to-[#054f4c]/80 px-8 py-4 text-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl" 
                 onClick={() => navigate("/campaigns")}
               >
                 <ArrowRight className="w-5 h-5 mr-2" />

@@ -12,6 +12,6 @@ export default defineConfig({
     },
   },
   server: {
-    allowedHosts: ['new.hellome.site'],}
+    allowedHosts: ['new.uination.live'],}
 
 })

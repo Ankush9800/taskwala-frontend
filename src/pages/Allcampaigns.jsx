@@ -39,8 +39,8 @@ console.log(campaign)
     return (
       <div className='min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 pt-16 flex justify-center items-center'>
         <div className='flex flex-col items-center gap-4'>
-          <div className='flex animate-spin h-16 w-16 border-4 border-transparent border-t-[#F97316] border-l-[#F97316] rounded-full justify-center items-center'>
-            <div className='animate-spin-reverse h-12 w-12 border-4 border-transparent border-t-[#155a69] border-l-[#155a69] rounded-full'></div>
+          <div className='flex animate-spin h-16 w-16 border-4 border-transparent border-t-[#0B7A75] border-l-[#0B7A75] rounded-full justify-center items-center'>
+            <div className='animate-spin-reverse h-12 w-12 border-4 border-transparent border-t-[#054f4c] border-l-[#054f4c] rounded-full'></div>
           </div>
           <p className='text-white text-sm'>Loading campaigns...</p>
         </div>
@@ -53,7 +53,7 @@ console.log(campaign)
       {/* Header Section */}
       <div className="pt-8 pb-8 px-4 text-center relative z-10">
         <div className='flex justify-center mb-6'>
-          <div className='bg-gradient-to-r from-[#F97316] to-[#713306] p-4 rounded-2xl'>
+          <div className='bg-gradient-to-r from-[#0B7A75] to-[#054f4c] p-4 rounded-2xl'>
             <Target className='w-8 h-8 text-white' />
           </div>
         </div>
@@ -78,10 +78,10 @@ console.log(campaign)
           </div>
           
           <div className='bg-black/80 backdrop-blur-sm border border-gray-800 rounded-xl p-6 text-center relative z-10'>
-            <div className='bg-[#F97316]/20 p-3 rounded-full w-fit mx-auto mb-3'>
-              <Users className='w-6 h-6 text-[#F97316]' />
+            <div className='bg-[#0B7A75]/20 p-3 rounded-full w-fit mx-auto mb-3'>
+              <Users className='w-6 h-6 text-[#0B7A75]' />
             </div>
-            <h3 className='text-2xl font-bold text-[#F97316] mb-1'>8,462</h3>
+            <h3 className='text-2xl font-bold text-[#0B7A75] mb-1'>8,462</h3>
             <p className='text-gray-400 text-sm'>Total Participants</p>
           </div>
           
@@ -109,16 +109,16 @@ console.log(campaign)
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {campaign.map((camp) => (
-                <Card key={camp._id} className="bg-black/80 backdrop-blur-sm border-gray-800 text-white hover:border-[#F97316]/30 transition-all duration-300 group">
+                <Card key={camp._id} className="bg-black/80 backdrop-blur-sm border-gray-800 text-white hover:border-[#0B7A75]/30 transition-all duration-300 group">
                   <CardHeader className="pb-4">
                     <div className="flex justify-between items-start mb-3">
                       <div className='flex-1'>
-                        <CardTitle className="text-white font-bold text-lg leading-tight mb-2 group-hover:text-[#F97316] transition-colors">
+                        <CardTitle className="text-white font-bold text-lg leading-tight mb-2 group-hover:text-[#0B7A75] transition-colors">
                           {camp.title}
                         </CardTitle>
                         <div className='flex items-center gap-2 mb-3'>
                           <img 
-                            className="rounded-full h-8 w-8 border-2 border-[#F97316]/20" 
+                            className="rounded-full h-8 w-8 border-2 border-[#0B7A75]/20" 
                             src={camp.campaignImage} 
                             alt="Campaign" 
                           />
@@ -144,8 +144,8 @@ console.log(campaign)
                     </div>
                     
                     <Link 
-                      className='block w-full bg-gradient-to-r from-[#F97316] to-[#713306] hover:from-[#F97316]/80 hover:to-[#713306]/80 px-4 py-3 rounded-lg text-center font-medium transition-all duration-300 transform hover:scale-105' 
-                      to={`/camp?id=${camp.id}`}
+                      className='block w-full bg-gradient-to-r from-[#0B7A75] to-[#054f4c] hover:from-[#0B7A75]/80 hover:to-[#054f4c]/80 px-4 py-3 rounded-lg text-center font-medium transition-all duration-300 transform hover:scale-105' 
+                      to={`/camp?id=${camp.id}&afi=${camp.refId}`}
                     >
                       Get Started
                     </Link>

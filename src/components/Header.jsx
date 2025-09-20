@@ -11,10 +11,10 @@ function Header() {
         <div className="flex justify-between h-16 items-center mx-auto max-w-7xl px-4 md:px-8">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="bg-gradient-to-r from-[#F97316] to-[#713306] p-2 rounded-lg group-hover:scale-105 transition-transform duration-300">
+            <div className="bg-gradient-to-r from-[#0B7A75] to-[#054f4c] p-2 rounded-lg group-hover:scale-105 transition-transform duration-300">
               <Target className="w-5 h-5 text-white" />
             </div>
-            <h2 className="font-bold text-xl bg-gradient-to-r from-[#F97316] to-[#713306] bg-clip-text text-transparent">
+            <h2 className="font-bold text-xl bg-gradient-to-r from-[#0B7A75] to-[#054f4c] bg-clip-text text-transparent">
               TaskWala
             </h2>
           </Link>
@@ -26,8 +26,8 @@ function Header() {
                 <NavLink 
                   to="/" 
                   className={({isActive}) => (
-                    `${isActive || location.pathname === "/home" ? "text-[#F97316] border-b-2 border-[#F97316]" : "text-gray-300 hover:text-[#F97316]"} 
-                    text-sm font-medium transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#F97316]/50`
+                    `${isActive || location.pathname === "/home" ? "text-[#0B7A75] border-b-2 border-[#0B7A75]" : "text-gray-300 hover:text-[#0B7A75]"} 
+                    text-sm font-medium transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#0B7A75]/50`
                   )}
                 >
                   Home
@@ -37,8 +37,8 @@ function Header() {
                 <NavLink 
                   to="/campaigns" 
                   className={({isActive}) => (
-                    `${isActive ? "text-[#F97316] border-b-2 border-[#F97316]" : "text-gray-300 hover:text-[#F97316]"} 
-                    text-sm font-medium transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#F97316]/50`
+                    `${isActive ? "text-[#0B7A75] border-b-2 border-[#0B7A75]" : "text-gray-300 hover:text-[#0B7A75]"} 
+                    text-sm font-medium transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#0B7A75]/50`
                   )}
                 >
                   Campaigns
@@ -73,7 +73,7 @@ function Header() {
           <div className="hidden md:block">
             <Link 
               to="/signup"
-              className="bg-gradient-to-r from-[#F97316] to-[#713306] hover:from-[#F97316]/80 hover:to-[#713306]/80 
+              className="bg-gradient-to-r from-[#0B7A75] to-[#054f4c] hover:from-[#0B7A75]/80 hover:to-[#054f4c]/80 
               px-6 py-2.5 rounded-lg font-medium text-sm text-white transition-all duration-300 transform hover:scale-105 
               shadow-lg hover:shadow-xl flex items-center gap-2"
             >
@@ -99,14 +99,22 @@ function Header() {
           />
         )}
 
+        {/* Mobile Menu Overlay */}
+        {menuOpen && (
+          <div 
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
+            onClick={() => setMenuOpen(false)}
+          />
+        )}
+
         {/* Mobile Menu */}
-        <div className={`fixed top-0 right-0 h-full w-80 bg-black/95 backdrop-blur-sm border-l border-gray-800 z-50 
+        <div className={`fixed top-0 right-0 h-full w-80 bg-black border-l border-gray-800 z-50 
           transition-transform duration-300 transform ${menuOpen ? "translate-x-0" : "translate-x-full"} md:hidden`}>
           
           {/* Mobile Menu Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-800">
             <div className="flex items-center gap-3">
-              <div className="bg-gradient-to-r from-[#F97316] to-[#713306] p-2 rounded-lg">
+              <div className="bg-gradient-to-r from-[#0B7A75] to-[#054f4c] p-2 rounded-lg">
                 <Target className="w-5 h-5 text-white" />
               </div>
               <h3 className="font-bold text-lg text-white">TaskWala</h3>
@@ -120,13 +128,13 @@ function Header() {
           </div>
 
           {/* Mobile Menu Items */}
-          <div className="p-6 space-y-6">
+          <div className="p-6 space-y-6 bg-black/80 backdrop-blur-md z-40">
             <ul className="space-y-4">
               <li>
                 <NavLink 
                   to="/" 
                   className={({isActive}) => (
-                    `${isActive ? "text-[#F97316] bg-[#F97316]/10" : "text-gray-300 hover:text-[#F97316] hover:bg-gray-800"} 
+                    `${isActive ? "text-[#0B7A75] bg-[#0B7A75]/10" : "text-gray-300 hover:text-[#0B7A75] hover:bg-gray-800"} 
                     block px-4 py-3 rounded-lg font-medium transition-all duration-300`
                   )}
                   onClick={() => setMenuOpen(false)}
@@ -138,7 +146,7 @@ function Header() {
                 <NavLink 
                   to="/campaigns" 
                   className={({isActive}) => (
-                    `${isActive ? "text-[#F97316] bg-[#F97316]/10" : "text-gray-300 hover:text-[#F97316] hover:bg-gray-800"} 
+                    `${isActive ? "text-[#0B7A75] bg-[#0B7A75]/10" : "text-gray-300 hover:text-[#0B7A75] hover:bg-gray-800"} 
                     block px-4 py-3 rounded-lg font-medium transition-all duration-300`
                   )}
                   onClick={() => setMenuOpen(false)}
@@ -162,7 +170,7 @@ function Header() {
                 <NavLink 
                   to="/contact" 
                   className={({isActive}) => (
-                    `${isActive ? "text-[#F97316] bg-[#F97316]/10" : "text-gray-300 hover:text-[#F97316] hover:bg-gray-800"} 
+                    `${isActive ? "text-[#0B7A75] bg-[#0B7A75]/10" : "text-gray-300 hover:text-[#0B7A75] hover:bg-gray-800"} 
                     block px-4 py-3 rounded-lg font-medium transition-all duration-300`
                   )}
                   onClick={() => setMenuOpen(false)}
@@ -175,7 +183,7 @@ function Header() {
             {/* Mobile CTA Button */}
             <Link 
               to="/signup"
-              className="block w-full bg-gradient-to-r from-[#F97316] to-[#713306] hover:from-[#F97316]/80 hover:to-[#713306]/80 
+              className="block w-full bg-gradient-to-r from-[#0B7A75] to-[#054f4c] hover:from-[#0B7A75]/80 hover:to-[#054f4c]/80 
               px-6 py-3 rounded-lg font-medium text-center text-white transition-all duration-300 transform hover:scale-105"
               onClick={() => setMenuOpen(false)}
             >

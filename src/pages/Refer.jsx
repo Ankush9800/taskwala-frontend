@@ -9,6 +9,7 @@ import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner';
 
 function Refer() {
+    const origin = window.location.origin
     const [camp, setCamp] = useState(null)
     const [campId, setCampId] = useState(null)
     const [userPayout, setUserPayout] = useState(0)
@@ -20,6 +21,7 @@ function Refer() {
     const [cId, setCId] = useState("")
     const [refLink, setRefLink] = useState("")
     const [copied, setCopied] = useState(false)
+    const [campData, setCampData] = useState(null)
     
     const campaigns = async()=>{
         const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/activecampaigns`);
@@ -28,11 +30,17 @@ function Refer() {
     }
 
     const referPrice = async()=>{
-        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getcampaignbyid/${campId}`)
-        console.log(res)
-        setCup(res.data.data.payoutRate)
-        setTp(res.data.data.price)
-        setCId(res.data.data.id)
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getcampaignbyid`,{
+            params:{
+                id:campId,
+                refId:campData.refId
+            }
+        })
+        console.log(res.data.data)
+        const camp = res.data.data[0]
+        setCup(camp.payoutRate)
+        setTp(camp.price)
+        setCId(camp.id)
     }
 
     useEffect(() => {
@@ -49,6 +57,7 @@ function Refer() {
         if (campId) {
             referPrice()
         }
+        console.log("test",campData)
     },[campId])
     
     useEffect(()=>{
@@ -65,7 +74,7 @@ function Refer() {
                 upiId
             })
             console.log(res)
-            setRefLink(`http://localhost:5173/camp?id=9887B894/afi?=${res.data.id}`)
+            setRefLink(`${origin}/camp?id=${cId}&afi=${res.data.id}`)
             toast.success("Referral link generated successfully!")
         }else{
             toast.error("Please enter your UPI ID")
@@ -122,7 +131,11 @@ function Refer() {
                 {/* Campaign Selection */}
                 <div className='space-y-2'>
                     <Label className='text-sm font-medium text-gray-300'>Select Campaign</Label>
-                    <Select value={campId} onValueChange={(value)=>setCampId(value)}>
+                    <Select value={campId} onValueChange={(value)=>{
+                        const selected = JSON.parse(value)
+                        setCampId(selected.id)
+                        setCampData(selected)
+                    }}>
                         <SelectTrigger className='w-full bg-gray-900 border-gray-700 text-white'>
                             <SelectValue placeholder="Choose a campaign to promote"/>
                         </SelectTrigger>
@@ -130,7 +143,7 @@ function Refer() {
                             <SelectGroup>
                                 <SelectLabel className='text-gray-400'>Available Campaigns</SelectLabel>
                                 {camp?.map((campaign, index)=>(
-                                    <SelectItem key={index} value={campaign.id} className='hover:bg-gray-800'>
+                                    <SelectItem key={index} value={JSON.stringify(campaign)} className='hover:bg-gray-800'>
                                         {campaign.title}
                                     </SelectItem>
                                 ))}
