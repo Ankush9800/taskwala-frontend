@@ -37,7 +37,7 @@ function Campaign() {
       setPayoutData(payout)
       setIsActive(camp.campaignStatus)
       setLoading(false)
-      console.log(res.data.data)
+      // console.log(res.data.data)
     } catch (error) {
       console.log(error)
       setIsActive(false)
@@ -59,7 +59,7 @@ function Campaign() {
 
   const handleSubmit = async()=>{
     try {
-      console.log(campaignData.trackingUrl)
+      // console.log(campaignData.trackingUrl)
       setIssubmiting(true)
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/campaign/submitcampaign`,{
         phone: userPhone,
@@ -75,7 +75,7 @@ function Campaign() {
       borderColor:"#fff",
       border:"2px"
     },duration:2000,position:"top-right"})
-      console.log("request successful", response.data.data);
+      // console.log("request successful", response.data.data);
       setCampUrl(response.data.data.redirectUrl)
     } catch (error) {
       console.log("error while submiting deta", error);

@@ -45,7 +45,7 @@ function Conversion() {
         try {
             setLoading(true)
             const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getpostback?page=${page}`)
-            console.log(res.data.data,'aa')
+            // console.log(res.data.data,'aa')
             setConversion(res.data.data[0])
             setCountTotal(res.data.data[1])
             setIndexCount((page - 1)*10)

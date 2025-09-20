@@ -15,7 +15,7 @@ function Campaigns() {
   const fetchCampaigns = async () => {
     try {
       const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getallcampaign`);
-      console.log(res);
+      // console.log(res);
       const activeCapaigns = await res?.data.filter(camp => camp.campaignStatus === true);
       setLoading(false)
       setCampaign(activeCapaigns)
@@ -30,7 +30,7 @@ function Campaigns() {
       console.log(error)
     }
   };
-console.log(campaign)
+// console.log(campaign)
   useEffect(() => {
     fetchCampaigns(); // Run this when the page opens
   }, []);

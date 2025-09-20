@@ -25,7 +25,7 @@ function Refer() {
     
     const campaigns = async()=>{
         const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/activecampaigns`);
-        console.log(res)
+        // console.log(res)
         setCamp(res.data)
     }
 
@@ -36,7 +36,7 @@ function Refer() {
                 refId:campData.refId
             }
         })
-        console.log(res.data.data)
+        // console.log(res.data.data)
         const camp = res.data.data[0]
         setCup(camp.payoutRate)
         setTp(camp.price)
@@ -57,7 +57,7 @@ function Refer() {
         if (campId) {
             referPrice()
         }
-        console.log("test",campData)
+        // console.log("test",campData)
     },[campId])
     
     useEffect(()=>{
@@ -73,7 +73,7 @@ function Refer() {
                 cId,
                 upiId
             })
-            console.log(res)
+            // console.log(res)
             setRefLink(`${origin}/camp?id=${cId}&afi=${res.data.id}`)
             toast.success("Referral link generated successfully!")
         }else{
