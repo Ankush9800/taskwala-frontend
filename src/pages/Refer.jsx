@@ -176,10 +176,10 @@ function Refer() {
                                     </div>
                                 </div>
                                 <div className='text-center'>
-                                    <div className='bg-[#155a69]/20 p-3 rounded-lg border border-[#155a69]/30'>
-                                        <Users className='w-5 h-5 text-[#155a69] mx-auto mb-1' />
+                                    <div className='bg-[#0B7A75]/20 p-3 rounded-lg border border-[#0B7A75]/30'>
+                                        <Users className='w-5 h-5 text-[#0B7A75] mx-auto mb-1' />
                                         <p className='text-xs text-gray-400'>Friend Saves</p>
-                                        <p className='text-lg font-bold text-[#155a69]'>₹{referPayout}</p>
+                                        <p className='text-lg font-bold text-[#0B7A75]'>₹{referPayout}</p>
                                     </div>
                                 </div>
                             </div>
