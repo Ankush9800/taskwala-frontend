@@ -44,8 +44,8 @@ function Refer() {
     }
 
     useEffect(() => {
-      setUserPayout(cup)
-      setReferPayout(tp-cup)
+      setUserPayout(tp-cup)
+      setReferPayout(cup)
       if (cup<1 || cup > tp) {
         setBtnType(true)
       }else{
@@ -167,7 +167,7 @@ function Refer() {
                                             <input 
                                                 type="number" 
                                                 className='bg-transparent text-lg font-bold text-[#F97316] w-12 text-center focus:outline-none' 
-                                                value={userPayout} 
+                                                value={referPayout} 
                                                 onChange={(e)=>setCup(e.target.value)}
                                                 min="1"
                                                 max={tp}
@@ -179,7 +179,7 @@ function Refer() {
                                     <div className='bg-[#0B7A75]/20 p-3 rounded-lg border border-[#0B7A75]/30'>
                                         <Users className='w-5 h-5 text-[#0B7A75] mx-auto mb-1' />
                                         <p className='text-xs text-gray-400'>Friend Saves</p>
-                                        <p className='text-lg font-bold text-[#0B7A75]'>₹{referPayout}</p>
+                                        <p className='text-lg font-bold text-[#0B7A75]'>₹{userPayout}</p>
                                     </div>
                                 </div>
                             </div>
