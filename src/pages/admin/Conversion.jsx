@@ -288,7 +288,7 @@ function Conversion() {
                                     <TableHead className="text-gray-300">Payout</TableHead>
                                     <TableHead className="text-gray-300">Date & Time</TableHead>
                                     <TableHead className="text-gray-300">Provider</TableHead>
-                                    <TableHead className="text-gray-300">Phone</TableHead>
+                                    <TableHead className="text-gray-300">Refer UPI ID</TableHead>
                                     <TableHead className="text-gray-300">UPI ID</TableHead>
                                 </TableRow>
                             </TableHeader>
@@ -344,16 +344,18 @@ function Conversion() {
                                         </TableCell>
                                         <TableCell>
                                             <div className="flex items-center gap-2">
-                                                <Phone className="w-3 h-3 text-gray-400" />
-                                                <span className="text-white font-mono">{conv.phoneNo}</span>
-                                                <Button 
-                                                    size="sm"
-                                                    variant="ghost"
-                                                    onClick={() => copy(conv.phoneNo)}
-                                                    className="h-6 w-6 p-0 hover:bg-gray-700"
-                                                >
-                                                    <Clipboard className="w-3 h-3" />
-                                                </Button>
+                                                <CreditCard className="w-3 h-3 text-[#F97316]" />
+                                                <span className="text-white font-mono">{conv.referUpiId || 'N/A'}</span>
+                                                {conv.referUpiId && (
+                                                    <Button 
+                                                        size="sm"
+                                                        variant="ghost"
+                                                        onClick={() => copy(conv.referUpiId)}
+                                                        className="h-6 w-6 p-0 hover:bg-gray-700"
+                                                    >
+                                                        <Clipboard className="w-3 h-3" />
+                                                    </Button>
+                                                )}
                                             </div>
                                         </TableCell>
                                         <TableCell>

@@ -37,7 +37,7 @@ function Campaign() {
       setPayoutData(payout)
       setIsActive(camp.campaignStatus)
       setLoading(false)
-      // console.log(res.data.data)
+      console.log(res.data.data)
     } catch (error) {
       console.log(error)
       setIsActive(false)
@@ -67,7 +67,9 @@ function Campaign() {
         cName : campaignData.title,
         provider : campaignData.provider,
         redirectUrl: campaignData.trackingUrl,
-        payoutRate : campaignData.payoutRate,
+        payoutRate : payoutData.payout,
+        referPayout:payoutData.rfPayout,
+        refUpiId:payoutData.upiId
       })
       toast("Submitted successfully",{style: {
       backgroundColor: "#065f46",

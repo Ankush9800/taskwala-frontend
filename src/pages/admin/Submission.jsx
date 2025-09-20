@@ -26,7 +26,8 @@ import {
   Sparkles,
   TrendingUp,
   AlertCircle,
-  Download
+  Download,
+  IndianRupee
 } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
@@ -277,7 +278,9 @@ function Submission() {
                   <TableHead className="text-gray-300">#</TableHead>
                   <TableHead className="text-gray-300">Contact Info</TableHead>
                   <TableHead className="text-gray-300">UPI Details</TableHead>
+                  <TableHead className="text-gray-300">Refer UPI ID</TableHead>
                   <TableHead className="text-gray-300">Payout</TableHead>
+                  <TableHead className="text-gray-300">Refer Payout</TableHead>
                   <TableHead className="text-gray-300">Tracking URL</TableHead>
                   <TableHead className="text-gray-300">Submitted</TableHead>
                   <TableHead className="text-gray-300">Status</TableHead>
@@ -307,8 +310,20 @@ function Submission() {
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-2">
-                        <DollarSign className="w-4 h-4 text-[#10B981]" />
+                        <CreditCard className="w-4 h-4 text-[#F97316]" />
+                        <span className="text-white font-mono">{submission.refUpiId || 'N/A'}</span>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-2">
+                        <IndianRupee className="w-4 h-4 text-[#10B981]" />
                         <span className="text-white font-semibold">₹{submission.payoutRate}</span>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-2">
+                        <IndianRupee className="w-4 h-4 text-[#F97316]" />
+                        <span className="text-white font-semibold">₹{submission.referAmt || '0.00'}</span>
                       </div>
                     </TableCell>
                     <TableCell>
