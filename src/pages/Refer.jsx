@@ -57,8 +57,8 @@ function Refer() {
         if (campId) {
             referPrice()
         }
-        // console.log("test",campData)
-    },[campId])
+        console.log("test",campData)
+    },[campId, campData])
     
     useEffect(()=>{
         campaigns()
@@ -106,7 +106,7 @@ function Refer() {
     }
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 pt-16 relative z-0'>
+    <div className='min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 py-4 relative z-0'>
         {/* Header */}
         <div className='text-center pt-8 pb-6 relative z-10'>
             <div className='flex justify-center mb-4'>
@@ -131,7 +131,7 @@ function Refer() {
                 {/* Campaign Selection */}
                 <div className='space-y-2'>
                     <Label className='text-sm font-medium text-gray-300'>Select Campaign</Label>
-                    <Select value={campId} onValueChange={(value)=>{
+                    <Select onValueChange={(value)=>{
                         const selected = JSON.parse(value)
                         setCampId(selected.id)
                         setCampData(selected)
