@@ -250,7 +250,7 @@ function Campaign() {
                 {campaignData?.process && campaignData.process.length > 0 ? (
                   campaignData?.process.map((step, index) => (
                     <div key={index} className='flex items-center  gap-3'>
-                      <div className='bg-[#0B7A75] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mt-1'>
+                      <div className='bg-[#0B7A75] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold'>
                         {index + 1}
                       </div>
                       <div>
