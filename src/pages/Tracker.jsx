@@ -3,137 +3,184 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Toaster } from '@/components/ui/sonner';
 import {
   Search,
-  Filter,
-  Download,
-  Eye,
-  TrendingUp,
-  Calendar,
-  Clock,
   CheckCircle,
-  XCircle,
-  AlertCircle,
+  Clock,
   Target,
-  Award,
-  Users,
-  BarChart3,
-  Activity,
-  RefreshCw,
-  Sparkles,
   DollarSign,
-  Gift,
-  Hash,
-  User,
-  MapPin,
+  CreditCard,
+  Phone,
+  ExternalLink,
+  AlertCircle,
+  Sparkles,
+  BarChart3
 } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import { toast } from 'sonner';
+import axios from 'axios';
 
 function Tracker() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [statusFilter, setStatusFilter] = useState('all');
-  const [dateFilter, setDateFilter] = useState('all');
-  const [activeTab, setActiveTab] = useState('campaigns');
+  const [selectedCampaign, setSelectedCampaign] = useState('');
+  const [upiId, setUpiId] = useState('');
+  const [trackingData, setTrackingData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [campaigns, setCampaigns] = useState(null)
 
-  // Mock data for demonstration
-  const [campaigns] = useState([
-    {
-      id: 'CMP001',
-      name: 'Social Media Boost',
-      type: 'Social Engagement',
-      status: 'active',
-      progress: 75,
-      reward: 500,
-      participants: 245,
-      startDate: '2025-09-15',
-      endDate: '2025-09-30',
-      location: 'Global',
-    },
-    {
-      id: 'CMP002',
-      name: 'Product Review Campaign',
-      type: 'Content Creation',
-      status: 'completed',
-      progress: 100,
-      reward: 750,
-      participants: 180,
-      startDate: '2025-08-20',
-      endDate: '2025-09-10',
-      location: 'India',
-    },
-    {
-      id: 'CMP003',
-      name: 'Referral Challenge',
-      type: 'Referral',
-      status: 'pending',
-      progress: 0,
-      reward: 1000,
-      participants: 0,
-      startDate: '2025-09-25',
-      endDate: '2025-10-15',
-      location: 'USA',
-    },
-  ]);
+  // Mock campaigns data
+  // const campaign = [
+  //   { id: 'CMP001', name: 'Social Media Boost', reward: 500 },
+  //   { id: 'CMP002', name: 'Product Review Campaign', reward: 750 },
+  //   { id: 'CMP003', name: 'Referral Challenge', reward: 1000 },
+  //   { id: 'CMP004', name: 'App Download Campaign', reward: 300 },
+  // ];
 
-  const [rewards] = useState([
-    {
-      id: 'RWD001',
-      campaign: 'Social Media Boost',
-      amount: 150,
-      status: 'paid',
-      date: '2025-09-18',
-      type: 'Cash',
-      transactionId: 'TXN789456123',
-    },
-    {
-      id: 'RWD002',
-      campaign: 'Product Review Campaign',
-      amount: 750,
-      status: 'processing',
-      date: '2025-09-15',
-      type: 'Bank Transfer',
-      transactionId: 'TXN789456124',
-    },
-    {
-      id: 'RWD003',
-      campaign: 'Beta Testing Program',
-      amount: 300,
-      status: 'pending',
-      date: '2025-09-20',
-      type: 'Gift Card',
-      transactionId: 'TXN789456125',
-    },
-  ]);
+  // Mock tracking steps
+  // const trackingSteps = [
+  //   { 
+  //     id: 1, 
+  //     title: 'Campaign Registration', 
+  //     description: 'Successfully registered for the campaign',
+  //     status: 'completed',
+  //     timestamp: '2025-09-20 10:30 AM'
+  //   },
+  //   { 
+  //     id: 2, 
+  //     title: 'Task Completion', 
+  //     description: 'Completed all required campaign tasks',
+  //     status: 'completed',
+  //     timestamp: '2025-09-20 02:15 PM'
+  //   },
+  //   { 
+  //     id: 3, 
+  //     title: 'Verification Process', 
+  //     description: 'Submission under review by admin team',
+  //     status: 'in-progress',
+  //     timestamp: '2025-09-20 03:45 PM'
+  //   },
+  //   { 
+  //     id: 4, 
+  //     title: 'Payment Processing', 
+  //     description: 'Reward payment will be processed upon approval',
+  //     status: 'pending',
+  //     timestamp: null
+  //   }
+  // ];
 
-  const stats = {
-    totalCampaigns: campaigns.length,
-    activeCampaigns: campaigns.filter(c => c.status === 'active').length,
-    totalRewards: rewards.reduce((sum, r) => sum + r.amount, 0),
-    paidRewards: rewards.filter(r => r.status === 'paid').reduce((sum, r) => sum + r.amount, 0),
-  };
+  const getCampaigns = async()=>{
+    const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getallcampaign`)
+    console.log(res.data)
+    setCampaigns(res.data)
+  }
 
-  const getStatusColor = (status) => {
+  const tracking = async()=>{
+    try {
+      setLoading(true);
+      if (!selectedCampaign || !upiId) {
+        toast.error('Please fill all required fields');
+        setLoading(false);
+        return;
+      }
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/userpostback`,{
+        params:{
+          upiid:upiId,
+          campid:selectedCampaign
+        }
+      })
+
+      setTrackingData(res.data.data)
+      console.log(res.data)
+      
+      // if (res.data.data && res.data.data.length > 0) {
+      //   const trackingInfo = res.data.data[0];
+      //   const selectedCamp = campaigns.find(c => c.campId === selectedCampaign);
+        
+      //   // Create tracking steps based on the data
+      //   const steps = [
+      //     {
+      //       id: 1,
+      //       title: 'Campaign Registration',
+      //       description: `Successfully registered for ${trackingInfo.cName}`,
+      //       status: 'completed',
+      //       timestamp: new Date(trackingInfo.createdAt).toLocaleString()
+      //     },
+      //     {
+      //       id: 2,
+      //       title: 'Task Completion',
+      //       description: `Goal: ${trackingInfo.goal} - Click registered`,
+      //       status: 'completed',
+      //       timestamp: new Date(trackingInfo.updatedAt).toLocaleString()
+      //     },
+      //     {
+      //       id: 3,
+      //       title: 'Verification Process',
+      //       description: 'Submission under review by admin team',
+      //       status: trackingInfo.payout > 0 ? 'completed' : 'in-progress',
+      //       timestamp: trackingInfo.payout > 0 ? new Date(trackingInfo.updatedAt).toLocaleString() : null
+      //     },
+      //     {
+      //       id: 4,
+      //       title: 'Payment Processing',
+      //       description: trackingInfo.payout > 0 ? `Payment of ₹${trackingInfo.payout} processed` : 'Reward payment will be processed upon approval',
+      //       status: trackingInfo.payout > 0 ? 'completed' : 'pending',
+      //       timestamp: trackingInfo.payout > 0 ? new Date(trackingInfo.updatedAt).toLocaleString() : null
+      //     }
+      //   ];
+
+      //   setTrackingData({
+      //     campaign: {
+      //       name: trackingInfo.cName,
+      //       id: trackingInfo.campId
+      //     },
+      //     steps: steps,
+      //     submissionId: trackingInfo._id.slice(-8).toUpperCase(),
+      //     totalReward: trackingInfo.payout || selectedCamp?.payoutRate || 0,
+      //     provider: trackingInfo.provider,
+      //     goal: trackingInfo.goal,
+      //     clickId: trackingInfo.clickId,
+      //     ip: trackingInfo.ip
+      //   });
+      //   toast.success('Tracking data loaded successfully!');
+      // } else {
+      //   toast.error('No tracking data found for this campaign and UPI ID');
+      // }
+      
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+      toast.error('Failed to fetch tracking data');
+    }
+  }
+
+  useEffect(()=>{
+    getCampaigns()
+  },[])
+
+  const getStepIcon = (status) => {
     switch (status) {
-      case 'active': return 'bg-[#10B981] text-white';
-      case 'completed': return 'bg-[#F97316] text-white';
-      case 'pending': return 'bg-[#155a69] text-white';
-      case 'paid': return 'bg-[#10B981] text-white';
-      case 'processing': return 'bg-[#F97316] text-white';
-      default: return 'bg-gray-600 text-white';
+      case 'completed':
+        return <CheckCircle className="w-5 h-5 text-[#0B7A75]" />;
+      case 'in-progress':
+        return <Clock className="w-5 h-5 text-[#F97316]" />;
+      case 'pending':
+        return <AlertCircle className="w-5 h-5 text-gray-400" />;
+      default:
+        return <AlertCircle className="w-5 h-5 text-gray-400" />;
     }
   };
 
-  const getStatusIcon = (status) => {
+  const getStepColor = (status) => {
     switch (status) {
-      case 'active': return <Activity className="w-4 h-4" />;
-      case 'completed': return <CheckCircle className="w-4 h-4" />;
-      case 'pending': return <Clock className="w-4 h-4" />;
-      case 'paid': return <CheckCircle className="w-4 h-4" />;
-      case 'processing': return <RefreshCw className="w-4 h-4" />;
-      default: return <AlertCircle className="w-4 h-4" />;
+      case 'completed':
+        return 'border-[#0B7A75] bg-[#0B7A75]/10';
+      case 'in-progress':
+        return 'border-[#F97316] bg-[#F97316]/10';
+      case 'pending':
+        return 'border-gray-600 bg-gray-800/50';
+      default:
+        return 'border-gray-600 bg-gray-800/50';
     }
   };
 
@@ -143,288 +190,214 @@ function Tracker() {
       
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 px-4">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#F97316]/20 to-[#713306]/20 border border-[#F97316]/30 rounded-full px-4 py-2 mb-8">
-              <BarChart3 className="w-4 h-4 text-[#F97316]" />
-              <span className="text-sm font-medium text-white">Real-time Tracking</span>
-              <Sparkles className="w-4 h-4 text-[#F97316]" />
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#0B7A75]/20 to-[#054f4c]/20 border border-[#0B7A75]/30 rounded-full px-4 py-2 mb-8">
+              <BarChart3 className="w-4 h-4 text-[#0B7A75]" />
+              <span className="text-sm font-medium text-white">Campaign Tracking</span>
+              <Sparkles className="w-4 h-4 text-[#0B7A75]" />
             </div>
 
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              <span className="text-white">Campaign</span>
+              <span className="text-white">Track Your</span>
               <br />
-              <span className="bg-gradient-to-r from-[#F97316] to-[#713306] bg-clip-text text-transparent">
-                Tracker
+              <span className="bg-gradient-to-r from-[#0B7A75] to-[#054f4c] bg-clip-text text-transparent">
+                Progress
               </span>
             </h1>
 
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
-              Monitor your campaign performance, track rewards, and analyze engagement metrics in real-time
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-8">
+              Enter your campaign details to track your submission status and reward progress
             </p>
           </div>
 
-          {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            <Card className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#F97316]/30 transition-all duration-300 group">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-gray-400 text-sm font-medium">Total Campaigns</p>
-                    <p className="text-3xl font-bold text-white">{stats.totalCampaigns}</p>
-                  </div>
-                  <div className="bg-gradient-to-r from-[#F97316] to-[#713306] p-3 rounded-lg group-hover:scale-110 transition-transform duration-300">
-                    <Target className="w-6 h-6 text-white" />
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#155a69]/30 transition-all duration-300 group">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-gray-400 text-sm font-medium">Active Campaigns</p>
-                    <p className="text-3xl font-bold text-white">{stats.activeCampaigns}</p>
-                  </div>
-                  <div className="bg-gradient-to-r from-[#155a69] to-[#F97316] p-3 rounded-lg group-hover:scale-110 transition-transform duration-300">
-                    <Activity className="w-6 h-6 text-white" />
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#10B981]/30 transition-all duration-300 group">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-gray-400 text-sm font-medium">Total Rewards</p>
-                    <p className="text-3xl font-bold text-white">₹{stats.totalRewards.toLocaleString()}</p>
-                  </div>
-                  <div className="bg-gradient-to-r from-[#10B981] to-[#155a69] p-3 rounded-lg group-hover:scale-110 transition-transform duration-300">
-                    <Gift className="w-6 h-6 text-white" />
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#F97316]/30 transition-all duration-300 group">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-gray-400 text-sm font-medium">Paid Rewards</p>
-                    <p className="text-3xl font-bold text-white">₹{stats.paidRewards.toLocaleString()}</p>
-                  </div>
-                  <div className="bg-gradient-to-r from-[#F97316] to-[#10B981] p-3 rounded-lg group-hover:scale-110 transition-transform duration-300">
-                    <DollarSign className="w-6 h-6 text-white" />
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Main Content */}
-      <section className="pb-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          {/* Filters and Search */}
+          {/* Tracking Form */}
           <Card className="bg-black/80 backdrop-blur-sm border-gray-800 mb-8">
-            <CardContent className="p-6">
-              <div className="flex flex-col lg:flex-row gap-4 items-center">
-                <div className="flex-1 relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                  <Input
-                    placeholder="Search campaigns, rewards, or transaction IDs..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10 bg-gray-900/50 border-gray-700 text-white placeholder:text-gray-500 focus:border-[#F97316]"
-                  />
+            <CardHeader>
+              <CardTitle className="text-white flex items-center gap-2">
+                <Search className="w-5 h-5 text-[#0B7A75]" />
+                Track Your Campaign
+              </CardTitle>
+              <CardDescription className="text-gray-400">
+                Select your campaign and enter your details to view progress
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-300">Select Campaign</label>
+                  <Select value={selectedCampaign} onValueChange={setSelectedCampaign}>
+                    <SelectTrigger className="bg-gray-900/50 border-gray-700 text-white focus:border-[#0B7A75]">
+                      <SelectValue placeholder="Choose a campaign" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-gray-900 border-gray-700">
+                      {campaigns?.map((campaign, index) => (
+                        <SelectItem key={index} value={campaign.campId} className="text-white hover:bg-gray-800">
+                          {campaign.title}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
-                
-                <div className="flex gap-3">
-                  <Select value={statusFilter} onValueChange={setStatusFilter}>
-                    <SelectTrigger className="w-40 bg-gray-900/50 border-gray-700 text-white">
-                      <SelectValue placeholder="Status" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-gray-900 border-gray-700">
-                      <SelectItem value="all">All Status</SelectItem>
-                      <SelectItem value="active">Active</SelectItem>
-                      <SelectItem value="completed">Completed</SelectItem>
-                      <SelectItem value="pending">Pending</SelectItem>
-                    </SelectContent>
-                  </Select>
 
-                  <Select value={dateFilter} onValueChange={setDateFilter}>
-                    <SelectTrigger className="w-40 bg-gray-900/50 border-gray-700 text-white">
-                      <SelectValue placeholder="Date Range" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-gray-900 border-gray-700">
-                      <SelectItem value="all">All Time</SelectItem>
-                      <SelectItem value="today">Today</SelectItem>
-                      <SelectItem value="week">This Week</SelectItem>
-                      <SelectItem value="month">This Month</SelectItem>
-                    </SelectContent>
-                  </Select>
-
-                  <Button 
-                    variant="outline" 
-                    className="border-gray-600 hover:bg-gray-800 text-white"
-                  >
-                    <Download className="w-4 h-4 mr-2" />
-                    Export
-                  </Button>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-300">UPI ID</label>
+                  <div className="relative">
+                    <CreditCard className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                    <Input
+                      placeholder="yourname@paytm"
+                      value={upiId}
+                      onChange={(e) => setUpiId(e.target.value)}
+                      className="pl-10 bg-gray-900/50 border-gray-700 text-white placeholder:text-gray-500 focus:border-[#0B7A75]"
+                    />
+                  </div>
                 </div>
               </div>
+
+              <Button 
+                onClick={tracking}
+                disabled={loading || !selectedCampaign || !upiId}
+                className="w-full bg-gradient-to-r from-[#0B7A75] to-[#054f4c] hover:from-[#0B7A75]/80 hover:to-[#054f4c]/80 text-lg py-6"
+              >
+                {loading ? (
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Tracking...
+                  </div>
+                ) : (
+                  <>
+                    <Search className="w-5 h-5 mr-2" />
+                    Track My Progress
+                  </>
+                )}
+              </Button>
             </CardContent>
           </Card>
 
-          {/* Tabs */}
-          <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="bg-black/60 border border-gray-800 mb-8">
-              <TabsTrigger value="campaigns" className="data-[state=active]:bg-[#F97316] data-[state=active]:text-white">
-                <Target className="w-4 h-4 mr-2" />
-                Campaigns
-              </TabsTrigger>
-              <TabsTrigger value="rewards" className="data-[state=active]:bg-[#F97316] data-[state=active]:text-white">
-                <Gift className="w-4 h-4 mr-2" />
-                Rewards
-              </TabsTrigger>
-            </TabsList>
+          {/* Tracking Results */}
+          {trackingData && (
+            <div className="space-y-6">
+              {/* Campaign Info */}
+              <Card className="bg-black/80 backdrop-blur-sm border-gray-800">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <h3 className="text-xl font-semibold text-white">{trackingData.cName}</h3>
+                      {/* <p className="text-gray-400">Submission ID: {trackingData.submissionId}</p> */}
+                      <p className="text-gray-400 text-sm">Campaign ID: {trackingData.campId}</p>
+                    </div>
+                    {/* <div className="text-right">
+                      <div className="flex items-center gap-2 text-[#0B7A75] font-semibold">
+                        <DollarSign className="w-5 h-5" />
+                        ₹{trackingData.totalReward}
+                      </div>
+                      <p className="text-sm text-gray-400">Total Reward</p>
+                      <p className="text-xs text-gray-500">Provider: {trackingData.provider}</p>
+                    </div> */}
+                  </div>
+                  
+                  {/* Additional tracking details */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 pt-4 border-t border-gray-700">
+                    <div>
+                      <p className="text-xs text-gray-400">Campaign Name</p>
+                      <p className="text-white font-medium">{trackingData[0].cName}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-400">Click ID</p>
+                      <p className="text-white font-mono text-sm">{trackingData[0].clickId?.slice(0, 12)}...</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-400">IP Address</p>
+                      <p className="text-white font-mono text-sm">{trackingData[0].ip}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
 
-            {/* Campaigns Tab */}
-            <TabsContent value="campaigns">
-              <div className="grid gap-6">
-                {campaigns.map((campaign) => (
-                  <Card key={campaign.id} className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#F97316]/30 transition-all duration-300">
-                    <CardContent className="p-6">
-                      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-3">
-                            <h3 className="text-xl font-semibold text-white">{campaign.name}</h3>
-                            <Badge className={getStatusColor(campaign.status)}>
-                              {getStatusIcon(campaign.status)}
-                              <span className="ml-1 capitalize">{campaign.status}</span>
+              {/* Progress Steps */}
+              <Card className="bg-black/80 backdrop-blur-sm border-gray-800">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center gap-2">
+                    <Target className="w-5 h-5 text-[#0B7A75]" />
+                    Progress Timeline
+                  </CardTitle>
+                  <CardDescription className="text-gray-400">
+                    Track your campaign completion status
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="p-6">
+                  <div className="space-y-6">
+                    {trackingData.map((step, index) => (
+                      <div key={index} className="flex gap-4">
+                        <div className="flex flex-col items-center">
+                          {/* <div className={`flex items-center justify-center w-10 h-10 rounded-full border-2 ${getStepColor(step.status)}`}>
+                            {getStepIcon(step.status)}
+                          </div> */}
+                          {/* {index !== trackingData.length - 1 && (
+                            <div className={`w-0.5 h-12 ${step.status === 'completed' ? 'bg-[#0B7A75]' : 'bg-gray-600'}`}></div>
+                          )} */}
+                        </div>
+                        
+                        <div className="flex-1 pb-8">
+                          <div className="flex items-center justify-between mb-2">
+                            <h4 className="font-semibold text-white">{step.cName}</h4>
+                            <Badge 
+                              className={'bg-[#0B7A75] text-white'}
+                            >
+                              {step.goal}
                             </Badge>
                           </div>
-                          
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                            <div className="flex items-center gap-2 text-gray-400">
-                              <Hash className="w-4 h-4" />
-                              <span>ID: {campaign.id}</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-gray-400">
-                              <Users className="w-4 h-4" />
-                              <span>{campaign.participants} participants</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-gray-400">
-                              <MapPin className="w-4 h-4" />
-                              <span>{campaign.location}</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-gray-400">
-                              <Calendar className="w-4 h-4" />
-                              <span>{campaign.startDate} - {campaign.endDate}</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-gray-400">
-                              <Award className="w-4 h-4" />
-                              <span>₹{campaign.reward} reward</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-gray-400">
-                              <Target className="w-4 h-4" />
-                              <span>{campaign.type}</span>
-                            </div>
-                          </div>
-
-                          {/* Progress Bar */}
-                          <div className="mt-4">
-                            <div className="flex justify-between text-sm mb-2">
-                              <span className="text-gray-400">Progress</span>
-                              <span className="text-white">{campaign.progress}%</span>
-                            </div>
-                            <div className="w-full bg-gray-700 rounded-full h-2">
-                              <div 
-                                className="bg-gradient-to-r from-[#F97316] to-[#713306] h-2 rounded-full transition-all duration-300"
-                                style={{ width: `${campaign.progress}%` }}
-                              ></div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="flex gap-3">
-                          <Button variant="outline" size="sm" className="border-gray-600 hover:bg-gray-800 text-white">
-                            <Eye className="w-4 h-4 mr-2" />
-                            View Details
-                          </Button>
-                          <Button size="sm" className="bg-gradient-to-r from-[#F97316] to-[#713306] hover:from-[#F97316]/80 hover:to-[#713306]/80">
-                            <BarChart3 className="w-4 h-4 mr-2" />
-                            Analytics
-                          </Button>
+                          <p className="text-gray-400 text-sm mb-2">{step?.description}</p>
+                          {step.updatedAt && (
+                            <p className="text-xs text-gray-500">{(new Date(step?.updatedAt)).toLocaleString()}</p>
+                          )}
                         </div>
                       </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </TabsContent>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
 
-            {/* Rewards Tab */}
-            <TabsContent value="rewards">
-              <div className="grid gap-6">
-                {rewards.map((reward) => (
-                  <Card key={reward.id} className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#F97316]/30 transition-all duration-300">
-                    <CardContent className="p-6">
-                      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-3">
-                            <h3 className="text-xl font-semibold text-white">₹{reward.amount.toLocaleString()}</h3>
-                            <Badge className={getStatusColor(reward.status)}>
-                              {getStatusIcon(reward.status)}
-                              <span className="ml-1 capitalize">{reward.status}</span>
-                            </Badge>
-                          </div>
-                          
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
-                            <div className="flex items-center gap-2 text-gray-400">
-                              <Hash className="w-4 h-4" />
-                              <span>ID: {reward.id}</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-gray-400">
-                              <Target className="w-4 h-4" />
-                              <span>{reward.campaign}</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-gray-400">
-                              <Calendar className="w-4 h-4" />
-                              <span>{reward.date}</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-gray-400">
-                              <DollarSign className="w-4 h-4" />
-                              <span>{reward.type}</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-gray-400">
-                              <Hash className="w-4 h-4" />
-                              <span>TXN: {reward.transactionId}</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="flex gap-3">
-                          <Button variant="outline" size="sm" className="border-gray-600 hover:bg-gray-800 text-white">
-                            <Eye className="w-4 h-4 mr-2" />
-                            View Receipt
-                          </Button>
-                          <Button size="sm" className="bg-gradient-to-r from-[#F97316] to-[#713306] hover:from-[#F97316]/80 hover:to-[#713306]/80">
-                            <Download className="w-4 h-4 mr-2" />
-                            Download
-                          </Button>
-                        </div>
+              {/* Additional Info */}
+              {/* <Card className="bg-black/80 backdrop-blur-sm border-gray-800">
+                <CardContent className="p-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
+                    <div>
+                      <div className="flex items-center justify-center gap-2 text-[#0B7A75] mb-2">
+                        <CheckCircle className="w-5 h-5" />
+                        <span className="font-semibold">Steps Completed</span>
                       </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </TabsContent>
-          </Tabs>
+                      <p className="text-2xl font-bold text-white">
+                        {trackingData.steps.filter(s => s.status === 'completed').length} / {trackingData.steps.length}
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <div className="flex items-center justify-center gap-2 text-gray-400 mb-2">
+                        <CreditCard className="w-5 h-5" />
+                        <span className="font-semibold">UPI ID</span>
+                      </div>
+                      <p className="text-white font-mono">{upiId}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card> */}
+            </div>
+          )}
+
+          {/* Empty State */}
+          {!trackingData && (
+            <Card className="bg-black/80 backdrop-blur-sm border-gray-800 mt-8">
+              <CardContent className="p-12 text-center">
+                <Target className="w-16 h-16 text-gray-600 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-white mb-2">Ready to Track</h3>
+                <p className="text-gray-400">
+                  Fill in your campaign details above to see your progress and tracking information
+                </p>
+              </CardContent>
+            </Card>
+          )}
         </div>
       </section>
     </div>
