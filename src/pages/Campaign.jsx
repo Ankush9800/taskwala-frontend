@@ -247,27 +247,49 @@ function Campaign() {
             </CardHeader>
             <CardContent>
               <div className='space-y-4'>
-                <div className='flex items-start gap-3'>
-                  <div className='bg-[#0B7A75] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mt-1'>1</div>
-                  <div>
-                    <p className='font-medium text-white'>Submit Details</p>
-                    <p className='text-sm text-gray-400'>Enter your phone and UPI information</p>
-                  </div>
-                </div>
-                <div className='flex items-start gap-3'>
-                  <div className='bg-[#0B7A75] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mt-1'>2</div>
-                  <div>
-                    <p className='font-medium text-white'>Complete Offer</p>
-                    <p className='text-sm text-gray-400'>Follow the campaign requirements</p>
-                  </div>
-                </div>
-                <div className='flex items-start gap-3'>
-                  <div className='bg-[#0B7A75] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mt-1'>3</div>
-                  <div>
-                    <p className='font-medium text-white'>Get Rewarded</p>
-                    <p className='text-sm text-gray-400'>Receive payment in your UPI account</p>
-                  </div>
-                </div>
+                {campaignData?.process && campaignData.process.length > 0 ? (
+                  campaignData?.process.map((step, index) => (
+                    <div key={index} className='flex items-center  gap-3'>
+                      <div className='bg-[#0B7A75] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mt-1'>
+                        {index + 1}
+                      </div>
+                      <div>
+                        <p className='text-sm text-gray-300 leading-relaxed'>
+                          {step
+                            .replace('{PAYOUT}', payoutData?.payout || '0')
+                            .replace('{CAMPAIGN_NAME}', campaignData?.title || '')
+                            .replace('{REFER_PAYOUT}', payoutData?.rfPayout || '0')
+                          }
+                        </p>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  // Fallback steps if no steps are defined
+                  <>
+                    <div className='flex items-start gap-3'>
+                      <div className='bg-[#0B7A75] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mt-1'>1</div>
+                      <div>
+                        <p className='font-medium text-white'>Submit Details</p>
+                        <p className='text-sm text-gray-400'>Enter your phone and UPI information</p>
+                      </div>
+                    </div>
+                    <div className='flex items-start gap-3'>
+                      <div className='bg-[#0B7A75] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mt-1'>2</div>
+                      <div>
+                        <p className='font-medium text-white'>Complete Offer</p>
+                        <p className='text-sm text-gray-400'>Follow the campaign requirements</p>
+                      </div>
+                    </div>
+                    <div className='flex items-start gap-3'>
+                      <div className='bg-[#0B7A75] text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mt-1'>3</div>
+                      <div>
+                        <p className='font-medium text-white'>Get Rewarded</p>
+                        <p className='text-sm text-gray-400'>Receive payment in your UPI account</p>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </CardContent>
           </Card>

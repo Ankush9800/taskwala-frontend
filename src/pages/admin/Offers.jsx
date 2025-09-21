@@ -56,6 +56,7 @@ function Offers() {
         description: "",
         campaignImage: null,
         provider: "",
+        steps: [""],
     });
 
     // Calculate statistics
@@ -76,6 +77,30 @@ function Offers() {
         setFormData(prev => ({
             ...prev,
             provider: newProviderValue,
+        }));
+    };
+
+    // Handle steps manipulation
+    const addStep = () => {
+        setFormData(prev => ({
+            ...prev,
+            steps: [...prev.steps, ""]
+        }));
+    };
+
+    const removeStep = (index) => {
+        setFormData(prev => ({
+            ...prev,
+            steps: prev.steps.filter((_, i) => i !== index)
+        }));
+    };
+
+    const updateStep = (index, value) => {
+        setFormData(prev => ({
+            ...prev,
+            steps: prev.steps.map((step, i) => 
+                i === index ? value : step
+            )
         }));
     };
 
@@ -132,6 +157,11 @@ function Offers() {
         data.append("description", formData.description);
         data.append("campaignImage", formData.campaignImage);
         data.append("provider", formData.provider);
+        
+        // Append steps as individual array items
+        formData.steps.forEach((step, index) => {
+            data.append(`steps[${index}]`, step);
+        });
 
         if (!edit) {
             try {
@@ -186,6 +216,7 @@ function Offers() {
             description: "",
             campaignImage: null,
             provider: "",
+            steps: [""],
         });
     };
 
@@ -256,6 +287,24 @@ function Offers() {
 
     const handleEdit = (camp) => {
         setEdit(true);
+        
+        // Handle steps - they might be stored as JSON string or array
+        let stepsData = [""];
+        if (camp.steps) {
+            if (Array.isArray(camp.steps) && camp.steps.length > 0) {
+                stepsData = camp.steps;
+            } else if (typeof camp.steps === 'string') {
+                try {
+                    const parsedSteps = JSON.parse(camp.steps);
+                    if (Array.isArray(parsedSteps) && parsedSteps.length > 0) {
+                        stepsData = parsedSteps;
+                    }
+                } catch (error) {
+                    console.log("Error parsing steps:", error);
+                }
+            }
+        }
+        
         setFormData({
             title: camp.title || "",
             campId: camp.campId || "",
@@ -265,6 +314,7 @@ function Offers() {
             description: camp.description || "",
             campaignImage: null,
             provider: camp.provider || "",
+            steps: camp.process,
         });
         setCampId(camp.id);
         setDialogState(true);
@@ -379,7 +429,7 @@ function Offers() {
                                         Create Campaign
                                     </Button>
                                 </DialogTrigger>
-                                <DialogContent className="bg-gray-800 border-gray-600 text-white max-w-2xl">
+                                <DialogContent className="bg-gray-800 border-gray-600 text-white max-w-2xl max-h-[90vh] overflow-y-auto">
                                     <DialogHeader>
                                         <DialogTitle className="text-[#F97316]">
                                             {edit ? "Update Campaign" : "Create Campaign"}
@@ -388,7 +438,8 @@ function Offers() {
                                             {edit ? "Update campaign details" : "Add a new campaign to your offers"}
                                         </DialogDescription>
                                     </DialogHeader>
-                                    <form onSubmit={handleSubmit} className="space-y-4">
+                                    <div className="overflow-y-auto max-h-[calc(90vh-8rem)] px-1">
+                                        <form onSubmit={handleSubmit} className="space-y-4">
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div className="space-y-2">
                                                 <Label className="text-gray-300">Campaign Name</Label>
@@ -485,6 +536,52 @@ function Offers() {
                                             </div>
                                         </div>
 
+                                        {/* Campaign Steps/Process */}
+                                        <div className="space-y-2">
+                                            <div className="flex items-center justify-between">
+                                                <Label className="text-gray-300">Campaign Process Steps</Label>
+                                                <Button
+                                                    type="button"
+                                                    onClick={addStep}
+                                                    size="sm"
+                                                    className="bg-[#F97316] hover:bg-[#EA580C] text-white"
+                                                >
+                                                    <Plus className="w-4 h-4 mr-1" />
+                                                    Add Step
+                                                </Button>
+                                            </div>
+                                            <div className="space-y-3 max-h-60 overflow-y-auto">
+                                                {formData.steps.map((step, index) => (
+                                                    <div key={index} className="border border-gray-600 rounded-lg p-3 bg-gray-750">
+                                                        <div className="flex items-center justify-between mb-2">
+                                                            <span className="text-sm font-medium text-[#F97316]">
+                                                                Step {index + 1}
+                                                            </span>
+                                                            {formData.steps.length > 1 && (
+                                                                <Button
+                                                                    type="button"
+                                                                    onClick={() => removeStep(index)}
+                                                                    size="sm"
+                                                                    variant="outline"
+                                                                    className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+                                                                >
+                                                                    <Trash2 className="w-3 h-3" />
+                                                                </Button>
+                                                            )}
+                                                        </div>
+                                                        <Textarea
+                                                            placeholder="Enter step description (e.g., Download and install the mobile app from Play Store)"
+                                                            value={step}
+                                                            onChange={(e) => updateStep(index, e.target.value)}
+                                                            className="bg-gray-700 border-gray-600 text-white"
+                                                            rows={2}
+                                                            required
+                                                        />
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+
                                         <div className="space-y-2">
                                             <Label className="text-gray-300">Description</Label>
                                             <Textarea
@@ -520,7 +617,8 @@ function Offers() {
                                                 {loading ? "Processing..." : (edit ? "Update Campaign" : "Create Campaign")}
                                             </Button>
                                         </DialogFooter>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </DialogContent>
                             </Dialog>
                         </div>
