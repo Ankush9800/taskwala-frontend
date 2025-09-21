@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Toaster } from '@/components/ui/sonner';
 import axios from 'axios';
 import { Copy, Share2, Gift, IndianRupee, Users, CheckCircle } from 'lucide-react';
 import React, { useEffect, useState } from 'react'
@@ -15,7 +16,6 @@ function Refer() {
     const [userPayout, setUserPayout] = useState(0)
     const [referPayout, setReferPayout] = useState(0)
     const [tp, setTp] = useState(0)
-    const [cup, setCup] = useState(0)
     const [rp, setRp] = useState(0)
     const [btnType, setBtnType] = useState(false)
     const [upiId, setUpiId] = useState("")
@@ -58,7 +58,7 @@ function Refer() {
         if (campId) {
             referPrice()
         }
-        console.log("test",campData)
+        // console.log("test",campData)
     },[campId, campData])
     
     useEffect(()=>{
@@ -108,6 +108,7 @@ function Refer() {
 
   return (
     <div className='min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 py-4 relative z-0'>
+        <Toaster/>
         {/* Header */}
         <div className='text-center pt-8 pb-6 relative z-10'>
             <div className='flex justify-center mb-4'>
