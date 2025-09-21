@@ -34,6 +34,7 @@ import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner';
 
 function Offers() {
+    const origin = window.location.origin
     const [dialogState, setDialogState] = useState(false);
     const [edit, setEdit] = useState(false);
     const [table, setTable] = useState([]);
@@ -744,7 +745,7 @@ function Offers() {
                                                             <Button
                                                                 size="sm"
                                                                 variant="ghost"
-                                                                onClick={() => copyUrl(`https://twcampaign.in/campaign/${camp._id}`)}
+                                                                onClick={() => copyUrl(`${origin}/camp?id=${camp.id}&afi=${camp.refId}`)}
                                                                 className="text-gray-400 hover:text-white"
                                                                 title="Copy URL"
                                                             >
