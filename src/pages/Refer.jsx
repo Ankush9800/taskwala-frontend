@@ -16,6 +16,7 @@ function Refer() {
     const [referPayout, setReferPayout] = useState(0)
     const [tp, setTp] = useState(0)
     const [cup, setCup] = useState(0)
+    const [rp, setRp] = useState(0)
     const [btnType, setBtnType] = useState(false)
     const [upiId, setUpiId] = useState("")
     const [cId, setCId] = useState("")
@@ -38,20 +39,20 @@ function Refer() {
         })
         // console.log(res.data.data)
         const camp = res.data.data[0]
-        setCup(camp.payoutRate)
+        setRp(camp.price - camp.payoutRate)
         setTp(camp.price)
         setCId(camp.id)
     }
 
     useEffect(() => {
-      setUserPayout(tp-cup)
-      setReferPayout(cup)
-      if (cup<1 || cup > tp) {
+      setUserPayout(tp-rp)
+      setReferPayout(rp)
+      if (rp<1 || rp > tp) {
         setBtnType(true)
       }else{
         setBtnType(false)
       }
-    }, [cup, tp])
+    }, [rp, tp])
     
     useEffect(()=>{
         if (campId) {
@@ -168,7 +169,7 @@ function Refer() {
                                                 type="number" 
                                                 className='bg-transparent text-lg font-bold text-[#F97316] w-12 text-center focus:outline-none' 
                                                 value={referPayout} 
-                                                onChange={(e)=>setCup(e.target.value)}
+                                                onChange={(e)=>setRp(e.target.value)}
                                                 min="1"
                                                 max={tp}
                                             />
@@ -183,7 +184,7 @@ function Refer() {
                                     </div>
                                 </div>
                             </div>
-                            {(cup < 1 || cup > tp) && (
+                            {(rp < 1 || rp > tp) && (
                                 <p className='text-red-400 text-xs mt-2 text-center'>
                                     Please enter a valid amount between ₹1 and ₹{tp}
                                 </p>
