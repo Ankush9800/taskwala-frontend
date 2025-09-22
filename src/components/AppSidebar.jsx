@@ -50,6 +50,7 @@ function AppSidebar() {
   const [profileData, setProfileData] = useState(null);
   const [campaignsOpen, setCampaignsOpen] = useState(false);
   const [reportsOpen, setReportsOpen] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(0)
 
   const profile = async () => {
     try {
@@ -59,6 +60,12 @@ function AppSidebar() {
       console.log('Error fetching profile:', error);
     }
   };
+
+  const unreadMsg = async()=>{
+    const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/contact/getmsg`)
+    console.log(res)
+    setUnreadCount(res.data.length)
+  }
 
   const handleLogout = async () => {
     try {
@@ -79,6 +86,7 @@ function AppSidebar() {
 
   useEffect(() => {
     profile();
+    unreadMsg()
   }, []);
 
   useEffect(() => {
@@ -328,10 +336,31 @@ function AppSidebar() {
                   <SidebarMenuItem>
                     <SidebarMenuButton 
                       asChild 
+                      className={`group transition-all duration-200 ${
+                        isActive('/admin/support') 
+                          ? 'bg-gradient-to-r from-[#F97316] to-[#713306] text-white shadow-lg' 
+                          : 'hover:bg-gray-800/50 text-gray-300 hover:text-white'
+                      }`}
+                    >
+                      <Link to="/admin/support" className="flex items-center gap-3 px-3 py-2.5 rounded-lg">
+                        <MessageSquare className="w-5 h-5" />
+                        <span className="font-medium">Support Messages</span>
+                        {unreadCount > 0 && <Badge variant="secondary" className="ml-auto bg-yellow-500 text-black text-xs">
+                          {unreadCount}
+                        </Badge>}
+                        {isActive('/admin/support') && (
+                          <div className="ml-auto w-2 h-2 bg-white rounded-full"></div>
+                        )}
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton 
+                      asChild 
                       className="group transition-all duration-200 hover:bg-gray-800/50 text-gray-300 hover:text-white"
                     >
                       <Link to="/contact" className="flex items-center gap-3 px-3 py-2.5 rounded-lg">
-                        <MessageSquare className="w-5 h-5" />
+                        <HelpCircle className="w-5 h-5" />
                         <span className="font-medium">Contact Support</span>
                       </Link>
                     </SidebarMenuButton>

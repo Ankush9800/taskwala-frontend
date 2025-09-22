@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import { createBrowserRouter, createRoutesFromElements, Navigate, Route, RouterProvider } from 'react-router'
-import { AdminLayout, Campaign, Campaigns, Contact, Conversion, Dashboard, Home, Login, NotFound, Offers, Payments, Profile, Refer, Submission, Tracker } from './pages'
+import { AdminLayout, Campaign, Campaigns, Contact, Conversion, Dashboard, Home, Login, NotFound, Offers, Payments, Profile, Refer, Submission, Support, Tracker } from './pages'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import "./App.css";
 
@@ -25,6 +25,7 @@ const router = createBrowserRouter(
         <Route path='conversion' element={<Conversion/>}/>
         <Route path='payments' element={<Payments/>}/>
         <Route path='profile' element={<Profile/>}/>
+        <Route path='support' element={<Support/>}/>
       </Route>
       <Route path="404" element={<NotFound />} />
       <Route path='*' element={<Navigate to="/404" replace state={{ from: window.location.pathname }} />}/>
