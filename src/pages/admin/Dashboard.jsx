@@ -390,7 +390,7 @@ function Dashboard() {
                     <span className="text-white">System Usage</span>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-[#10B981] rounded-full"></div>
-                      <span className="text-[#10B981]">{systemData.cpuLoad[2]}%</span>
+                      <span className="text-[#10B981]">{(systemData.cpuLoad[1]/systemData.cpuLength)*100}%</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
