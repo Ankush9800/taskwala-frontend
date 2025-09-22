@@ -3,6 +3,7 @@ import './App.css'
 import { matchPath, Outlet, useLocation } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import { MainContextProvider } from './lib/context'
 
 function App() {
   const location = useLocation();
@@ -14,11 +15,11 @@ function App() {
     hidePaths.includes(path)
 
   return (
-    <>
+    <MainContextProvider>
       {!hideHeaderFooter && <Header />}
       <Outlet/>
       {!hideHeaderFooter && <Footer />}
-    </>
+    </MainContextProvider>
   )
 }
 

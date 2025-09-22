@@ -30,13 +30,16 @@ import {
   Zap,
 } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
+import { useMainContext } from '@/lib/context';
 
 function Dashboard() {
+  const {systemData, responseTime} = useMainContext()
   const [totalCamp, setTotalCamp] = useState(0);
   const [totalSubmission, setTotalSubmission] = useState(0);
   const [totalConversion, setTotalConversion] = useState(0);
   const [totalPayout, setTotalPayout] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [uptime, setUptime] = useState("")
 
   // Mock data for recent activities and trends
   const [recentActivities] = useState([
@@ -81,6 +84,14 @@ function Dashboard() {
     totalRevenue: 125000,
   });
 
+  const osData = ()=>{
+    const time = systemData.uptime
+    const hours = Math.floor(time/3600)
+    const minuites = Math.floor((time % 3600)/60)
+    const second = Math.floor(time % 60)
+    setUptime(`${hours}h ${minuites}m ${second}s`)
+  }
+
   const campaigns = async () => {
     try {
       const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getallcampaign`);
@@ -122,6 +133,7 @@ function Dashboard() {
 
   useEffect(() => {
     refreshData();
+    osData()
   }, []);
 
   const getActivityIcon = (type) => {
@@ -371,28 +383,28 @@ function Dashboard() {
                     <span className="text-white">API Response Time</span>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-[#10B981] rounded-full"></div>
-                      <span className="text-[#10B981]">125ms</span>
+                      <span className="text-[#10B981]">{responseTime}ms</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-white">Database Status</span>
+                    <span className="text-white">System Usage</span>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-[#10B981] rounded-full"></div>
-                      <span className="text-[#10B981]">Healthy</span>
+                      <span className="text-[#10B981]">{systemData.cpuLoad[2]}%</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-white">Payment Gateway</span>
+                    <span className="text-white">Memory Usage</span>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-[#10B981] rounded-full"></div>
-                      <span className="text-[#10B981]">Online</span>
+                      <span className="text-[#10B981]">{Math.floor(((systemData.memory.total-systemData.memory.free)/systemData.memory.total)*100)}%</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-white">Server Uptime</span>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-[#10B981] rounded-full"></div>
-                      <span className="text-[#10B981]">99.9%</span>
+                      <span className="text-[#10B981]">{uptime}</span>
                     </div>
                   </div>
                 </div>
