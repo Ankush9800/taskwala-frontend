@@ -143,14 +143,14 @@ function Conversion() {
                         onClick={conversionData}
                         disabled={loading}
                         variant="outline"
-                        className="border-gray-600 hover:bg-gray-800 text-white"
+                        className="border-[#F97316] bg-transparent hover:bg-[#F97316]/10 text-[#F97316] hover:text-[#F97316]"
                     >
                         <RefreshCw className={`w-4 h-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
                         Refresh
                     </Button>
                     <Button
                         variant="outline"
-                        className="border-gray-600 hover:bg-gray-800 text-white"
+                        className="border-[#F97316] bg-transparent hover:bg-[#F97316]/10 text-[#F97316] hover:text-[#F97316]"
                     >
                         <Download className="w-4 h-4 mr-2" />
                         Export
@@ -271,7 +271,7 @@ function Conversion() {
                                 Showing {filteredConversions.length} of {stats.total} conversions
                             </CardDescription>
                         </div>
-                        <Badge variant="outline" className="border-[#F97316] text-[#F97316]">
+                        <Badge variant="outline" className="border-[#F97316] bg-transparent text-[#F97316]">
                             Page {page}
                         </Badge>
                     </div>
@@ -308,7 +308,7 @@ function Conversion() {
                                             </div>
                                         </TableCell>
                                         <TableCell>
-                                            <Badge variant="outline" className="border-gray-600 text-gray-300 font-mono">
+                                            <Badge variant="outline" className="border-gray-600 bg-transparent text-gray-300 font-mono">
                                                 {conv.campId}
                                             </Badge>
                                         </TableCell>
@@ -337,7 +337,7 @@ function Conversion() {
                                         <TableCell>
                                             <Badge 
                                                 variant="outline" 
-                                                className="border-[#F97316] text-[#F97316] capitalize"
+                                                className="border-[#F97316] bg-transparent text-[#F97316] capitalize"
                                             >
                                                 {conv.provider}
                                             </Badge>

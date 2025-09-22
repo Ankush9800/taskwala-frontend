@@ -221,7 +221,7 @@ function Refer() {
                                     <div className='flex gap-2'>
                                         <Button 
                                             variant="outline" 
-                                            className='flex-1 border-gray-600 hover:bg-gray-800 text-white' 
+                                            className='flex-1 border-[#0B7A75] bg-transparent hover:bg-[#0B7A75]/10 text-[#0B7A75] hover:text-[#0B7A75]' 
                                             onClick={copy}
                                         >
                                             {copied ? <CheckCircle className='w-4 h-4 mr-2 text-green-400' /> : <Copy className='w-4 h-4 mr-2' />}
@@ -229,7 +229,7 @@ function Refer() {
                                         </Button>
                                         <Button 
                                             variant="outline" 
-                                            className='flex-1 border-gray-600 hover:bg-gray-800 text-white' 
+                                            className='flex-1 border-[#0B7A75] bg-transparent hover:bg-[#0B7A75]/10 text-[#0B7A75] hover:text-[#0B7A75]' 
                                             onClick={share}
                                         >
                                             <Share2 className='w-4 h-4 mr-2' />

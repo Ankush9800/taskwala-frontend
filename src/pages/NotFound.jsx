@@ -79,7 +79,7 @@ const NotFound = () => {
                         <Button 
                             onClick={handleGoBack}
                             variant="outline"
-                            className="w-full border-gray-600 text-gray-300 hover:bg-gray-700 py-3 transition-all duration-200 hover:scale-105"
+                            className="w-full border-[#0B7A75] bg-transparent hover:bg-[#0B7A75]/10 text-[#0B7A75] hover:text-[#0B7A75] py-3 transition-all duration-200 hover:scale-105"
                         >
                             <ArrowLeft className="w-4 h-4 mr-2" />
                             Go Back
@@ -95,7 +95,7 @@ const NotFound = () => {
                         <Button 
                             onClick={handleRefresh}
                             variant="outline"
-                            className="w-full border-[#155a69] text-[#155a69] hover:bg-[#155a69] hover:text-white py-3 transition-all duration-200 hover:scale-105"
+                            className="w-full border-[#0B7A75] bg-transparent hover:bg-[#0B7A75]/10 text-[#0B7A75] hover:text-[#0B7A75] py-3 transition-all duration-200 hover:scale-105"
                         >
                             <RefreshCw className="w-4 h-4 mr-2" />
                             Refresh

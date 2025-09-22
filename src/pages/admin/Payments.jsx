@@ -187,7 +187,7 @@ function Payments() {
             onClick={() => setLoading(!loading)}
             disabled={loading}
             variant="outline"
-            className="border-gray-600 hover:bg-gray-800 text-white"
+            className="border-[#F97316] bg-transparent hover:bg-[#F97316]/10 text-[#F97316] hover:text-[#F97316]"
           >
             <RefreshCw className={`w-4 h-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
             Refresh
@@ -200,7 +200,7 @@ function Payments() {
           </Button>
           <Button
             variant="outline"
-            className="border-gray-600 hover:bg-gray-800 text-white"
+            className="border-[#F97316] bg-transparent hover:bg-[#F97316]/10 text-[#F97316] hover:text-[#F97316]"
           >
             <Download className="w-4 h-4 mr-2" />
             Export
@@ -320,7 +320,7 @@ function Payments() {
                 Showing {filteredPayments.length} of {stats.total} payments
               </CardDescription>
             </div>
-            <Badge variant="outline" className="border-[#F97316] text-[#F97316]">
+            <Badge variant="outline" className="border-[#F97316] bg-transparent text-[#F97316]">
               Page {page}
             </Badge>
           </div>
@@ -404,7 +404,7 @@ function Payments() {
                       <TableCell>
                         {payment.transactionId ? (
                           <div className="flex items-center gap-2">
-                            <Badge variant="outline" className="border-gray-600 text-gray-300 font-mono">
+                            <Badge variant="outline" className="border-gray-600 bg-transparent text-gray-300 font-mono">
                               {payment.transactionId}
                             </Badge>
                             <Button 
@@ -436,7 +436,7 @@ function Payments() {
                           <Button
                             size="sm"
                             variant="outline"
-                            className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                            className="border-[#F97316] bg-transparent hover:bg-[#F97316]/10 text-[#F97316] hover:text-[#F97316]"
                             onClick={() => {
                               setSelectedPayment(payment)
                               setShowPaymentDialog(true)
@@ -559,7 +559,7 @@ function Payments() {
           )}
           
           <DialogFooter>
-            <Button variant="outline" onClick={() => setShowPaymentDialog(false)} className="border-gray-600 text-white">
+            <Button variant="outline" onClick={() => setShowPaymentDialog(false)} className="border-[#F97316] bg-transparent hover:bg-[#F97316]/10 text-[#F97316] hover:text-[#F97316]">
               Close
             </Button>
             {selectedPayment?.status === 'Pending' && (

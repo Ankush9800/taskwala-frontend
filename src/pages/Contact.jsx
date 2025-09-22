@@ -7,7 +7,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Toaster } from "@/components/ui/sonner";
 import { Textarea } from "@/components/ui/textarea";
+import axios from "axios";
 import {
   Clock,
   Headphones,
@@ -21,32 +23,53 @@ import {
   Globe,
   ArrowRight,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
 
 function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [subjest, setSubjest] = useState("")
+  const [message, setMessage] = useState("")
+  const [btnType, setBtnType] = useState(true)
+  const [loading, setLoading] = useState(false)
+  
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    // Handle form submission here
-    // console.log("Form submitted:", formData);
+    try {
+      setLoading(true)
+      setBtnType(true)
+      const res  = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/contact/sendmsg`,{
+        name,
+        email,
+        sub:subjest,
+        message
+      })
+      console.log(res)
+      toast("Submitted successfully",{style: {
+        backgroundColor: "#065f46",
+        color: "#fff",
+        borderColor:"#fff",
+        border:"2px"
+      },duration:2000,position:"top-right"})
+    } catch (error) {
+      console.log(error)
+    }finally{
+      setLoading(false)
+      setBtnType(false)
+    }
   };
+
+  useEffect(()=>{
+    if (email && subjest && message && name) {
+      setBtnType(false)
+    }else {setBtnType(true)}
+  },[email, subjest, message, name])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 pt-16">
+      <Toaster/>
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 px-4">
         <div className="max-w-6xl mx-auto text-center">
@@ -90,14 +113,14 @@ function Contact() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <label className="text-white font-medium">Full Name</label>
                         <Input
                           name="name"
-                          value={formData.name}
-                          onChange={handleInputChange}
+                          value={name}
+                          onChange={(e)=>setName(e.target.value)}
                           placeholder="Your full name"
                           className="bg-gray-900/50 border-gray-700 text-white placeholder:text-gray-500 focus:border-[#F97316] transition-colors"
                           required
@@ -108,8 +131,8 @@ function Contact() {
                         <Input
                           name="email"
                           type="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
+                          value={email}
+                          onChange={(e)=>setEmail(e.target.value)}
                           placeholder="your.email@example.com"
                           className="bg-gray-900/50 border-gray-700 text-white placeholder:text-gray-500 focus:border-[#F97316] transition-colors"
                           required
@@ -121,8 +144,8 @@ function Contact() {
                       <label className="text-white font-medium">Subject</label>
                       <Input
                         name="subject"
-                        value={formData.subject}
-                        onChange={handleInputChange}
+                        value={subjest}
+                        onChange={(e)=>setSubjest(e.target.value)}
                         placeholder="What's this about?"
                         className="bg-gray-900/50 border-gray-700 text-white placeholder:text-gray-500 focus:border-[#F97316] transition-colors"
                         required
@@ -133,8 +156,8 @@ function Contact() {
                       <label className="text-white font-medium">Message</label>
                       <Textarea
                         name="message"
-                        value={formData.message}
-                        onChange={handleInputChange}
+                        value={message}
+                        onChange={(e)=>setMessage(e.target.value)}
                         placeholder="Tell us more about your inquiry..."
                         rows={6}
                         className="bg-gray-900/50 border-gray-700 text-white placeholder:text-gray-500 focus:border-[#F97316] transition-colors resize-none"
@@ -143,15 +166,20 @@ function Contact() {
                     </div>
                     
                     <Button
-                      type="submit"
+                      disabled={btnType}
+                      onClick={handleSubmit}
                       size="lg"
-                      className="w-full bg-gradient-to-r from-[#F97316] to-[#713306] hover:from-[#F97316]/80 hover:to-[#713306]/80 text-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                      className="cursor-pointer w-full bg-gradient-to-r from-[#F97316] to-[#713306] hover:from-[#F97316]/80 hover:to-[#713306]/80 text-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                     >
                       <Send className="w-5 h-5 mr-2" />
+                      {loading?<>
+                      Sending...
+                      </>:<>
                       Send Message
                       <ArrowRight className="w-5 h-5 ml-2" />
+                      </>}
                     </Button>
-                  </form>
+                  </div>
                 </CardContent>
               </Card>
             </div>
@@ -279,7 +307,7 @@ function Contact() {
           <Button
             size="lg"
             variant="outline"
-            className="border-gray-600 hover:bg-gray-800 text-white px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105"
+            className="border-[#0B7A75] bg-transparent hover:bg-[#0B7A75]/10 text-[#0B7A75] hover:text-[#0B7A75] px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105"
           >
             Browse FAQ
             <ArrowRight className="w-5 h-5 ml-2" />

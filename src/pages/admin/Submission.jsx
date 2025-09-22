@@ -138,14 +138,14 @@ function Submission() {
             onClick={getAllSubmission}
             disabled={loading}
             variant="outline"
-            className="border-gray-600 hover:bg-gray-800 text-white"
+            className="border-[#F97316] bg-transparent hover:bg-[#F97316]/10 text-[#F97316] hover:text-[#F97316]"
           >
             <RefreshCw className={`w-4 h-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
             Refresh
           </Button>
           <Button
             variant="outline"
-            className="border-gray-600 hover:bg-gray-800 text-white"
+            className="border-[#F97316] bg-transparent hover:bg-[#F97316]/10 text-[#F97316] hover:text-[#F97316]"
           >
             <Download className="w-4 h-4 mr-2" />
             Export
@@ -265,7 +265,7 @@ function Submission() {
                 Showing {filteredSubmissions.length} of {stats.total} submissions
               </CardDescription>
             </div>
-            <Badge variant="outline" className="border-[#F97316] text-[#F97316]">
+            <Badge variant="outline" className="border-[#F97316] bg-transparent text-[#F97316]">
               Page {page}
             </Badge>
           </div>
@@ -350,7 +350,7 @@ function Submission() {
                         <Button
                           size="sm"
                           variant="outline"
-                          className="border-[#10B981] text-[#10B981] hover:bg-[#10B981]/20"
+                          className="border-[#10B981] bg-transparent text-[#10B981] hover:bg-[#10B981]/20"
                         >
                           <CheckCircle className="w-3 h-3 mr-1" />
                           Approve
@@ -358,7 +358,7 @@ function Submission() {
                         <Button
                           size="sm"
                           variant="outline"
-                          className="border-red-600 text-red-400 hover:bg-red-600/20"
+                          className="border-red-600 bg-transparent text-red-400 hover:bg-red-600/20"
                         >
                           <XCircle className="w-3 h-3 mr-1" />
                           Reject

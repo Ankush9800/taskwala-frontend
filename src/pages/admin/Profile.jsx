@@ -359,7 +359,7 @@ function Profile() {
                                                     onClick={() => setPasswordDialog(true)}
                                                     variant="outline"
                                                     size="sm"
-                                                    className="border-[#F97316] text-[#F97316] hover:bg-[#F97316] hover:text-white"
+                                                    className="border-[#F97316] bg-transparent text-[#F97316] hover:bg-[#F97316] hover:text-white"
                                                 >
                                                     Change
                                                 </Button>
@@ -382,7 +382,7 @@ function Profile() {
                                                     onClick={() => setPhoneDialog(true)}
                                                     variant="outline"
                                                     size="sm"
-                                                    className="border-[#10B981] text-[#10B981] hover:bg-[#10B981] hover:text-white"
+                                                    className="border-[#10B981] bg-transparent text-[#10B981] hover:bg-[#10B981] hover:text-white"
                                                 >
                                                     {profile.phone ? 'Update' : 'Add'}
                                                 </Button>
@@ -432,7 +432,7 @@ function Profile() {
                                 setFile(null)
                             }}
                             disabled={loading}
-                            className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                            className="border-[#F97316] bg-transparent hover:bg-[#F97316]/10 text-[#F97316] hover:text-[#F97316]"
                         >
                             <X className="w-4 h-4 mr-2" />
                             Cancel
@@ -494,7 +494,7 @@ function Profile() {
                                 setCurrentPassword("")
                             }}
                             disabled={loading}
-                            className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                            className="border-[#F97316] bg-transparent hover:bg-[#F97316]/10 text-[#F97316] hover:text-[#F97316]"
                         >
                             <X className="w-4 h-4 mr-2" />
                             Cancel
@@ -565,7 +565,7 @@ function Profile() {
                                 setConfirmPassword("")
                             }}
                             disabled={loading}
-                            className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                            className="border-[#F97316] bg-transparent hover:bg-[#F97316]/10 text-[#F97316] hover:text-[#F97316]"
                         >
                             <X className="w-4 h-4 mr-2" />
                             Cancel

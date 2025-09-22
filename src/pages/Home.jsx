@@ -71,7 +71,7 @@ function Home() {
             <Button
               variant="outline"
               size="lg"
-              className="border-gray-600 hover:bg-gray-800 text-white px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105"
+              className="border-[#0B7A75] bg-transparent hover:bg-[#0B7A75]/10 text-[#0B7A75] hover:text-[#0B7A75] px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105"
             >
               <Play className="w-5 h-5 mr-2" />
               Watch Demo
@@ -274,7 +274,7 @@ function Home() {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-gray-600 hover:bg-gray-800 text-white px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105"
+                className="border-[#0B7A75] bg-transparent hover:bg-[#0B7A75]/10 text-[#0B7A75] hover:text-[#0B7A75] px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105"
               >
                 Schedule Demo
               </Button>

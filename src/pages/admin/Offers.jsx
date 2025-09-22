@@ -397,7 +397,7 @@ function Offers() {
                                 variant="outline"
                                 size="sm"
                                 disabled={loading}
-                                className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                                className="border-[#F97316] bg-transparent hover:bg-[#F97316]/10 text-[#F97316] hover:text-[#F97316]"
                             >
                                 <RefreshCw className={`w-4 h-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
                                 Refresh
@@ -563,7 +563,7 @@ function Offers() {
                                                                     onClick={() => removeStep(index)}
                                                                     size="sm"
                                                                     variant="outline"
-                                                                    className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+                                                                    className="border-red-500 bg-transparent text-red-500 hover:bg-red-500 hover:text-white"
                                                                 >
                                                                     <Trash2 className="w-3 h-3" />
                                                                 </Button>
@@ -605,7 +605,7 @@ function Offers() {
                                                     setDialogState(false);
                                                 }}
                                                 disabled={loading}
-                                                className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                                                className="border-[#F97316] bg-transparent hover:bg-[#F97316]/10 text-[#F97316] hover:text-[#F97316]"
                                             >
                                                 Cancel
                                             </Button>
@@ -744,7 +744,7 @@ function Offers() {
                                                         size="sm"
                                                         variant="outline"
                                                         onClick={() => copyUrl(`https://twcampaign.in/campaign/${camp._id}`)}
-                                                        className="border-gray-600 text-gray-300 hover:bg-gray-600"
+                                                        className="border-[#F97316] bg-transparent hover:bg-[#F97316]/10 text-[#F97316] hover:text-[#F97316]"
                                                     >
                                                         <Copy className="w-3 h-3" />
                                                     </Button>
@@ -759,7 +759,7 @@ function Offers() {
                                                         size="sm"
                                                         variant="outline"
                                                         onClick={() => handleEdit(camp)}
-                                                        className="border-gray-600 text-gray-300 hover:bg-gray-600"
+                                                        className="border-[#F97316] bg-transparent hover:bg-[#F97316]/10 text-[#F97316] hover:text-[#F97316]"
                                                     >
                                                         <Edit className="w-3 h-3" />
                                                     </Button>
@@ -769,7 +769,7 @@ function Offers() {
                                                             <Button
                                                                 size="sm"
                                                                 variant="outline"
-                                                                className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+                                                                className="border-red-500 bg-transparent text-red-500 hover:bg-red-500 hover:text-white"
                                                             >
                                                                 <Trash2 className="w-3 h-3" />
                                                             </Button>

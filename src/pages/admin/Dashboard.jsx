@@ -161,7 +161,7 @@ function Dashboard() {
             onClick={refreshData}
             disabled={loading}
             variant="outline"
-            className="border-gray-600 hover:bg-gray-800 text-white"
+            className="border-[#F97316] bg-transparent hover:bg-[#F97316]/10 text-[#F97316] hover:text-[#F97316]"
           >
             <RefreshCw className={`w-4 h-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
             Refresh
