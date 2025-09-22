@@ -41,6 +41,7 @@ function Submission() {
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState("all")
   const [dateFilter, setDateFilter] = useState("all")
+  const [todaySubmission, setTodaySubmission] = useState(null)
 
   const getAllSubmission = async() => {
     try {
@@ -49,6 +50,7 @@ function Submission() {
       const submission = res.data.data
       setSubmissions(submission[0])
       setCountTotal(submission[1])
+      setTodaySubmission(submission[2].length)
       setIndexCount((page - 1)*10)
       console.log(submission)
     } catch (error) {
@@ -163,7 +165,7 @@ function Submission() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-white">{stats.total}</div>
+            <div className="text-2xl font-bold text-white">{countTotal}</div>
             <p className="text-xs text-gray-400 mt-1">All submissions</p>
           </CardContent>
         </Card>
@@ -171,12 +173,12 @@ function Submission() {
         <Card className="bg-gradient-to-r from-[#10B981]/20 to-[#065f46]/20 border-[#10B981]/30">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-gray-300 flex items-center justify-between">
-              Approved
+              Today Submission
               <CheckCircle className="w-4 h-4 text-[#10B981]" />
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-white">{stats.approved}</div>
+            <div className="text-2xl font-bold text-white">{todaySubmission}</div>
             <p className="text-xs text-gray-400 mt-1">Approved submissions</p>
           </CardContent>
         </Card>

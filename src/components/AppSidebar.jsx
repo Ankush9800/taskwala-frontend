@@ -42,6 +42,7 @@ import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { account } from '@/lib/Appwrite';
+import axios from 'axios';
 
 function AppSidebar() {
   const navigate = useNavigate();
@@ -63,8 +64,15 @@ function AppSidebar() {
 
   const unreadMsg = async()=>{
     const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/contact/getmsg`)
-    console.log(res)
-    setUnreadCount(res.data.length)
+    console.log(res.data)
+    let urlength = 0
+    for (let i = 0; i < res.data.length; i++) {
+      if (!res.data[i].status) {
+        urlength++
+      }
+    }
+    console.log(urlength)
+    setUnreadCount(urlength)
   }
 
   const handleLogout = async () => {
@@ -345,10 +353,10 @@ function AppSidebar() {
                       <Link to="/admin/support" className="flex items-center gap-3 px-3 py-2.5 rounded-lg">
                         <MessageSquare className="w-5 h-5" />
                         <span className="font-medium">Support Messages</span>
-                        {unreadCount > 0 && <Badge variant="secondary" className="ml-auto bg-yellow-500 text-black text-xs">
+                        {unreadCount > 0  && <Badge variant="secondary" className="ml-auto bg-yellow-500 text-black text-xs">
                           {unreadCount}
                         </Badge>}
-                        {isActive('/admin/support') && (
+                        {unreadCount == 0 && isActive('/admin/support') && (
                           <div className="ml-auto w-2 h-2 bg-white rounded-full"></div>
                         )}
                       </Link>

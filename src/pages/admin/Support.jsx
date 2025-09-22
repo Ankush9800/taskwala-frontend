@@ -19,7 +19,8 @@ import {
   Clock,
   Archive,
   Search,
-  Filter
+  Filter,
+  Copy
 } from 'lucide-react';
 import axios from 'axios';
 import { toast } from 'sonner';
@@ -80,6 +81,16 @@ function Support() {
       toast.error('Failed to send reply');
     } finally {
       setReplyLoading(false);
+    }
+  };
+
+  const copyEmail = async (email) => {
+    try {
+      await navigator.clipboard.writeText(email);
+      toast.success('Email copied to clipboard');
+    } catch (error) {
+      console.error('Error copying email:', error);
+      toast.error('Failed to copy email');
     }
   };
 
@@ -324,14 +335,25 @@ function Support() {
                               </DialogHeader>
                               
                               <div className="space-y-4">
-                                <div className="grid grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                   <div>
                                     <label className="text-sm font-medium text-gray-400">Name</label>
                                     <p className="text-white">{selectedMessage?.fullName}</p>
                                   </div>
                                   <div>
-                                    <label className="text-sm font-medium text-gray-400">Email</label>
-                                    <p className="text-white">{selectedMessage?.email}</p>
+                                    <label className="text-sm font-medium text-gray-400 mb-1 block">Email</label>
+                                    <div className="flex items-center gap-2 bg-gray-800 p-2 rounded-lg">
+                                      <p className="text-white flex-1 text-sm break-all">{selectedMessage?.email}</p>
+                                      <Button
+                                        size="sm"
+                                        variant="outline"
+                                        onClick={() => copyEmail(selectedMessage?.email)}
+                                        className="border-[#F97316] bg-transparent hover:bg-[#F97316]/10 text-[#F97316] hover:text-[#F97316] h-6 w-6 p-0 flex-shrink-0"
+                                        title="Copy email to clipboard"
+                                      >
+                                        <Copy className="w-3 h-3" />
+                                      </Button>
+                                    </div>
                                   </div>
                                 </div>
                                 

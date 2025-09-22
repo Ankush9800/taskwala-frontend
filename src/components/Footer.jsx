@@ -87,7 +87,7 @@ function Footer() {
                 <span>Contact</span>
               </Link>
               <Link 
-                to="mailto:connect@twcampaign.in"
+                to="mailto:contact@twcampaign.in"
                 className='flex items-center gap-2 text-gray-400 hover:text-[#F97316] transition-colors duration-300 text-sm group'
               >
                 <Mail className='w-3 h-3' />
@@ -101,7 +101,7 @@ function Footer() {
             <h4 className='font-semibold text-white text-lg'>Support</h4>
             <div className='space-y-3'>
               <Link 
-                to="mailto:connect@twcampaign.in"
+                to="mailto:contact@twcampaign.in"
                 className='flex items-center gap-2 text-gray-400 hover:text-[#F97316] transition-colors duration-300 text-sm group'
               >
                 <span>Help Center</span>

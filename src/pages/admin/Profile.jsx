@@ -258,7 +258,7 @@ function Profile() {
                                         <div className="flex items-center justify-between">
                                             <div>
                                                 <p className="text-teal-100">Role</p>
-                                                <p className="text-2xl font-bold">Administrator</p>
+                                                <p className="text-2xl font-bold">{profile?.labels?.[0]}</p>
                                             </div>
                                             <User className="w-8 h-8 text-teal-200" />
                                         </div>
@@ -270,7 +270,7 @@ function Profile() {
                                         <div className="flex items-center justify-between">
                                             <div>
                                                 <p className="text-green-100">Sessions</p>
-                                                <p className="text-2xl font-bold">12</p>
+                                                <p className="text-2xl font-bold">1</p>
                                             </div>
                                             <Settings className="w-8 h-8 text-green-200" />
                                         </div>
