@@ -27,7 +27,8 @@ import {
   TrendingUp,
   AlertCircle,
   Download,
-  IndianRupee
+  IndianRupee,
+  Clipboard
 } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
@@ -41,7 +42,7 @@ function Submission() {
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState("all")
   const [dateFilter, setDateFilter] = useState("all")
-  const [todaySubmission, setTodaySubmission] = useState(null)
+  const [todaySubmission, setTodaySubmission] = useState(0)
 
   const getAllSubmission = async() => {
     try {
@@ -118,6 +119,20 @@ function Submission() {
         return <Badge className="bg-gray-600 text-white"><AlertCircle className="w-3 h-3 mr-1" />Unknown</Badge>;
     }
   };
+
+  const copy = async(value) => {
+    try {
+        await navigator.clipboard.writeText(value)
+        toast.success("Copied to clipboard!", {
+            duration: 2000,
+        })
+    } catch (error) {
+        console.log(error)
+        toast.error("Copy failed", {
+            duration: 2000,
+        })
+    }
+  }
 
   return (
     <div className="space-y-8 p-6">
@@ -308,12 +323,28 @@ function Submission() {
                       <div className="flex items-center gap-2">
                         <CreditCard className="w-4 h-4 text-gray-400" />
                         <span className="text-white font-mono">{submission.upi}</span>
+                        <Button 
+                            size="sm"
+                            variant="ghost"
+                            onClick={() => copy(submission.upi)}
+                            className="h-6 w-6 p-0 text-gray-200 cursor-pointer hover:bg-gray-700"
+                        >
+                            <Clipboard className="w-3 h-3" />
+                        </Button>
                       </div>
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-2">
                         <CreditCard className="w-4 h-4 text-[#F97316]" />
                         <span className="text-white font-mono">{submission.refUpiId || 'N/A'}</span>
+                        <Button 
+                            size="sm"
+                            variant="ghost"
+                            onClick={() => copy(submission.refUpiId)}
+                            className="h-6 w-6 p-0 text-gray-200 cursor-pointer hover:bg-gray-700"
+                        >
+                            <Clipboard className="w-3 h-3" />
+                        </Button>
                       </div>
                     </TableCell>
                     <TableCell>

@@ -45,7 +45,7 @@ function Conversion() {
         try {
             setLoading(true)
             const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getpostback?page=${page}`)
-            // console.log(res.data.data,'aa')
+            console.log(res.data.data,'aa')
             setConversion(res.data.data[0])
             setCountTotal(res.data.data[1])
             setIndexCount((page - 1)*10)
@@ -345,12 +345,12 @@ function Conversion() {
                                         <TableCell>
                                             <div className="flex items-center gap-2">
                                                 <CreditCard className="w-3 h-3 text-[#F97316]" />
-                                                <span className="text-white font-mono">{conv.referUpiId || 'N/A'}</span>
-                                                {conv.referUpiId && (
+                                                <span className="text-white font-mono">{conv.refUpi || 'N/A'}</span>
+                                                {conv.refUpi && (
                                                     <Button 
                                                         size="sm"
                                                         variant="ghost"
-                                                        onClick={() => copy(conv.referUpiId)}
+                                                        onClick={() => copy(conv.refUpi)}
                                                         className="h-6 w-6 p-0 hover:bg-gray-700"
                                                     >
                                                         <Clipboard className="w-3 h-3" />
