@@ -37,7 +37,7 @@ function Campaign() {
       setPayoutData(payout)
       setIsActive(camp.campaignStatus)
       setLoading(false)
-      console.log(res.data.data)
+      // console.log(res.data.data)
     } catch (error) {
       console.log(error)
       setIsActive(false)
