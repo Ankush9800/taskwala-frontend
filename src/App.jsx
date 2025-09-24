@@ -4,7 +4,7 @@ import { matchPath, Outlet, useLocation } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { MainContextProvider } from './lib/context'
-import { trackPage } from './lib/analytics'
+import { trackPage } from './lib/Analytics'
 
 function App() {
   const location = useLocation();
