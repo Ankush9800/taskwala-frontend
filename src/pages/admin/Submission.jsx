@@ -50,8 +50,8 @@ function Submission() {
       const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getallsubmission?page=${page}`)
       const submission = res.data.data
       setSubmissions(submission[0])
-      setCountTotal(submission[1])
-      setTodaySubmission(submission[2].length)
+      setCountTotal(submission[3])
+      setTodaySubmission(submission[2])
       setIndexCount((page - 1)*10)
       console.log(submission)
     } catch (error) {
@@ -175,7 +175,7 @@ function Submission() {
         <Card className="bg-gradient-to-r from-[#F97316]/20 to-[#713306]/20 border-[#F97316]/30">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium text-gray-300 flex items-center justify-between">
-              Total Submissions
+              Submissions This Month
               <Users className="w-4 h-4 text-[#F97316]" />
             </CardTitle>
           </CardHeader>
@@ -300,7 +300,7 @@ function Submission() {
                   <TableHead className="text-gray-300">Refer Payout</TableHead>
                   <TableHead className="text-gray-300">Tracking URL</TableHead>
                   <TableHead className="text-gray-300">Submitted</TableHead>
-                  <TableHead className="text-gray-300">Status</TableHead>
+                  <TableHead className="text-gray-300">Ip address</TableHead>
                   <TableHead className="text-gray-300">Actions</TableHead>
                 </TableRow>
               </TableHeader>
@@ -376,7 +376,7 @@ function Submission() {
                       </div>
                     </TableCell>
                     <TableCell>
-                      {getStatusBadge(submission.status)}
+                      <span className="text-white font-mono">{submission.ip}</span>
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-2">

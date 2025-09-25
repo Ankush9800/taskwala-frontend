@@ -40,6 +40,8 @@ function Dashboard() {
   const [totalPayout, setTotalPayout] = useState(0);
   const [loading, setLoading] = useState(false);
   const [uptime, setUptime] = useState("")
+  const [subData, setSubData] = useState(null)
+  const [monthlyGrowthRate, setMonthlyGrowthRate] = useState(0)
 
   // Mock data for recent activities and trends
   const [recentActivities] = useState([
@@ -119,7 +121,10 @@ function Dashboard() {
   const submission = async () => {
     try {
       const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getallsubmission`);
-      setTotalSubmission(res.data.data[1]);
+      const subs = res.data.data
+      setTotalSubmission(subs[1]);
+      setSubData(subs)
+      setMonthlyGrowthRate(Math.round((subs[3]-subs[4])/subs[4]*100))
     } catch (error) {
       console.error('Error fetching submissions:', error);
     }
@@ -206,17 +211,22 @@ function Dashboard() {
 
         <Card className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#155a69]/30 transition-all duration-300 group">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-gray-400">Total Submissions</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-400">Monthly Submissions</CardTitle>
             <div className="bg-gradient-to-r from-[#155a69] to-[#F97316] p-2 rounded-lg group-hover:scale-110 transition-transform duration-300">
               <Users2 className="w-4 h-4 text-white" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-white mb-1">{totalSubmission.toLocaleString()}</div>
+            <div className="text-3xl font-bold text-white mb-1">{subData?.[3]}</div>
             <div className="flex items-center text-sm">
-              <ArrowUpRight className="w-4 h-4 text-[#10B981] mr-1" />
-              <span className="text-[#10B981]">+8%</span>
-              <span className="text-gray-400 ml-1">from last week</span>
+              {monthlyGrowthRate > 0 ?<div className='flex items-center'>
+                <ArrowUpRight className="w-4 h-4 text-[#10B981] mr-1" />
+                <span className="text-[#10B981]">+{monthlyGrowthRate}%</span>
+              </div>:<div className='flex items-center'>
+                <ArrowDownRight className="w-4 h-4 text-[#F97316] mr-1" />
+                <span className="text-[#F97316]">{monthlyGrowthRate}%</span>
+              </div>}
+              <span className="text-gray-400 ml-1">from last month</span>
             </div>
           </CardContent>
         </Card>
