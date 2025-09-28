@@ -15,6 +15,7 @@ import Payments from "./admin/Payments";
 import Profile from "./admin/Profile";
 import Refer from "./Refer";
 import Support from "./admin/Support";
+import SubmissionExport from "./admin/SubmissionExport";
 
 
 
@@ -35,4 +36,5 @@ export {
   Profile,
   Refer,
   Support,
+  SubmissionExport,
 };

@@ -119,12 +119,12 @@ function Campaign() {
                 Please check back later or explore other offers.
               </p>
             </div>
-            <Button
-              className="bg-gradient-to-r from-[#0B7A75] to-[#054f4c] hover:from-[#0B7A75]/80 hover:to-[#054f4c]/80 px-8 py-3 font-medium"
-              onClick={() => window.location.href = '/campaigns'}
+            <Link
+              className="bg-gradient-to-r rounded-md from-[#0B7A75] to-[#054f4c] hover:from-[#0B7A75]/80 hover:to-[#054f4c]/80 px-8 py-3 font-medium"
+              to={"https://t.me/iamtaskwala"}
             >
-              Browse Campaigns
-            </Button>
+              Join Our Telegram Channel
+            </Link>
           </div>
         </div>
       ) : (

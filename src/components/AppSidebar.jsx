@@ -34,7 +34,8 @@ import {
   Shield,
   Sparkles,
   Building2,
-  HelpCircle
+  HelpCircle,
+  Download
 } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
@@ -229,7 +230,7 @@ function AppSidebar() {
                       <CollapsibleTrigger asChild>
                         <SidebarMenuButton 
                           className={`group transition-all duration-200 ${
-                            isParentActive(['/admin/conversion', '/admin/submission'])
+                            isParentActive(['/admin/conversion', '/admin/submission', '/admin/submission-export'])
                               ? 'bg-gray-800/50 text-white' 
                               : 'hover:bg-gray-800/50 text-gray-300 hover:text-white'
                           }`}
@@ -270,6 +271,21 @@ function AppSidebar() {
                               <Link to="/admin/submission" className="flex items-center gap-3 px-3 py-2 ml-6 rounded-lg">
                                 <Activity className="w-4 h-4" />
                                 <span className="font-medium">Clicks & Submissions</span>
+                              </Link>
+                            </SidebarMenuSubButton>
+                          </SidebarMenuSubItem>
+                          <SidebarMenuSubItem>
+                            <SidebarMenuSubButton 
+                              asChild
+                              className={`transition-all duration-200 ${
+                                isActive('/admin/submission-export')
+                                  ? 'bg-[#F97316]/20 text-[#F97316] border-l-2 border-[#F97316]'
+                                  : 'hover:bg-gray-800/30 text-gray-400 hover:text-white'
+                              }`}
+                            >
+                              <Link to="/admin/submission-export" className="flex items-center gap-3 px-3 py-2 ml-6 rounded-lg">
+                                <Download className="w-4 h-4" />
+                                <span className="font-medium">Export Submissions</span>
                               </Link>
                             </SidebarMenuSubButton>
                           </SidebarMenuSubItem>

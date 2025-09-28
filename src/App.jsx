@@ -14,7 +14,7 @@ function App() {
     trackPage(location.pathname)
   },[location])
 
-  const hidePaths = ['/ref','/login','/camp', '/register','/admin', '/admintemp', '/admin/dashboard','/admin/offers', '/admin/submission', '/tracker','/admin/conversion','/404','/admin/payments','/admin/profile','/admin/support','/verify','/test'];
+  const hidePaths = ['/ref','/date','/login','/camp', '/register','/admin', '/admintemp', '/admin/dashboard','/admin/offers', '/admin/submission', '/admin/submission-export', '/tracker','/admin/conversion','/404','/admin/payments','/admin/profile','/admin/support','/verify','/test'];
 
   const hideHeaderFooter =
     hidePaths.includes(path)
