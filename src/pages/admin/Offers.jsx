@@ -57,6 +57,7 @@ function Offers() {
         campaignImage: null,
         provider: "",
         steps: [""],
+        trackable: false,
     });
 
     // Calculate statistics
@@ -157,6 +158,10 @@ function Offers() {
         data.append("description", formData.description);
         data.append("campaignImage", formData.campaignImage);
         data.append("provider", formData.provider);
+        data.append("trackable", formData.trackable);
+        
+        // Debug: Log the trackable value
+        console.log("Trackable value being sent:", formData.trackable, typeof formData.trackable);
         
         // Append steps as individual array items
         formData.steps.forEach((step, index) => {
@@ -217,6 +222,7 @@ function Offers() {
             campaignImage: null,
             provider: "",
             steps: [""],
+            trackable: false,
         });
     };
 
@@ -315,6 +321,7 @@ function Offers() {
             campaignImage: null,
             provider: camp.provider || "",
             steps: camp.process,
+            trackable: camp.trackable || false,
         });
         setCampId(camp.id);
         setDialogState(true);
@@ -536,6 +543,20 @@ function Offers() {
                                             </div>
                                         </div>
 
+                                        <div className="flex items-center space-x-2">
+                                            <Switch
+                                                id="trackable"
+                                                checked={formData.trackable}
+                                                onCheckedChange={(checked) => 
+                                                    setFormData(prev => ({ ...prev, trackable: checked }))
+                                                }
+                                                className="data-[state=checked]:bg-[#F97316]"
+                                            />
+                                            <Label htmlFor="trackable" className="text-gray-300">
+                                                Trackable Campaign
+                                            </Label>
+                                        </div>
+
                                         {/* Campaign Steps/Process */}
                                         <div className="space-y-2">
                                             <div className="flex items-center justify-between">
@@ -733,6 +754,15 @@ function Offers() {
                                                         <span className="text-gray-400">Provider:</span>
                                                         <span className="text-white">{camp.provider}</span>
                                                     </div>
+                                                    <div className="flex justify-between text-sm">
+                                                        <span className="text-gray-400">Trackable:</span>
+                                                        <Badge
+                                                            variant={camp.trackable ? "default" : "secondary"}
+                                                            className={`${camp.trackable ? "bg-[#F97316]" : "bg-gray-500"} text-xs`}
+                                                        >
+                                                            {camp.trackable ? "Yes" : "No"}
+                                                        </Badge>
+                                                    </div>
                                                 </div>
 
                                                 <p className="text-sm text-gray-400 mb-4 line-clamp-2">
@@ -811,6 +841,7 @@ function Offers() {
                                                 <TableHead className="text-gray-300">Camp ID</TableHead>
                                                 <TableHead className="text-gray-300">Payout</TableHead>
                                                 <TableHead className="text-gray-300">Provider</TableHead>
+                                                <TableHead className="text-gray-300">Trackable</TableHead>
                                                 <TableHead className="text-gray-300">Status</TableHead>
                                                 <TableHead className="text-gray-300">Actions</TableHead>
                                             </TableRow>
@@ -830,6 +861,14 @@ function Offers() {
                                                     <TableCell className="text-gray-300">{camp.campId}</TableCell>
                                                     <TableCell className="text-[#10B981] font-medium">₹{camp.payoutRate}</TableCell>
                                                     <TableCell className="text-gray-300">{camp.provider}</TableCell>
+                                                    <TableCell>
+                                                        <Badge
+                                                            variant={camp.trackable ? "default" : "secondary"}
+                                                            className={camp.trackable ? "bg-[#F97316]" : "bg-gray-500"}
+                                                        >
+                                                            {camp.trackable ? "Yes" : "No"}
+                                                        </Badge>
+                                                    </TableCell>
                                                     <TableCell>
                                                         <Badge
                                                             variant={camp.campaignStatus ? "default" : "secondary"}

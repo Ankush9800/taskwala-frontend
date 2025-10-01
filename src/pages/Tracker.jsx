@@ -69,7 +69,7 @@ function Tracker() {
   // ];
 
   const getCampaigns = async()=>{
-    const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getallcampaign`)
+    const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/trackoffers`)
     console.log(res.data)
     setCampaigns(res.data)
   }
