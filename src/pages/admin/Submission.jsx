@@ -43,6 +43,7 @@ function Submission() {
   const [statusFilter, setStatusFilter] = useState("all")
   const [dateFilter, setDateFilter] = useState("all")
   const [todaySubmission, setTodaySubmission] = useState(0)
+  const [thisMonthTotal, setThisMonthTotal] = useState(0)
 
   const getAllSubmission = async() => {
     try {
@@ -50,7 +51,8 @@ function Submission() {
       const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getallsubmission?page=${page}`)
       const submission = res.data.data
       setSubmissions(submission[0])
-      setCountTotal(submission[3])
+      setThisMonthTotal(submission[3])
+      setCountTotal(submission[1])
       setTodaySubmission(submission[2])
       setIndexCount((page - 1)*10)
       console.log(submission)
