@@ -134,7 +134,7 @@ function Campaign() {
             <div className='flex justify-center mb-6'>
               <div className='relative'>
                 <img 
-                  className='h-20 w-20 rounded-2xl border-4 border-[#0B7A75]/20 shadow-lg' 
+                  className='h-20 w-20 rounded-2xl border-4 border-[#0B7A75]/20 shadow-lg object-cover' 
                   src={campaignData?.campaignImage} 
                   alt="Campaign" 
                 />

@@ -118,7 +118,7 @@ function Campaigns() {
                         </CardTitle>
                         <div className='flex items-center gap-2 mb-3'>
                           <img 
-                            className="rounded-full h-8 w-8 border-2 border-[#0B7A75]/20" 
+                            className="rounded-full h-8 max-w-16  border-2 border-[#0B7A75]/20 object-cover" 
                             src={camp.campaignImage} 
                             alt="Campaign" 
                           />

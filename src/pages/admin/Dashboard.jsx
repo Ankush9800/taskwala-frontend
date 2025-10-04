@@ -4,7 +4,6 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import axios from 'axios';
 import {
-  AreaChart,
   Coins,
   Target,
   TrendingUp,
@@ -31,6 +30,8 @@ import {
 } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useMainContext } from '@/lib/context';
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 
 function Dashboard() {
   const {systemData, responseTime} = useMainContext()
@@ -42,6 +43,8 @@ function Dashboard() {
   const [uptime, setUptime] = useState("")
   const [subData, setSubData] = useState(null)
   const [monthlyGrowthRate, setMonthlyGrowthRate] = useState(0)
+  const [chartData, setChartData] = useState(null)
+  const [anaMonthSub, setAnaMonthSub] = useState(null)
 
   // Mock data for recent activities and trends
   const [recentActivities] = useState([
@@ -136,9 +139,23 @@ function Dashboard() {
     setLoading(false);
   };
 
+  const getAnalytics = async()=>{
+    const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/analytics`)
+    console.log(res.data)
+    setChartData(res.data)
+  }
+
+  const anaSubmissions = async()=>{
+    const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/monthsdata`)
+    console.log(res.data)
+    setAnaMonthSub(res.data)
+  }
+
   useEffect(() => {
     refreshData();
     osData()
+    getAnalytics()
+    anaSubmissions()
   }, []);
 
   const getActivityIcon = (type) => {
@@ -158,6 +175,17 @@ function Dashboard() {
       default: return 'text-gray-400 bg-gray-400/20';
     }
   };
+
+  const chartConfig = {
+    activeUsers: {
+      label: "activeUsers",
+      color: "#F97316",
+    },
+    totalSubmissions: {
+      label: "Submissions",
+      color: "#F97316",
+    },
+  }
 
   return (
     <div className="space-y-8 p-6">
@@ -320,21 +348,65 @@ function Dashboard() {
       </div>
 
       {/* Tabs Section */}
-      <Tabs defaultValue="overview" className="space-y-6">
+      <Tabs defaultValue="analytics" className="space-y-6">
         <TabsList className="bg-black/60 border border-gray-800">
-          <TabsTrigger value="overview" className="data-[state=active]:bg-[#F97316] data-[state=active]:text-white">
+          <TabsTrigger value="analytics" className="data-[state=active]:bg-[#F97316] data-[state=active]:text-white text-white">
             <BarChart3 className="w-4 h-4 mr-2" />
+            Analytics
+          </TabsTrigger>
+          <TabsTrigger value="overview" className="data-[state=active]:bg-[#F97316] data-[state=active]:text-white text-white">
+            <PieChart className="w-4 h-4 mr-2" />
             Overview
           </TabsTrigger>
-          <TabsTrigger value="activity" className="data-[state=active]:bg-[#F97316] data-[state=active]:text-white">
+          <TabsTrigger value="activity" className="data-[state=active]:bg-[#F97316] data-[state=active]:text-white text-white">
             <Activity className="w-4 h-4 mr-2" />
             Recent Activity
           </TabsTrigger>
-          <TabsTrigger value="analytics" className="data-[state=active]:bg-[#F97316] data-[state=active]:text-white">
-            <PieChart className="w-4 h-4 mr-2" />
-            Analytics
-          </TabsTrigger>
         </TabsList>
+
+        <TabsContent value="analytics" className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card className="bg-black/80 backdrop-blur-sm border-gray-800">
+              <CardHeader>
+                <CardTitle className="text-white">Visitors</CardTitle>
+                <CardDescription className="text-gray-400">
+                  Daily visitors metrics
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ChartContainer config={chartConfig} className='h-full w-full'>
+                  <AreaChart data={chartData} margin={{left: 0, right: 12,}}>
+                  {/* <CartesianGrid vertical={false}/> */}
+                  <XAxis dataKey="date"/>
+                  <YAxis dataKey="activeUsers"/>
+                  <ChartTooltip cursor={false} content={<ChartTooltipContent/>}/>
+                  <Area dataKey="activeUsers" type="natural"/>
+                  </AreaChart>
+                </ChartContainer>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-black/80 backdrop-blur-sm border-gray-800">
+              <CardHeader>
+                <CardTitle className="text-white">Performance Trends</CardTitle>
+                <CardDescription className="text-gray-400">
+                  Monthly submission metrics
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ChartContainer config={chartConfig} className='h-full w-full'>
+                  <AreaChart data={anaMonthSub} margin={{left: 0, right: 12,}}>
+                  {/* <CartesianGrid vertical={false}/> */}
+                  <XAxis dataKey="month"/>
+                  <YAxis dataKey="totalSubmissions"/>
+                  <ChartTooltip cursor={false} content={<ChartTooltipContent/>}/>
+                  <Area dataKey="totalSubmissions" type={"bump"}/>
+                  </AreaChart>
+                </ChartContainer>
+              </CardContent>
+            </Card>
+          </div>
+        </TabsContent>
 
         <TabsContent value="overview" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -407,7 +479,7 @@ function Dashboard() {
                     <span className="text-white">Memory Usage</span>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-[#10B981] rounded-full"></div>
-                      <span className="text-[#10B981]">{Math.floor(((systemData?.memory.total-systemData?.memory.free)/systemData.memory.total)*100)}%</span>
+                      <span className="text-[#10B981]">{Math.floor(((systemData?.memory.total-systemData?.memory.free)/systemData?.memory?.total)*100)}%</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
@@ -451,40 +523,6 @@ function Dashboard() {
               </div>
             </CardContent>
           </Card>
-        </TabsContent>
-
-        <TabsContent value="analytics" className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="bg-black/80 backdrop-blur-sm border-gray-800">
-              <CardHeader>
-                <CardTitle className="text-white">Campaign Distribution</CardTitle>
-                <CardDescription className="text-gray-400">
-                  Distribution of campaigns by type
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-12">
-                  <PieChart className="w-12 h-12 mx-auto text-gray-400 mb-4" />
-                  <p className="text-gray-400">Chart visualization coming soon</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-black/80 backdrop-blur-sm border-gray-800">
-              <CardHeader>
-                <CardTitle className="text-white">Performance Trends</CardTitle>
-                <CardDescription className="text-gray-400">
-                  Monthly performance metrics
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-12">
-                  <AreaChart className="w-12 h-12 mx-auto text-gray-400 mb-4" />
-                  <p className="text-gray-400">Chart visualization coming soon</p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
         </TabsContent>
       </Tabs>
     </div>
