@@ -50,7 +50,7 @@ function Login() {
 
   useEffect(()=>{
     window.turnstile?.render("#cf-captcha", {
-      sitekey: "0x4AAAAAAB40acTEPL3N1nB8",
+      sitekey: import.meta.env.VITE_CLOUDFLARE_KEY,
       callback: (token) => setToken(token),
     });
   },[])
@@ -59,7 +59,7 @@ function Login() {
     console.log("attemped")
     const run = async()=>{
       try {
-        const res = await axios.post(`http://localhost:8000/admin/verifytoken`,
+        const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/admin/verifytoken`,
           {token:token}
         )
         console.log(res.data)
