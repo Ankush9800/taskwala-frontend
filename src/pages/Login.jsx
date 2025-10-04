@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { account } from '@/lib/Appwrite';
+import axios from 'axios';
 import {
   Eye,
   EyeOff,
@@ -16,7 +17,7 @@ import {
   Award,
   Users,
 } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast, Toaster } from 'sonner';
 
@@ -27,6 +28,9 @@ function Login() {
   const [password, setPassword] = useState('');
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [token, setToken] = useState("")
+  const [btnActive, setbtnActive] = useState(false)
+  const captchaRef = useRef(null);
 
   useEffect(() => {
     const auth = async () => {
@@ -43,6 +47,31 @@ function Login() {
 
     auth();
   }, []);
+
+  useEffect(()=>{
+    window.turnstile?.render("#cf-captcha", {
+      sitekey: "0x4AAAAAAB40acTEPL3N1nB8",
+      callback: (token) => setToken(token),
+    });
+  },[])
+
+  useEffect(()=>{
+    console.log("attemped")
+    const run = async()=>{
+      try {
+        const res = await axios.post(`http://localhost:8000/admin/verifytoken`,
+          {token:token}
+        )
+        console.log(res.data)
+        setbtnActive(true)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    if (token) {
+      run()
+    }
+  },[token])
 
   const handleLogin = async () => {
     if (!email || !password) {
@@ -204,29 +233,30 @@ function Login() {
                   </button>
                 </div>
               </div>
+              <div ref={captchaRef} id="cf-captcha"></div>
 
               {/* Security Note */}
               <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-[#155a69]/20 to-[#F97316]/20 border border-[#155a69]/30 rounded-lg">
                 <CheckCircle className="w-5 h-5 text-[#155a69] mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-sm text-white font-medium">Secure Login</p>
-                  <p className="text-xs text-gray-400">Your credentials are encrypted and secure</p>
+                  <p className="text-sm text-white font-medium select-none">Secure Login</p>
+                  <p className="text-xs text-gray-400 select-none">Your credentials are encrypted and secure</p>
                 </div>
               </div>
 
               {/* Login Button */}
               <Button
                 onClick={handleLogin}
-                disabled={!email || !password || loading}
+                disabled={!email || !password || loading || !btnActive}
                 className="w-full bg-gradient-to-r from-[#F97316] to-[#713306] hover:from-[#F97316]/80 hover:to-[#713306]/80 text-white font-medium py-3 text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
                 {loading ? (
                   <div className="flex items-center gap-2">
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    <div className="select-none w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                     Signing in...
                   </div>
                 ) : (
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 select-none">
                     <Shield className="w-5 h-5" />
                     Sign in to Dashboard
                     <ArrowRight className="w-5 h-5" />
@@ -236,7 +266,7 @@ function Login() {
 
               {/* Additional Info */}
               <div className="text-center pt-4">
-                <p className="text-xs text-gray-400">
+                <p className="text-xs text-gray-400 select-none">
                   Need help? Contact your system administrator
                 </p>
               </div>
