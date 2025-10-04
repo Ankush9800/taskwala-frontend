@@ -380,7 +380,7 @@ function Dashboard() {
                   <XAxis dataKey="date"/>
                   <YAxis dataKey="activeUsers"/>
                   <ChartTooltip cursor={false} content={<ChartTooltipContent/>}/>
-                  <Area dataKey="activeUsers" type="natural"/>
+                  <Area dataKey="activeUsers" type="natural" fill='#F97316' stroke='#F97316' fillOpacity={0.2}/>
                   </AreaChart>
                 </ChartContainer>
               </CardContent>
@@ -400,7 +400,7 @@ function Dashboard() {
                   <XAxis dataKey="month"/>
                   <YAxis dataKey="totalSubmissions"/>
                   <ChartTooltip cursor={false} content={<ChartTooltipContent/>}/>
-                  <Area dataKey="totalSubmissions" type={"bump"}/>
+                  <Area dataKey="totalSubmissions" type={"bump"} fill='#F97316' stroke='#F97316' fillOpacity={0.2}/>
                   </AreaChart>
                 </ChartContainer>
               </CardContent>
