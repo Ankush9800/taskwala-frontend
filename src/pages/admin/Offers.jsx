@@ -328,13 +328,13 @@ function Offers() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-6">
+        <div className="min-h-screen">
             <Toaster />
             
             {/* Header */}
             <div className="mb-6">
-                <h1 className="text-3xl font-bold text-white">Campaign Management</h1>
-                <p className="text-gray-400 mt-2">Manage your campaigns and track performance</p>
+                <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Campaign Management</h1>
+                <p className="text-gray-600 dark:text-gray-400 mt-2">Manage your campaigns and track performance</p>
             </div>
 
             {/* Statistics Cards */}
@@ -389,7 +389,7 @@ function Offers() {
             </div>
 
             {/* Main Content */}
-            <Card className="border-0 shadow-lg bg-gray-800/80 backdrop-blur-sm">
+            <Card className="border-0 shadow-lg bg-white dark:bg-gray-800/80 backdrop-blur-sm">
                 <CardHeader className="pb-4">
                     <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                         <CardTitle className="flex items-center gap-2 text-[#F97316]">
@@ -436,12 +436,12 @@ function Offers() {
                                         Create Campaign
                                     </Button>
                                 </DialogTrigger>
-                                <DialogContent className="bg-gray-800 border-gray-600 text-white max-w-2xl max-h-[90vh] overflow-y-auto">
+                                <DialogContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white max-w-2xl max-h-[90vh] overflow-y-auto">
                                     <DialogHeader>
                                         <DialogTitle className="text-[#F97316]">
                                             {edit ? "Update Campaign" : "Create Campaign"}
                                         </DialogTitle>
-                                        <DialogDescription className="text-gray-400">
+                                        <DialogDescription className="text-gray-600 dark:text-gray-400">
                                             {edit ? "Update campaign details" : "Add a new campaign to your offers"}
                                         </DialogDescription>
                                     </DialogHeader>
@@ -449,23 +449,23 @@ function Offers() {
                                         <form onSubmit={handleSubmit} className="space-y-4">
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div className="space-y-2">
-                                                <Label className="text-gray-300">Campaign Name</Label>
+                                                <Label className="text-gray-700 dark:text-gray-300">Campaign Name</Label>
                                                 <Input
                                                     name="title"
                                                     value={formData.title}
                                                     onChange={handleChange}
-                                                    className="bg-gray-700 border-gray-600 text-white"
+                                                    className="bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
                                                     placeholder="Enter campaign name"
                                                     required
                                                 />
                                             </div>
                                             <div className="space-y-2">
-                                                <Label className="text-gray-300">Campaign ID</Label>
+                                                <Label className="text-gray-700 dark:text-gray-300">Campaign ID</Label>
                                                 <Input
                                                     name="campId"
                                                     value={formData.campId}
                                                     onChange={handleChange}
-                                                    className="bg-gray-700 border-gray-600 text-white"
+                                                    className="bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
                                                     placeholder="Enter campaign ID"
                                                     required
                                                 />
@@ -474,12 +474,12 @@ function Offers() {
 
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div className="space-y-2">
-                                                <Label className="text-gray-300">Price (₹)</Label>
+                                                <Label className="text-gray-900 dark:text-gray-300">Price (₹)</Label>
                                                 <Input
                                                     name="price"
                                                     value={formData.price}
                                                     onChange={handleChange}
-                                                    className="bg-gray-700 border-gray-600 text-white"
+                                                    className="bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
                                                     placeholder="0.00"
                                                     type="number"
                                                     step="0.01"
@@ -487,12 +487,12 @@ function Offers() {
                                                 />
                                             </div>
                                             <div className="space-y-2">
-                                                <Label className="text-gray-300">Payout Rate (₹)</Label>
+                                                <Label className="text-gray-900 dark:text-gray-300">Payout Rate (₹)</Label>
                                                 <Input
                                                     name="payoutRate"
                                                     value={formData.payoutRate}
                                                     onChange={handleChange}
-                                                    className="bg-gray-700 border-gray-600 text-white"
+                                                    className="bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
                                                     placeholder="0.00"
                                                     type="number"
                                                     step="0.01"
@@ -502,12 +502,12 @@ function Offers() {
                                         </div>
 
                                         <div className="space-y-2">
-                                            <Label className="text-gray-300">Tracking URL</Label>
+                                            <Label className="text-gray-900 dark:text-gray-300">Tracking URL</Label>
                                             <Input
                                                 name="trackingUrl"
                                                 value={formData.trackingUrl}
                                                 onChange={handleChange}
-                                                className="bg-gray-700 border-gray-600 text-white"
+                                                className="bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
                                                 placeholder="https://example.com/track"
                                                 type="url"
                                                 required
@@ -516,27 +516,27 @@ function Offers() {
 
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div className="space-y-2">
-                                                <Label className="text-gray-300">Campaign Image</Label>
+                                                <Label className="text-gray-900 dark:text-gray-300">Campaign Image</Label>
                                                 <Input
                                                     name="campaignImage"
                                                     onChange={handleChange}
-                                                    className="bg-gray-700 border-gray-600 text-white file:bg-gray-600 file:text-white file:border-0 file:rounded"
+                                                    className="bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white file:bg-gray-200 dark:file:bg-gray-600 file:text-gray-900 dark:file:text-white file:border-0 file:rounded"
                                                     type="file"
                                                     accept="image/*"
                                                 />
                                             </div>
                                             <div className="space-y-2">
-                                                <Label className="text-gray-300">Provider</Label>
+                                                <Label className="text-gray-900 dark:text-gray-300">Provider</Label>
                                                 <Select onValueChange={handleProviderChange} value={formData.provider}>
-                                                    <SelectTrigger className="bg-gray-700 border-gray-600 text-white">
+                                                    <SelectTrigger className="bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white">
                                                         <SelectValue placeholder="Select provider" />
                                                     </SelectTrigger>
-                                                    <SelectContent className="bg-gray-700 border-gray-600">
+                                                    <SelectContent className="bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600">
                                                         <SelectGroup>
-                                                            <SelectLabel className="text-gray-400">Providers</SelectLabel>
-                                                            <SelectItem value="hiqmobi" className="text-white focus:bg-gray-600">Hiqmobi</SelectItem>
-                                                            <SelectItem value="sankmo" className="text-white focus:bg-gray-600">Sankmo</SelectItem>
-                                                            <SelectItem value="icd" className="text-white focus:bg-gray-600">Indian-camp/JMD</SelectItem>
+                                                            <SelectLabel className="text-gray-600 dark:text-gray-400">Providers</SelectLabel>
+                                                            <SelectItem value="hiqmobi" className="text-gray-900 dark:text-white focus:bg-gray-100 dark:focus:bg-gray-600">Hiqmobi</SelectItem>
+                                                            <SelectItem value="sankmo" className="text-gray-900 dark:text-white focus:bg-gray-100 dark:focus:bg-gray-600">Sankmo</SelectItem>
+                                                            <SelectItem value="icd" className="text-gray-900 dark:text-white focus:bg-gray-100 dark:focus:bg-gray-600">Indian-camp/JMD</SelectItem>
                                                         </SelectGroup>
                                                     </SelectContent>
                                                 </Select>
@@ -552,7 +552,7 @@ function Offers() {
                                                 }
                                                 className="data-[state=checked]:bg-[#F97316]"
                                             />
-                                            <Label htmlFor="trackable" className="text-gray-300">
+                                            <Label htmlFor="trackable" className="text-gray-900 dark:text-gray-300">
                                                 Trackable Campaign
                                             </Label>
                                         </div>
@@ -560,7 +560,7 @@ function Offers() {
                                         {/* Campaign Steps/Process */}
                                         <div className="space-y-2">
                                             <div className="flex items-center justify-between">
-                                                <Label className="text-gray-300">Campaign Process Steps</Label>
+                                                <Label className="text-gray-900 dark:text-gray-300">Campaign Process Steps</Label>
                                                 <Button
                                                     type="button"
                                                     onClick={addStep}
@@ -573,7 +573,7 @@ function Offers() {
                                             </div>
                                             <div className="space-y-3 max-h-60 overflow-y-auto">
                                                 {formData.steps.map((step, index) => (
-                                                    <div key={index} className="border border-gray-600 rounded-lg p-3 bg-gray-750">
+                                                    <div key={index} className="border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-gray-50 dark:bg-gray-750">
                                                         <div className="flex items-center justify-between mb-2">
                                                             <span className="text-sm font-medium text-[#F97316]">
                                                                 Step {index + 1}
@@ -594,7 +594,7 @@ function Offers() {
                                                             placeholder="Enter step description (e.g., Download and install the mobile app from Play Store)"
                                                             value={step}
                                                             onChange={(e) => updateStep(index, e.target.value)}
-                                                            className="bg-gray-700 border-gray-600 text-white"
+                                                            className="bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
                                                             rows={2}
                                                             required
                                                         />
@@ -604,12 +604,12 @@ function Offers() {
                                         </div>
 
                                         <div className="space-y-2">
-                                            <Label className="text-gray-300">Description</Label>
+                                            <Label className="text-gray-900 dark:text-gray-300">Description</Label>
                                             <Textarea
                                                 name="description"
                                                 value={formData.description}
                                                 onChange={handleChange}
-                                                className="bg-gray-700 border-gray-600 text-white"
+                                                className="bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
                                                 placeholder="Enter campaign description"
                                                 rows={3}
                                                 required
@@ -649,37 +649,37 @@ function Offers() {
                     <div className="flex flex-col lg:flex-row gap-4 mt-4">
                         <div className="flex-1">
                             <div className="relative">
-                                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 w-4 h-4" />
                                 <Input
                                     placeholder="Search campaigns..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="pl-10 bg-gray-700 border-gray-600 text-white"
+                                    className="pl-10 bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
                                 />
                             </div>
                         </div>
                         
                         <div className="flex gap-2">
                             <Select value={statusFilter} onValueChange={setStatusFilter}>
-                                <SelectTrigger className="w-[140px] bg-gray-700 border-gray-600 text-white">
+                                <SelectTrigger className="w-[140px] bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white">
                                     <SelectValue placeholder="Status" />
                                 </SelectTrigger>
-                                <SelectContent className="bg-gray-700 border-gray-600">
-                                    <SelectItem value="all" className="text-white">All Status</SelectItem>
-                                    <SelectItem value="active" className="text-white">Active</SelectItem>
-                                    <SelectItem value="inactive" className="text-white">Inactive</SelectItem>
+                                <SelectContent className="bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600">
+                                    <SelectItem value="all" className="text-gray-900 dark:text-white">All Status</SelectItem>
+                                    <SelectItem value="active" className="text-gray-900 dark:text-white">Active</SelectItem>
+                                    <SelectItem value="inactive" className="text-gray-900 dark:text-white">Inactive</SelectItem>
                                 </SelectContent>
                             </Select>
 
                             <Select value={providerFilter} onValueChange={setProviderFilter}>
-                                <SelectTrigger className="w-[140px] bg-gray-700 border-gray-600 text-white">
+                                <SelectTrigger className="w-[140px] bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white">
                                     <SelectValue placeholder="Provider" />
                                 </SelectTrigger>
-                                <SelectContent className="bg-gray-700 border-gray-600">
-                                    <SelectItem value="all" className="text-white">All Providers</SelectItem>
-                                    <SelectItem value="hiqmobi" className="text-white">Hiqmobi</SelectItem>
-                                    <SelectItem value="sankmo" className="text-white">Sankmo</SelectItem>
-                                    <SelectItem value="icd" className="text-white">Indian-camp/JMD</SelectItem>
+                                <SelectContent className="bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600">
+                                    <SelectItem value="all" className="text-gray-900 dark:text-white">All Providers</SelectItem>
+                                    <SelectItem value="hiqmobi" className="text-gray-900 dark:text-white">Hiqmobi</SelectItem>
+                                    <SelectItem value="sankmo" className="text-gray-900 dark:text-white">Sankmo</SelectItem>
+                                    <SelectItem value="icd" className="text-gray-900 dark:text-white">Indian-camp/JMD</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
@@ -687,7 +687,7 @@ function Offers() {
 
                     {/* Tabs */}
                     <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-6">
-                        <TabsList className="grid w-full grid-cols-3 lg:w-[400px] bg-gray-700">
+                        <TabsList className="grid w-full grid-cols-3 lg:w-[400px] bg-gray-200 dark:bg-gray-700">
                             <TabsTrigger value="all" className="data-[state=active]:bg-[#F97316]">
                                 All ({totalCampaigns})
                             </TabsTrigger>
@@ -730,12 +730,12 @@ function Offers() {
                             ) : viewMode === "grid" ? (
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                     {filteredTable.map((camp, index) => (
-                                        <Card key={camp._id} className="border border-gray-600 bg-gray-700/50">
+                                        <Card key={camp._id} className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700/50">
                                             <CardContent className="p-6">
                                                 <div className="flex items-start justify-between mb-4">
                                                     <div className="flex-1">
-                                                        <h3 className="font-semibold text-white mb-1">{camp.title}</h3>
-                                                        <p className="text-sm text-gray-400">ID: {camp.campId}</p>
+                                                        <h3 className="font-semibold text-gray-900 dark:text-white mb-1">{camp.title}</h3>
+                                                        <p className="text-sm text-gray-600 dark:text-gray-400">ID: {camp.campId}</p>
                                                     </div>
                                                     <Badge
                                                         variant={camp.campaignStatus ? "default" : "secondary"}
@@ -747,15 +747,15 @@ function Offers() {
 
                                                 <div className="space-y-2 mb-4">
                                                     <div className="flex justify-between text-sm">
-                                                        <span className="text-gray-400">Payout:</span>
+                                                        <span className="text-gray-600 dark:text-gray-400">Payout:</span>
                                                         <span className="text-[#10B981] font-medium">₹{camp.payoutRate}</span>
                                                     </div>
                                                     <div className="flex justify-between text-sm">
-                                                        <span className="text-gray-400">Provider:</span>
-                                                        <span className="text-white">{camp.provider}</span>
+                                                        <span className="text-gray-600 dark:text-gray-400">Provider:</span>
+                                                        <span className="text-gray-900 dark:text-white">{camp.provider}</span>
                                                     </div>
                                                     <div className="flex justify-between text-sm">
-                                                        <span className="text-gray-400">Trackable:</span>
+                                                        <span className="text-gray-600 dark:text-gray-400">Trackable:</span>
                                                         <Badge
                                                             variant={camp.trackable ? "default" : "secondary"}
                                                             className={`${camp.trackable ? "bg-[#F97316]" : "bg-gray-500"} text-xs`}
@@ -765,7 +765,7 @@ function Offers() {
                                                     </div>
                                                 </div>
 
-                                                <p className="text-sm text-gray-400 mb-4 line-clamp-2">
+                                                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
                                                     {camp.description}
                                                 </p>
 
@@ -835,32 +835,32 @@ function Offers() {
                                 <div className="overflow-x-auto">
                                     <Table>
                                         <TableHeader>
-                                            <TableRow className="border-gray-600">
-                                                <TableHead className="text-gray-300">#</TableHead>
-                                                <TableHead className="text-gray-300">Campaign</TableHead>
-                                                <TableHead className="text-gray-300">Camp ID</TableHead>
-                                                <TableHead className="text-gray-300">Payout</TableHead>
-                                                <TableHead className="text-gray-300">Provider</TableHead>
-                                                <TableHead className="text-gray-300">Trackable</TableHead>
-                                                <TableHead className="text-gray-300">Status</TableHead>
-                                                <TableHead className="text-gray-300">Actions</TableHead>
+                                            <TableRow className="border-gray-300 dark:border-gray-600">
+                                                <TableHead className="text-gray-900 dark:text-gray-300">#</TableHead>
+                                                <TableHead className="text-gray-900 dark:text-gray-300">Campaign</TableHead>
+                                                <TableHead className="text-gray-900 dark:text-gray-300">Camp ID</TableHead>
+                                                <TableHead className="text-gray-900 dark:text-gray-300">Payout</TableHead>
+                                                <TableHead className="text-gray-900 dark:text-gray-300">Provider</TableHead>
+                                                <TableHead className="text-gray-900 dark:text-gray-300">Trackable</TableHead>
+                                                <TableHead className="text-gray-900 dark:text-gray-300">Status</TableHead>
+                                                <TableHead className="text-gray-900 dark:text-gray-300">Actions</TableHead>
                                             </TableRow>
                                         </TableHeader>
                                         <TableBody>
                                             {filteredTable.map((camp, index) => (
-                                                <TableRow key={camp._id} className="border-gray-600 hover:bg-gray-700/50">
-                                                    <TableCell className="text-gray-400">{index + 1}</TableCell>
+                                                <TableRow key={camp._id} className="border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700/50">
+                                                    <TableCell className="text-gray-600 dark:text-gray-400">{index + 1}</TableCell>
                                                     <TableCell>
                                                         <div>
-                                                            <div className="font-medium text-white">{camp.title}</div>
-                                                            <div className="text-sm text-gray-400 truncate max-w-xs">
+                                                            <div className="font-medium text-gray-900 dark:text-white">{camp.title}</div>
+                                                            <div className="text-sm text-gray-600 dark:text-gray-400 truncate max-w-xs">
                                                                 {camp.description}
                                                             </div>
                                                         </div>
                                                     </TableCell>
-                                                    <TableCell className="text-gray-300">{camp.campId}</TableCell>
+                                                    <TableCell className="text-gray-900 dark:text-gray-300">{camp.campId}</TableCell>
                                                     <TableCell className="text-[#10B981] font-medium">₹{camp.payoutRate}</TableCell>
-                                                    <TableCell className="text-gray-300">{camp.provider}</TableCell>
+                                                    <TableCell className="text-gray-900 dark:text-gray-300">{camp.provider}</TableCell>
                                                     <TableCell>
                                                         <Badge
                                                             variant={camp.trackable ? "default" : "secondary"}
@@ -883,7 +883,7 @@ function Offers() {
                                                                 size="sm"
                                                                 variant="ghost"
                                                                 onClick={() => copyUrl(`${origin}/camp?id=${camp.id}&afi=${camp.refId}`)}
-                                                                className="text-gray-400 hover:text-white"
+                                                                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                                                                 title="Copy URL"
                                                             >
                                                                 <Copy className="w-4 h-4" />
@@ -899,7 +899,7 @@ function Offers() {
                                                                 size="sm"
                                                                 variant="ghost"
                                                                 onClick={() => handleEdit(camp)}
-                                                                className="text-gray-400 hover:text-white"
+                                                                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                                                                 title="Edit Campaign"
                                                             >
                                                                 <Edit className="w-4 h-4" />
@@ -916,17 +916,17 @@ function Offers() {
                                                                         <Trash2 className="w-4 h-4" />
                                                                     </Button>
                                                                 </AlertDialogTrigger>
-                                                                <AlertDialogContent className="bg-gray-800 border-gray-600">
+                                                                <AlertDialogContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
                                                                     <AlertDialogHeader>
-                                                                        <AlertDialogTitle className="text-white">
+                                                                        <AlertDialogTitle className="text-gray-900 dark:text-white">
                                                                             Delete Campaign
                                                                         </AlertDialogTitle>
-                                                                        <AlertDialogDescription className="text-gray-400">
+                                                                        <AlertDialogDescription className="text-gray-600 dark:text-gray-400">
                                                                             Are you sure you want to delete "{camp.title}"? This action cannot be undone.
                                                                         </AlertDialogDescription>
                                                                     </AlertDialogHeader>
                                                                     <AlertDialogFooter>
-                                                                        <AlertDialogCancel className="border-gray-600 text-gray-300 hover:bg-gray-700">
+                                                                        <AlertDialogCancel className="border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
                                                                             Cancel
                                                                         </AlertDialogCancel>
                                                                         <AlertDialogAction

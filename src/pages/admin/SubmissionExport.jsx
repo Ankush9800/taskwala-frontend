@@ -302,7 +302,7 @@ function SubmissionExport() {
                 <Button
                   onClick={exportToCSV}
                   disabled={exportLoading || submissions?.length === 0}
-                  className="bg-[#10B981] hover:bg-[#059669]"
+                  className="bg-[#10B981] hover:bg-[#059669] text-black dark:text-white"
                 >
                   <FileSpreadsheet className="w-4 h-4 mr-2" />
                   {exportLoading ? 'Exporting...' : 'Export CSV'}

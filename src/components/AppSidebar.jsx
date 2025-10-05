@@ -35,7 +35,9 @@ import {
   Sparkles,
   Building2,
   HelpCircle,
-  Download
+  Download,
+  Moon,
+  Sun
 } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
@@ -52,7 +54,9 @@ function AppSidebar() {
   const [profileData, setProfileData] = useState(null);
   const [campaignsOpen, setCampaignsOpen] = useState(false);
   const [reportsOpen, setReportsOpen] = useState(false);
-  const [unreadCount, setUnreadCount] = useState(0)
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [campCount, SetCampCount] = useState(0)
+  const [isDark, setIsDark] = useState(() => {const saved = localStorage.getItem("theme"); return saved === "dark";});
 
   const profile = async () => {
     try {
@@ -62,6 +66,11 @@ function AppSidebar() {
       console.log('Error fetching profile:', error);
     }
   };
+
+  const totalCamp = async()=>{
+    const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/getallcampaign`)
+    SetCampCount(res.data.length)
+  }
 
   const unreadMsg = async()=>{
     const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/contact/getmsg`)
@@ -96,10 +105,10 @@ function AppSidebar() {
   useEffect(() => {
     profile();
     unreadMsg()
+    totalCamp()
   }, []);
 
   useEffect(() => {
-    // Auto-expand sections based on current route
     if (location.pathname.includes('/admin/offers') || location.pathname.includes('/admin/campaigns')) {
       setCampaignsOpen(true);
     }
@@ -108,12 +117,17 @@ function AppSidebar() {
     }
   }, [location.pathname]);
 
+  useEffect(()=>{
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+    document.documentElement.classList.toggle("dark",isDark)
+  },[isDark])
+
   return (
-    <Sidebar className="h-screen border-r border-gray-800">
-      <SidebarContent className="flex flex-col h-full bg-gradient-to-b from-gray-900 to-black text-white">
+    <Sidebar className="h-screen border-r border-gray-200 dark:border-gray-800 select-none">
+      <SidebarContent className="flex flex-col h-full bg-white dark:bg-gradient-to-b dark:from-gray-900 dark:to-black text-gray-900 dark:text-white">
         <div className="flex-1">
           {/* Logo Section */}
-          <SidebarHeader className="p-6 border-b border-gray-800">
+          <SidebarHeader className="p-6 border-b border-gray-200 dark:border-gray-800">
             <div className="flex items-center gap-3">
               <div className="bg-gradient-to-r from-[#F97316] to-[#713306] p-2.5 rounded-lg">
                 <Building2 className="w-6 h-6 text-white" />
@@ -122,7 +136,7 @@ function AppSidebar() {
                 <h2 className="text-xl font-bold bg-gradient-to-r from-[#F97316] to-[#713306] bg-clip-text text-transparent">
                   TaskWala
                 </h2>
-                <p className="text-xs text-gray-400">Admin Portal</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Admin Portal</p>
               </div>
             </div>
           </SidebarHeader>
@@ -131,7 +145,7 @@ function AppSidebar() {
           <div className="px-4 py-6 space-y-6">
             {/* Dashboard */}
             <SidebarGroup>
-              <SidebarGroupLabel className="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3">
+              <SidebarGroupLabel className="text-gray-600 dark:text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3">
                 Overview
               </SidebarGroupLabel>
               <SidebarGroupContent>
@@ -142,7 +156,7 @@ function AppSidebar() {
                       className={`group transition-all duration-200 ${
                         isActive('/admin/dashboard') 
                           ? 'bg-gradient-to-r from-[#F97316] to-[#713306] text-white shadow-lg' 
-                          : 'hover:bg-gray-800/50 text-gray-300 hover:text-white'
+                          : 'hover:bg-gray-100 dark:hover:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
                       }`}
                     >
                       <Link to="/admin/dashboard" className="flex items-center gap-3 px-3 py-2.5 rounded-lg">
@@ -160,7 +174,7 @@ function AppSidebar() {
 
             {/* Campaigns Section */}
             <SidebarGroup>
-              <SidebarGroupLabel className="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3">
+              <SidebarGroupLabel className="text-gray-600 dark:text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3">
                 Campaign Management
               </SidebarGroupLabel>
               <SidebarGroupContent>
@@ -175,8 +189,8 @@ function AppSidebar() {
                         <SidebarMenuButton 
                           className={`group transition-all duration-200 ${
                             isParentActive(['/admin/offers', '/admin/campaigns'])
-                              ? 'bg-gray-800/50 text-white' 
-                              : 'hover:bg-gray-800/50 text-gray-300 hover:text-white'
+                              ? 'bg-gray-100 dark:bg-gray-800/50 text-gray-900 dark:text-white' 
+                              : 'hover:bg-gray-100 dark:hover:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
                           }`}
                         >
                           <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg w-full">
@@ -194,14 +208,14 @@ function AppSidebar() {
                               className={`transition-all duration-200 ${
                                 isActive('/admin/offers')
                                   ? 'bg-[#F97316]/20 text-[#F97316] border-l-2 border-[#F97316]'
-                                  : 'hover:bg-gray-800/30 text-gray-400 hover:text-white'
+                                  : 'hover:bg-gray-100 dark:hover:bg-gray-800/30 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                               }`}
                             >
                               <Link to="/admin/offers" className="flex items-center gap-3 px-3 py-2 ml-6 rounded-lg">
                                 <div className="w-2 h-2 bg-current rounded-full"></div>
                                 <span className="font-medium">All Offers</span>
-                                <Badge variant="secondary" className="ml-auto bg-gray-700 text-gray-300 text-xs">
-                                  12
+                                <Badge variant="secondary" className="ml-auto bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs">
+                                  {campCount}
                                 </Badge>
                               </Link>
                             </SidebarMenuSubButton>
@@ -216,7 +230,7 @@ function AppSidebar() {
 
             {/* Reports Section */}
             <SidebarGroup>
-              <SidebarGroupLabel className="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3">
+              <SidebarGroupLabel className="text-gray-600 dark:text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3">
                 Analytics & Reports
               </SidebarGroupLabel>
               <SidebarGroupContent>
@@ -231,8 +245,8 @@ function AppSidebar() {
                         <SidebarMenuButton 
                           className={`group transition-all duration-200 ${
                             isParentActive(['/admin/conversion', '/admin/submission', '/admin/submission-export'])
-                              ? 'bg-gray-800/50 text-white' 
-                              : 'hover:bg-gray-800/50 text-gray-300 hover:text-white'
+                              ? 'bg-gray-100 dark:bg-gray-800/50 text-gray-900 dark:text-white' 
+                              : 'hover:bg-gray-100 dark:hover:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
                           }`}
                         >
                           <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg w-full">
@@ -250,7 +264,7 @@ function AppSidebar() {
                               className={`transition-all duration-200 ${
                                 isActive('/admin/conversion')
                                   ? 'bg-[#155a69]/20 text-[#155a69] border-l-2 border-[#155a69]'
-                                  : 'hover:bg-gray-800/30 text-gray-400 hover:text-white'
+                                  : 'hover:bg-gray-100 dark:hover:bg-gray-800/30 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                               }`}
                             >
                               <Link to="/admin/conversion" className="flex items-center gap-3 px-3 py-2 ml-6 rounded-lg">
@@ -265,7 +279,7 @@ function AppSidebar() {
                               className={`transition-all duration-200 ${
                                 isActive('/admin/submission')
                                   ? 'bg-[#155a69]/20 text-[#155a69] border-l-2 border-[#155a69]'
-                                  : 'hover:bg-gray-800/30 text-gray-400 hover:text-white'
+                                  : 'hover:bg-gray-100 dark:hover:bg-gray-800/30 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                               }`}
                             >
                               <Link to="/admin/submission" className="flex items-center gap-3 px-3 py-2 ml-6 rounded-lg">
@@ -280,7 +294,7 @@ function AppSidebar() {
                               className={`transition-all duration-200 ${
                                 isActive('/admin/submission-export')
                                   ? 'bg-[#F97316]/20 text-[#F97316] border-l-2 border-[#F97316]'
-                                  : 'hover:bg-gray-800/30 text-gray-400 hover:text-white'
+                                  : 'hover:bg-gray-100 dark:hover:bg-gray-800/30 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                               }`}
                             >
                               <Link to="/admin/submission-export" className="flex items-center gap-3 px-3 py-2 ml-6 rounded-lg">
@@ -301,7 +315,7 @@ function AppSidebar() {
                       className={`group transition-all duration-200 ${
                         isActive('/admin/payments') 
                           ? 'bg-gradient-to-r from-[#10B981] to-[#155a69] text-white shadow-lg' 
-                          : 'hover:bg-gray-800/50 text-gray-300 hover:text-white'
+                          : 'hover:bg-gray-100 dark:hover:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
                       }`}
                     >
                       <Link to="/admin/payments" className="flex items-center gap-3 px-3 py-2.5 rounded-lg">
@@ -319,7 +333,7 @@ function AppSidebar() {
 
             {/* System Section */}
             <SidebarGroup>
-              <SidebarGroupLabel className="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3">
+              <SidebarGroupLabel className="text-gray-600 dark:text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3">
                 System
               </SidebarGroupLabel>
               <SidebarGroupContent>
@@ -327,7 +341,7 @@ function AppSidebar() {
                   <SidebarMenuItem>
                     <SidebarMenuButton 
                       asChild 
-                      className="group transition-all duration-200 hover:bg-gray-800/50 text-gray-300 hover:text-white"
+                      className="group transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                     >
                       <Link to="/admin/users" className="flex items-center gap-3 px-3 py-2.5 rounded-lg">
                         <Users className="w-5 h-5" />
@@ -338,7 +352,7 @@ function AppSidebar() {
                   <SidebarMenuItem>
                     <SidebarMenuButton 
                       asChild 
-                      className="group transition-all duration-200 hover:bg-gray-800/50 text-gray-300 hover:text-white"
+                      className="group transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                     >
                       <Link to="/admin/settings" className="flex items-center gap-3 px-3 py-2.5 rounded-lg">
                         <Settings className="w-5 h-5" />
@@ -352,7 +366,7 @@ function AppSidebar() {
 
             {/* Support Section */}
             <SidebarGroup>
-              <SidebarGroupLabel className="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3">
+              <SidebarGroupLabel className="text-gray-600 dark:text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3">
                 Support
               </SidebarGroupLabel>
               <SidebarGroupContent>
@@ -363,7 +377,7 @@ function AppSidebar() {
                       className={`group transition-all duration-200 ${
                         isActive('/admin/support') 
                           ? 'bg-gradient-to-r from-[#F97316] to-[#713306] text-white shadow-lg' 
-                          : 'hover:bg-gray-800/50 text-gray-300 hover:text-white'
+                          : 'hover:bg-gray-100 dark:hover:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
                       }`}
                     >
                       <Link to="/admin/support" className="flex items-center gap-3 px-3 py-2.5 rounded-lg">
@@ -381,7 +395,7 @@ function AppSidebar() {
                   <SidebarMenuItem>
                     <SidebarMenuButton 
                       asChild 
-                      className="group transition-all duration-200 hover:bg-gray-800/50 text-gray-300 hover:text-white"
+                      className="group transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                     >
                       <Link to="/contact" className="flex items-center gap-3 px-3 py-2.5 rounded-lg">
                         <HelpCircle className="w-5 h-5" />
@@ -392,7 +406,7 @@ function AppSidebar() {
                   <SidebarMenuItem>
                     <SidebarMenuButton 
                       asChild 
-                      className="group transition-all duration-200 hover:bg-gray-800/50 text-gray-300 hover:text-white"
+                      className="group transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                     >
                       <Link to="/admin/help" className="flex items-center gap-3 px-3 py-2.5 rounded-lg">
                         <HelpCircle className="w-5 h-5" />
@@ -400,6 +414,7 @@ function AppSidebar() {
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
+
                 </SidebarMenu>
               </SidebarGroupContent>
             </SidebarGroup>
@@ -407,21 +422,21 @@ function AppSidebar() {
         </div>
 
         {/* Footer */}
-        <SidebarFooter className="p-4 border-t border-gray-800 bg-gray-900/50">
+        <SidebarFooter className="p-4 border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50">
           <div className="flex items-center justify-between">
             {/* Profile Info */}
             <div className="flex items-center gap-3 flex-1 min-w-0">
-              <Avatar className="h-10 w-10 rounded-lg border-2 border-gray-700">
+              <Avatar className="h-10 w-10 rounded-lg border-2 border-gray-300 dark:border-gray-700">
                 <AvatarImage src={profileData?.prefs?.avatar} alt="User" className="object-cover" />
                 <AvatarFallback className="bg-gradient-to-r from-[#F97316] to-[#713306] text-white font-semibold">
                   {profileData?.name?.charAt(0) || 'A'}
                 </AvatarFallback>
               </Avatar>
               <div className="flex flex-col min-w-0 flex-1">
-                <span className="text-sm font-semibold text-white truncate">
+                <span className="text-sm font-semibold text-gray-900 dark:text-white truncate">
                   {profileData?.name || 'Admin User'}
                 </span>
-                <span className="text-xs text-gray-400 truncate">
+                <span className="text-xs text-gray-600 dark:text-gray-400 truncate">
                   {profileData?.email || 'admin@taskwala.com'}
                 </span>
               </div>
@@ -433,18 +448,18 @@ function AppSidebar() {
                 <Button 
                   size="icon" 
                   variant="ghost" 
-                  className="h-8 w-8 hover:bg-gray-800 text-gray-400 hover:text-white transition-colors"
+                  className="h-8 w-8 hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                 >
                   <Plus className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent 
-                className="bg-gray-800 border border-gray-700 text-white w-48" 
+                className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white w-48" 
                 side="right"
                 align="end"
               >
                 <DropdownMenuGroup>
-                  <DropdownMenuItem className="cursor-pointer hover:bg-gray-700 focus:bg-gray-700">
+                  <DropdownMenuItem className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 focus:bg-gray-100 dark:focus:bg-gray-700">
                     <Shield className="w-4 h-4 mr-2" />
                     <Link to="/admin/profile" className="flex-1">Account Settings</Link>
                   </DropdownMenuItem>
@@ -465,10 +480,36 @@ function AppSidebar() {
           </div>
 
           {/* Status Indicator */}
-          <div className="flex items-center gap-2 mt-3 p-2 bg-gradient-to-r from-[#10B981]/20 to-[#155a69]/20 border border-[#10B981]/30 rounded-lg">
-            <div className="w-2 h-2 bg-[#10B981] rounded-full animate-pulse"></div>
-            <span className="text-xs text-[#10B981] font-medium">System Online</span>
-            <Sparkles className="w-3 h-3 text-[#10B981] ml-auto" />
+          <div className="flex items-center justify-between gap-3 mt-3 p-2.5 bg-gray-100 dark:bg-gray-800/50 border border-gray-300 dark:border-gray-700 rounded-lg">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-[#10B981] rounded-full animate-pulse"></div>
+              <span className="text-xs text-black dark:text-white font-medium">System Online</span>
+            </div>
+
+            {/* Theme Toggle */}
+            <div className="flex items-center gap-1 p-0.5 bg-gray-200 dark:bg-gray-900/50 rounded-md">
+              <Button
+                size="icon"
+                className={`${!isDark?"bg-gray-800":"bg-gray-800"} h-6 w-6 hover:bg-gray-700 text-yellow-400 hover:text-yellow-300 transition-colors`}
+                onClick={() => {
+                  setIsDark(false)
+                }}
+                title="Light Mode"
+              >
+                <Sun className="h-3.5 w-3.5" />
+              </Button>
+              <Button
+                size="icon"
+                onFocus={true}
+                className={`${isDark?"bg-gray-100":"bg-gray-100"} h-6 w-6 hover:bg-gray-700 text-blue-400 hover:text-blue-300 transition-colors`}
+                onClick={() => {
+                  setIsDark(true)
+                }}
+                title="Dark Mode"
+              >
+                <Moon className="h-3.5 w-3.5" />
+              </Button>
+            </div>
           </div>
         </SidebarFooter>
       </SidebarContent>

@@ -194,11 +194,11 @@ function Dashboard() {
         <div>
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#F97316]/20 to-[#713306]/20 border border-[#F97316]/30 rounded-full px-4 py-2 mb-4">
             <BarChart3 className="w-4 h-4 text-[#F97316]" />
-            <span className="text-sm font-medium text-white">Admin Dashboard</span>
+            <span className="text-sm font-medium text-gray-900 dark:text-white">Admin Dashboard</span>
             <Sparkles className="w-4 h-4 text-[#F97316]" />
           </div>
-          <h1 className="text-3xl font-bold text-white mb-2">Welcome back, Admin</h1>
-          <p className="text-gray-400">Here's what's happening with your campaigns today.</p>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Welcome back, Admin</h1>
+          <p className="text-gray-600 dark:text-gray-400">Here's what's happening with your campaigns today.</p>
         </div>
         
         <div className="flex gap-3">
@@ -220,32 +220,32 @@ function Dashboard() {
 
       {/* Main Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#F97316]/30 transition-all duration-300 group">
+        <Card className="bg-white dark:bg-black/80 backdrop-blur-sm border-gray-300 dark:border-gray-800 hover:border-[#F97316]/30 transition-all duration-300 group">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-gray-400">Total Campaigns</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Campaigns</CardTitle>
             <div className="bg-gradient-to-r from-[#F97316] to-[#713306] p-2 rounded-lg group-hover:scale-110 transition-transform duration-300">
               <Target className="w-4 h-4 text-white" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-white mb-1">{totalCamp}</div>
+            <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">{totalCamp}</div>
             <div className="flex items-center text-sm">
               <ArrowUpRight className="w-4 h-4 text-[#10B981] mr-1" />
               <span className="text-[#10B981]">+12%</span>
-              <span className="text-gray-400 ml-1">from last month</span>
+              <span className="text-gray-600 dark:text-gray-400 ml-1">from last month</span>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#155a69]/30 transition-all duration-300 group">
+        <Card className="bg-white dark:bg-black/80 backdrop-blur-sm border-gray-300 dark:border-gray-800 hover:border-[#155a69]/30 transition-all duration-300 group">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-gray-400">Monthly Submissions</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">Monthly Submissions</CardTitle>
             <div className="bg-gradient-to-r from-[#155a69] to-[#F97316] p-2 rounded-lg group-hover:scale-110 transition-transform duration-300">
               <Users2 className="w-4 h-4 text-white" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-white mb-1">{subData?.[3]}</div>
+            <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">{subData?.[3]}</div>
             <div className="flex items-center text-sm">
               {monthlyGrowthRate > 0 ?<div className='flex items-center'>
                 <ArrowUpRight className="w-4 h-4 text-[#10B981] mr-1" />
@@ -254,43 +254,43 @@ function Dashboard() {
                 <ArrowDownRight className="w-4 h-4 text-[#F97316] mr-1" />
                 <span className="text-[#F97316]">{monthlyGrowthRate}%</span>
               </div>}
-              <span className="text-gray-400 ml-1">from last month</span>
+              <span className="text-gray-600 dark:text-gray-400 ml-1">from last month</span>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#10B981]/30 transition-all duration-300 group">
+        <Card className="bg-white dark:bg-black/80 backdrop-blur-sm border-gray-300 dark:border-gray-800 hover:border-[#10B981]/30 transition-all duration-300 group">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-gray-400">Total Rewards</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Rewards</CardTitle>
             <div className="bg-gradient-to-r from-[#10B981] to-[#155a69] p-2 rounded-lg group-hover:scale-110 transition-transform duration-300">
               <Coins className="w-4 h-4 text-white" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-white mb-1">₹{totalPayout.toLocaleString()}</div>
+            <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">₹{totalPayout.toLocaleString()}</div>
             <div className="flex items-center text-sm">
               <ArrowUpRight className="w-4 h-4 text-[#10B981] mr-1" />
               <span className="text-[#10B981]">+15%</span>
-              <span className="text-gray-400 ml-1">from last month</span>
+              <span className="text-gray-600 dark:text-gray-400 ml-1">from last month</span>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-black/80 backdrop-blur-sm border-gray-800 hover:border-[#F97316]/30 transition-all duration-300 group">
+        <Card className="bg-white dark:bg-black/80 backdrop-blur-sm border-gray-300 dark:border-gray-800 hover:border-[#F97316]/30 transition-all duration-300 group">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-gray-400">Conversion Rate</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">Conversion Rate</CardTitle>
             <div className="bg-gradient-to-r from-[#F97316] to-[#10B981] p-2 rounded-lg group-hover:scale-110 transition-transform duration-300">
               <TrendingUp className="w-4 h-4 text-white" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-white mb-1">
+            <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
               {totalSubmission > 0 ? Number((totalConversion/totalSubmission)*100).toFixed(2) : 0}%
             </div>
             <div className="flex items-center text-sm">
               <ArrowDownRight className="w-4 h-4 text-[#F97316] mr-1" />
               <span className="text-[#F97316]">-2%</span>
-              <span className="text-gray-400 ml-1">from last week</span>
+              <span className="text-gray-600 dark:text-gray-400 ml-1">from last week</span>
             </div>
           </CardContent>
         </Card>
@@ -298,48 +298,48 @@ function Dashboard() {
 
       {/* Secondary Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card className="bg-black/80 backdrop-blur-sm border-gray-800">
+        <Card className="bg-white dark:bg-black/80 backdrop-blur-sm border-gray-300 dark:border-gray-800">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Active Users</p>
-                <p className="text-2xl font-bold text-white">{quickStats.activeUsers.toLocaleString()}</p>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">Active Users</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">{quickStats.activeUsers.toLocaleString()}</p>
               </div>
               <Activity className="w-8 h-8 text-[#10B981]" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-black/80 backdrop-blur-sm border-gray-800">
+        <Card className="bg-white dark:bg-black/80 backdrop-blur-sm border-gray-300 dark:border-gray-800">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Pending Payments</p>
-                <p className="text-2xl font-bold text-white">{quickStats.pendingPayments}</p>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">Pending Payments</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">{quickStats.pendingPayments}</p>
               </div>
               <Clock className="w-8 h-8 text-[#F97316]" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-black/80 backdrop-blur-sm border-gray-800">
+        <Card className="bg-white dark:bg-black/80 backdrop-blur-sm border-gray-300 dark:border-gray-800">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Avg Conversion</p>
-                <p className="text-2xl font-bold text-white">{quickStats.avgConversionRate}%</p>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">Avg Conversion</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">{quickStats.avgConversionRate}%</p>
               </div>
               <BarChart3 className="w-8 h-8 text-[#155a69]" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-black/80 backdrop-blur-sm border-gray-800">
+        <Card className="bg-white dark:bg-black/80 backdrop-blur-sm border-gray-300 dark:border-gray-800">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Total Revenue</p>
-                <p className="text-2xl font-bold text-white">₹{quickStats.totalRevenue.toLocaleString()}</p>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">Total Revenue</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">₹{quickStats.totalRevenue.toLocaleString()}</p>
               </div>
               <DollarSign className="w-8 h-8 text-[#10B981]" />
             </div>
@@ -349,16 +349,16 @@ function Dashboard() {
 
       {/* Tabs Section */}
       <Tabs defaultValue="analytics" className="space-y-6">
-        <TabsList className="bg-black/60 border border-gray-800">
-          <TabsTrigger value="analytics" className="data-[state=active]:bg-[#F97316] data-[state=active]:text-white text-white">
+        <TabsList className="bg-gray-100 dark:bg-black/60 border border-gray-300 dark:border-gray-800">
+          <TabsTrigger value="analytics" className="data-[state=active]:bg-[#F97316] data-[state=active]:text-white text-gray-900 dark:text-white">
             <BarChart3 className="w-4 h-4 mr-2" />
             Analytics
           </TabsTrigger>
-          <TabsTrigger value="overview" className="data-[state=active]:bg-[#F97316] data-[state=active]:text-white text-white">
+          <TabsTrigger value="overview" className="data-[state=active]:bg-[#F97316] data-[state=active]:text-white text-gray-900 dark:text-white">
             <PieChart className="w-4 h-4 mr-2" />
             Overview
           </TabsTrigger>
-          <TabsTrigger value="activity" className="data-[state=active]:bg-[#F97316] data-[state=active]:text-white text-white">
+          <TabsTrigger value="activity" className="data-[state=active]:bg-[#F97316] data-[state=active]:text-white text-gray-900 dark:text-white">
             <Activity className="w-4 h-4 mr-2" />
             Recent Activity
           </TabsTrigger>
@@ -366,10 +366,10 @@ function Dashboard() {
 
         <TabsContent value="analytics" className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="bg-black/80 backdrop-blur-sm border-gray-800">
+            <Card className="bg-white dark:bg-black/80 backdrop-blur-sm border-gray-300 dark:border-gray-800">
               <CardHeader>
-                <CardTitle className="text-white">Visitors</CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardTitle className="text-gray-900 dark:text-white">Visitors</CardTitle>
+                <CardDescription className="text-gray-600 dark:text-gray-400">
                   Daily visitors metrics
                 </CardDescription>
               </CardHeader>
@@ -386,10 +386,10 @@ function Dashboard() {
               </CardContent>
             </Card>
 
-            <Card className="bg-black/80 backdrop-blur-sm border-gray-800">
+            <Card className="bg-white dark:bg-black/80 backdrop-blur-sm border-gray-300 dark:border-gray-800">
               <CardHeader>
-                <CardTitle className="text-white">Performance Trends</CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardTitle className="text-gray-900 dark:text-white">Performance Trends</CardTitle>
+                <CardDescription className="text-gray-600 dark:text-gray-400">
                   Monthly submission metrics
                 </CardDescription>
               </CardHeader>
@@ -411,36 +411,36 @@ function Dashboard() {
         <TabsContent value="overview" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Campaign Performance */}
-            <Card className="bg-black/80 backdrop-blur-sm border-gray-800">
+            <Card className="bg-white dark:bg-black/80 backdrop-blur-sm border-gray-300 dark:border-gray-800">
               <CardHeader>
-                <CardTitle className="text-white flex items-center gap-2">
+                <CardTitle className="text-gray-900 dark:text-white flex items-center gap-2">
                   <Target className="w-5 h-5 text-[#F97316]" />
                   Campaign Performance
                 </CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardDescription className="text-gray-600 dark:text-gray-400">
                   Top performing campaigns this month
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between p-3 bg-gray-900/50 rounded-lg">
+                  <div className="flex items-center justify-between p-3 bg-gray-100 dark:bg-gray-900/50 rounded-lg">
                     <div>
-                      <p className="font-medium text-white">Social Media Boost</p>
-                      <p className="text-sm text-gray-400">245 participants</p>
+                      <p className="font-medium text-gray-900 dark:text-white">Social Media Boost</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">245 participants</p>
                     </div>
                     <Badge className="bg-[#10B981] text-white">Active</Badge>
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-gray-900/50 rounded-lg">
+                  <div className="flex items-center justify-between p-3 bg-gray-100 dark:bg-gray-900/50 rounded-lg">
                     <div>
-                      <p className="font-medium text-white">Product Review Campaign</p>
-                      <p className="text-sm text-gray-400">180 participants</p>
+                      <p className="font-medium text-gray-900 dark:text-white">Product Review Campaign</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">180 participants</p>
                     </div>
                     <Badge className="bg-[#F97316] text-white">Completed</Badge>
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-gray-900/50 rounded-lg">
+                  <div className="flex items-center justify-between p-3 bg-gray-100 dark:bg-gray-900/50 rounded-lg">
                     <div>
-                      <p className="font-medium text-white">Referral Challenge</p>
-                      <p className="text-sm text-gray-400">95 participants</p>
+                      <p className="font-medium text-gray-900 dark:text-white">Referral Challenge</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">95 participants</p>
                     </div>
                     <Badge className="bg-[#155a69] text-white">Pending</Badge>
                   </div>
@@ -449,41 +449,41 @@ function Dashboard() {
             </Card>
 
             {/* System Health */}
-            <Card className="bg-black/80 backdrop-blur-sm border-gray-800">
+            <Card className="bg-white dark:bg-black/80 backdrop-blur-sm border-gray-300 dark:border-gray-800">
               <CardHeader>
-                <CardTitle className="text-white flex items-center gap-2">
+                <CardTitle className="text-gray-900 dark:text-white flex items-center gap-2">
                   <Zap className="w-5 h-5 text-[#10B981]" />
                   System Health
                 </CardTitle>
-                <CardDescription className="text-gray-400">
+                <CardDescription className="text-gray-600 dark:text-gray-400">
                   Current system status and performance
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-white">API Response Time</span>
+                    <span className="text-gray-900 dark:text-white">API Response Time</span>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-[#10B981] rounded-full"></div>
                       <span className="text-[#10B981]">{responseTime}ms</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-white">System Usage</span>
+                    <span className="text-gray-900 dark:text-white">System Usage</span>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-[#10B981] rounded-full"></div>
                       <span className="text-[#10B981]">{Math.floor((systemData?.cpuLoad[1]/systemData?.cpuLength)*100)}%</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-white">Memory Usage</span>
+                    <span className="text-gray-900 dark:text-white">Memory Usage</span>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-[#10B981] rounded-full"></div>
                       <span className="text-[#10B981]">{Math.floor(((systemData?.memory.total-systemData?.memory.free)/systemData?.memory?.total)*100)}%</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-white">Server Uptime</span>
+                    <span className="text-gray-900 dark:text-white">Server Uptime</span>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-[#10B981] rounded-full"></div>
                       <span className="text-[#10B981]">{uptime}</span>
@@ -496,27 +496,27 @@ function Dashboard() {
         </TabsContent>
 
         <TabsContent value="activity" className="space-y-6">
-          <Card className="bg-black/80 backdrop-blur-sm border-gray-800">
+          <Card className="bg-white dark:bg-black/80 backdrop-blur-sm border-gray-300 dark:border-gray-800">
             <CardHeader>
-              <CardTitle className="text-white flex items-center gap-2">
+              <CardTitle className="text-gray-900 dark:text-white flex items-center gap-2">
                 <Activity className="w-5 h-5 text-[#F97316]" />
                 Recent Activity
               </CardTitle>
-              <CardDescription className="text-gray-400">
+              <CardDescription className="text-gray-600 dark:text-gray-400">
                 Latest activities and system events
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 {recentActivities.map((activity) => (
-                  <div key={activity.id} className="flex items-start gap-4 p-4 bg-gray-900/50 rounded-lg">
+                  <div key={activity.id} className="flex items-start gap-4 p-4 bg-gray-100 dark:bg-gray-900/50 rounded-lg">
                     <div className={`p-2 rounded-lg ${getActivityColor(activity.status)}`}>
                       {getActivityIcon(activity.type)}
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-medium text-white">{activity.title}</h4>
-                      <p className="text-sm text-gray-400">{activity.description}</p>
-                      <p className="text-xs text-gray-500 mt-1">{activity.timestamp}</p>
+                      <h4 className="font-medium text-gray-900 dark:text-white">{activity.title}</h4>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{activity.description}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">{activity.timestamp}</p>
                     </div>
                   </div>
                 ))}
