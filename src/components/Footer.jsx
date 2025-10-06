@@ -1,10 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Target, Mail, ExternalLink, Heart, ArrowRight } from 'lucide-react'
+import { Target, Mail, ExternalLink, Heart, ArrowRight, Contact } from 'lucide-react'
+import axios from 'axios'
+import { Toaster } from './ui/sonner'
+import { toast } from 'sonner'
 
 function Footer() {
+  const [mail, setMail] = useState("")
+
+  const sendMail = async()=>{
+    try {
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/contact/news?email=${mail}`)
+      console.log(res)
+      toast("Submitted successfully",{style: {
+        backgroundColor: "#065f46",
+        color: "#fff",
+        borderColor:"#fff",
+        border:"2px"
+      },duration:2000,position:"top-right"})
+    } catch (error) {
+      console.error(error)
+      toast("Submission failed",{style: {
+        backgroundColor: "red",
+        color: "#fff",
+        borderColor:"#fff",
+        border:"2px"
+      },duration:2000,position:"top-right"})
+    }
+  }
   return (
     <footer className='bg-black/95 border-t border-gray-800 mt-auto'>
+      <Toaster/>
       {/* Main Footer Content */}
       <div className='max-w-7xl mx-auto px-4 md:px-8 py-12'>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
@@ -28,11 +54,13 @@ function Footer() {
               <h4 className='text-white font-medium text-sm'>Stay Updated</h4>
               <div className='flex gap-2'>
                 <input 
-                  type="email" 
+                  type="email"
+                  value={mail} 
+                  onChange={(e)=>setMail(e.target.value)}
                   placeholder="Enter your email"
                   className='flex-1 bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#F97316]/20 focus:border-[#F97316]'
                 />
-                <button className='bg-gradient-to-r from-[#F97316] to-[#713306] hover:from-[#F97316]/80 hover:to-[#713306]/80 px-4 py-2 rounded-lg transition-all duration-300'>
+                <button onClick={sendMail} className='bg-gradient-to-r from-[#F97316] to-[#713306] hover:from-[#F97316]/80 hover:to-[#713306]/80 px-4 py-2 rounded-lg transition-all duration-300'>
                   <ArrowRight className='w-4 h-4 text-white' />
                 </button>
               </div>
