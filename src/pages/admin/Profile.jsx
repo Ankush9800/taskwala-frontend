@@ -123,16 +123,16 @@ function Profile() {
     }, [])
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-6">
+        <div className="min-h-screen p-6">
             {/* Header */}
             <div className="mb-6">
-                <h1 className="text-3xl font-bold text-white">Admin Profile</h1>
-                <p className="text-gray-400 mt-2">Manage your account settings and preferences</p>
+                <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Admin Profile</h1>
+                <p className="text-gray-600 dark:text-gray-400 mt-2">Manage your account settings and preferences</p>
             </div>
 
             <div className="max-w-6xl mx-auto">
                 <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-                    <TabsList className="grid w-full grid-cols-3 lg:w-[400px]">
+                    <TabsList className="grid w-full grid-cols-3 lg:w-[400px] bg-white dark:bg-gray-800">
                         <TabsTrigger value="overview" className="flex items-center gap-2">
                             <User className="w-4 h-4" />
                             Overview
@@ -151,7 +151,7 @@ function Profile() {
                     <TabsContent value="overview" className="space-y-6">
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                             {/* Profile Card */}
-                            <Card className="lg:col-span-2 border-0 shadow-lg bg-gray-800/80 backdrop-blur-sm">
+                            <Card className="lg:col-span-2 border-gray-300 dark:border-gray-700 shadow-lg bg-white dark:bg-gray-800/80 backdrop-blur-sm">
                                 <CardHeader className="pb-4">
                                     <CardTitle className="flex items-center gap-2 text-[#F97316]">
                                         <User className="w-5 h-5" />
@@ -177,8 +177,8 @@ function Profile() {
                                             </button>
                                         </div>
                                         <div className="flex-1">
-                                            <h2 className="text-2xl font-bold text-white">{profile.name}</h2>
-                                            <p className="text-lg text-gray-300 mb-2">{profile.email}</p>
+                                            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{profile.name}</h2>
+                                            <p className="text-lg text-gray-700 dark:text-gray-300 mb-2">{profile.email}</p>
                                             <Badge variant="secondary" className="bg-[#F97316]/10 text-[#F97316] border-[#F97316]/20">
                                                 Admin User
                                             </Badge>
@@ -188,19 +188,19 @@ function Profile() {
                                     {/* Profile Details */}
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div className="space-y-4">
-                                            <div className="flex items-center gap-3 p-3 bg-gray-700/50 rounded-lg">
+                                            <div className="flex items-center gap-3 p-3 bg-gray-100 dark:bg-gray-700/50 rounded-lg">
                                                 <Mail className="w-5 h-5 text-[#155a69]" />
                                                 <div>
-                                                    <p className="text-sm text-gray-400">Email</p>
-                                                    <p className="font-medium text-white">{profile.email}</p>
+                                                    <p className="text-sm text-gray-600 dark:text-gray-400">Email</p>
+                                                    <p className="font-medium text-gray-900 dark:text-white">{profile.email}</p>
                                                 </div>
                                             </div>
                                             
-                                            <div className="flex items-center gap-3 p-3 bg-gray-700/50 rounded-lg">
+                                            <div className="flex items-center gap-3 p-3 bg-gray-100 dark:bg-gray-700/50 rounded-lg">
                                                 <Phone className="w-5 h-5 text-[#10B981]" />
                                                 <div className="flex-1">
-                                                    <p className="text-sm text-gray-400">Phone Number</p>
-                                                    <p className="font-medium text-white">
+                                                    <p className="text-sm text-gray-600 dark:text-gray-400">Phone Number</p>
+                                                    <p className="font-medium text-gray-900 dark:text-white">
                                                         {profile.phone ? profile.phone.replace(/^\+91/, "") : "Not added"}
                                                     </p>
                                                 </div>
@@ -215,21 +215,21 @@ function Profile() {
                                         </div>
 
                                         <div className="space-y-4">
-                                            <div className="flex items-center gap-3 p-3 bg-gray-700/50 rounded-lg">
+                                            <div className="flex items-center gap-3 p-3 bg-gray-100 dark:bg-gray-700/50 rounded-lg">
                                                 <Calendar className="w-5 h-5 text-[#F97316]" />
                                                 <div>
-                                                    <p className="text-sm text-gray-400">Created At</p>
-                                                    <p className="font-medium text-white">
+                                                    <p className="text-sm text-gray-600 dark:text-gray-400">Created At</p>
+                                                    <p className="font-medium text-gray-900 dark:text-white">
                                                         {profile.$createdAt ? new Date(profile.$createdAt).toLocaleDateString() : 'N/A'}
                                                     </p>
                                                 </div>
                                             </div>
                                             
-                                            <div className="flex items-center gap-3 p-3 bg-gray-700/50 rounded-lg">
+                                            <div className="flex items-center gap-3 p-3 bg-gray-100 dark:bg-gray-700/50 rounded-lg">
                                                 <Clock className="w-5 h-5 text-[#A855F7]" />
                                                 <div>
-                                                    <p className="text-sm text-gray-400">Last Updated</p>
-                                                    <p className="font-medium text-white">
+                                                    <p className="text-sm text-gray-600 dark:text-gray-400">Last Updated</p>
+                                                    <p className="font-medium text-gray-900 dark:text-white">
                                                         {profile.$updatedAt ? new Date(profile.$updatedAt).toLocaleDateString() : 'N/A'}
                                                     </p>
                                                 </div>
@@ -281,7 +281,7 @@ function Profile() {
                     </TabsContent>
                     {/* Settings Tab */}
                     <TabsContent value="settings" className="space-y-6">
-                        <Card className="border-0 shadow-lg bg-gray-800/80 backdrop-blur-sm">
+                        <Card className="border-gray-300 dark:border-gray-700 shadow-lg bg-white dark:bg-gray-800/80 backdrop-blur-sm">
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2 text-[#F97316]">
                                     <Settings className="w-5 h-5" />
@@ -292,40 +292,40 @@ function Profile() {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="space-y-4">
                                         <div>
-                                            <Label className="text-sm font-medium text-gray-300">Full Name</Label>
+                                            <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">Full Name</Label>
                                             <Input 
                                                 value={profile.name || ""} 
                                                 readOnly 
-                                                className="mt-1 bg-gray-700/50 border-gray-600 text-white"
+                                                className="mt-1 bg-gray-100 dark:bg-gray-700/50 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
                                             />
                                         </div>
                                         
                                         <div>
-                                            <Label className="text-sm font-medium text-gray-300">Email Address</Label>
+                                            <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">Email Address</Label>
                                             <Input 
                                                 value={profile.email || ""} 
                                                 readOnly 
-                                                className="mt-1 bg-gray-700/50 border-gray-600 text-white"
+                                                className="mt-1 bg-gray-100 dark:bg-gray-700/50 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
                                             />
                                         </div>
                                     </div>
                                     
                                     <div className="space-y-4">
                                         <div>
-                                            <Label className="text-sm font-medium text-gray-300">User ID</Label>
+                                            <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">User ID</Label>
                                             <Input 
                                                 value={profile.$id || ""} 
                                                 readOnly 
-                                                className="mt-1 bg-gray-700/50 border-gray-600 text-white text-xs"
+                                                className="mt-1 bg-gray-100 dark:bg-gray-700/50 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-xs"
                                             />
                                         </div>
                                         
                                         <div>
-                                            <Label className="text-sm font-medium text-gray-300">Account Type</Label>
+                                            <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">Account Type</Label>
                                             <Input 
                                                 value="Administrator" 
                                                 readOnly 
-                                                className="mt-1 bg-gray-700/50 border-gray-600 text-white"
+                                                className="mt-1 bg-gray-100 dark:bg-gray-700/50 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
                                             />
                                         </div>
                                     </div>
@@ -336,7 +336,7 @@ function Profile() {
 
                     {/* Security Tab */}
                     <TabsContent value="security" className="space-y-6">
-                        <Card className="border-0 shadow-lg bg-gray-800/80 backdrop-blur-sm">
+                        <Card className="border-gray-300 dark:border-gray-700 shadow-lg bg-white dark:bg-gray-800/80 backdrop-blur-sm">
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2 text-[#F97316]">
                                     <Shield className="w-5 h-5" />
@@ -345,14 +345,14 @@ function Profile() {
                             </CardHeader>
                             <CardContent className="space-y-6">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <Card className="border border-gray-600 bg-gray-700/50">
+                                    <Card className="border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700/50">
                                         <CardContent className="p-6">
                                             <div className="flex items-center justify-between mb-4">
                                                 <div className="flex items-center gap-3">
                                                     <Key className="w-5 h-5 text-[#F97316]" />
                                                     <div>
-                                                        <h3 className="font-medium text-white">Password</h3>
-                                                        <p className="text-sm text-gray-400">Update your password</p>
+                                                        <h3 className="font-medium text-gray-900 dark:text-white">Password</h3>
+                                                        <p className="text-sm text-gray-600 dark:text-gray-400">Update your password</p>
                                                     </div>
                                                 </div>
                                                 <Button 
@@ -368,14 +368,14 @@ function Profile() {
                                         </CardContent>
                                     </Card>
 
-                                    <Card className="border border-gray-600 bg-gray-700/50">
+                                    <Card className="border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700/50">
                                         <CardContent className="p-6">
                                             <div className="flex items-center justify-between mb-4">
                                                 <div className="flex items-center gap-3">
                                                     <Phone className="w-5 h-5 text-[#10B981]" />
                                                     <div>
-                                                        <h3 className="font-medium text-white">Phone Number</h3>
-                                                        <p className="text-sm text-gray-400">Secure your account</p>
+                                                        <h3 className="font-medium text-gray-900 dark:text-white">Phone Number</h3>
+                                                        <p className="text-sm text-gray-600 dark:text-gray-400">Secure your account</p>
                                                     </div>
                                                 </div>
                                                 <Button 

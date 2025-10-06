@@ -90,7 +90,7 @@ function Dashboard() {
   });
 
   const osData = ()=>{
-    const time = systemData.uptime
+    const time = systemData?.uptime
     const hours = Math.floor(time/3600)
     const minuites = Math.floor((time % 3600)/60)
     const second = Math.floor(time % 60)
@@ -472,14 +472,14 @@ function Dashboard() {
                     <span className="text-gray-900 dark:text-white">System Usage</span>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-[#10B981] rounded-full"></div>
-                      <span className="text-[#10B981]">{Math.floor((systemData?.cpuLoad[1]/systemData?.cpuLength)*100)}%</span>
+                      <span className="text-[#10B981]">{Math.floor((systemData?.cpuLoad?.[1]/systemData?.cpuLength)*100)}%</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-gray-900 dark:text-white">Memory Usage</span>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-[#10B981] rounded-full"></div>
-                      <span className="text-[#10B981]">{Math.floor(((systemData?.memory.total-systemData?.memory.free)/systemData?.memory?.total)*100)}%</span>
+                      <span className="text-[#10B981]">{Math.floor(((systemData?.memory?.total-systemData?.memory?.free)/systemData?.memory?.total)*100)}%</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">

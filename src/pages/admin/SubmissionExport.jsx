@@ -133,19 +133,19 @@ function SubmissionExport() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 p-6 flex justify-center items-center">
+      <div className="min-h-screen p-6 flex justify-center items-center">
         <div className="flex flex-col items-center gap-4">
           <div className="flex animate-spin h-16 w-16 border-4 border-transparent border-t-[#F97316] border-l-[#F97316] rounded-full justify-center items-center">
             <div className="animate-spin-reverse h-12 w-12 border-4 border-transparent border-t-[#EA580C] border-l-[#EA580C] rounded-full"></div>
           </div>
-          <p className="text-white text-sm">Loading submissions...</p>
+          <p className="text-gray-900 dark:text-white text-sm">Loading submissions...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 p-6">
+    <div className="min-h-screen p-6">
       <Toaster />
       
       {/* Header */}
@@ -155,47 +155,47 @@ function SubmissionExport() {
             <Download className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-white">Submission Export</h1>
-            <p className="text-gray-400">Sort, filter and export submission data</p>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Submission Export</h1>
+            <p className="text-gray-600 dark:text-gray-400">Sort, filter and export submission data</p>
           </div>
         </div>
       </div>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <Card className="bg-black/80 backdrop-blur-sm border-gray-800 text-white">
+        <Card className="border-gray-300 bg-gradient-to-r from-[#F97316]/40 to-[#713306]/40 dark:border-[#F97316]/30">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-400">Total Submissions</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Submissions</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-white">{Array.isArray(submissions) ? submissions.length : 0}</div>
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">{Array.isArray(submissions) ? submissions.length : 0}</div>
           </CardContent>
         </Card>
         
-        <Card className="bg-black/80 backdrop-blur-sm border-gray-800 text-white">
+        <Card className="border-gray-300 bg-gradient-to-r from-blue-600/40 to-blue-800/40 dark:border-blue-600/30">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-400">Available</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">Available</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-400">{Array.isArray(submissions) ? submissions.length : 0}</div>
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">{Array.isArray(submissions) ? submissions.length : 0}</div>
           </CardContent>
         </Card>
         
-        <Card className="bg-black/80 backdrop-blur-sm border-gray-800 text-white">
+        <Card className="border-gray-300 bg-gradient-to-r from-[#F97316]/40 to-[#713306]/40 dark:border-[#F97316]/30">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-400">Selected</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">Selected</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-[#F97316]">{selectedSubmissions.length}</div>
           </CardContent>
         </Card>
         
-        <Card className="bg-black/80 backdrop-blur-sm border-gray-800 text-white">
+        <Card className="border-gray-300 bg-gradient-to-r from-yellow-600/40 to-yellow-800/40 dark:border-yellow-600/30">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-400">Pending</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">Pending</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-yellow-400">
+            <div className="text-2xl font-bold text-yellow-600 dark:text-yellow-400">
               {Array.isArray(submissions) ? submissions.filter(sub => sub.status === null || sub.status === undefined).length : 0}
             </div>
           </CardContent>
@@ -203,7 +203,7 @@ function SubmissionExport() {
       </div>
 
       {/* Filters and Controls */}
-      <Card className="bg-black/80 backdrop-blur-sm border-gray-800 text-white mb-6">
+      <Card className="bg-white dark:bg-black/80 backdrop-blur-sm border-gray-300 dark:border-gray-800">
         <CardContent className="p-6">
           <div className="space-y-6">
             {/* Search and Filters Row */}
@@ -214,18 +214,18 @@ function SubmissionExport() {
                   placeholder="Enter refer"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 bg-gray-800 border-gray-700 text-white"
+                  className="pl-10 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white"
                 />
               </div>
 
               <Select value={campaignFilter} onValueChange={setCampaignFilter}>
-                <SelectTrigger className="bg-gray-800 border-gray-700 text-white">
+                <SelectTrigger className="bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white">
                   <SelectValue placeholder="Filter by campaign" />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Campaigns</SelectItem>
+                <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700">
+                  <SelectItem value="all" className="text-gray-900 dark:text-white">All Campaigns</SelectItem>
                   {campaigns.map((campaign) => (
-                    <SelectItem key={campaign._id} value={campaign.title}>
+                    <SelectItem key={campaign._id} value={campaign.title} className="text-gray-900 dark:text-white">
                       {campaign.title}
                     </SelectItem>
                   ))}
@@ -237,7 +237,7 @@ function SubmissionExport() {
                   <Button
                     variant="outline"
                     className={cn(
-                      "w-full justify-start text-left font-normal bg-gray-800 border-gray-700 text-white hover:bg-gray-700 truncate",
+                      "w-full justify-start text-left font-normal bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 truncate",
                       !dateRange && "text-muted-foreground"
                     )}
                   >

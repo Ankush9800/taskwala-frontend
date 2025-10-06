@@ -145,11 +145,11 @@ function Submission() {
         <div>
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#F97316]/20 to-[#713306]/20 border border-[#F97316]/30 rounded-full px-4 py-2 mb-4">
             <FileText className="w-4 h-4 text-[#F97316]" />
-            <span className="text-sm font-medium text-white">Submission Management</span>
+            <span className="text-sm font-medium text-gray-900 dark:text-white">Submission Management</span>
             <Sparkles className="w-4 h-4 text-[#F97316]" />
           </div>
-          <h1 className="text-3xl font-bold text-white mb-2">Campaign Submissions</h1>
-          <p className="text-gray-400">Track and manage user submissions, review payouts, and monitor engagement.</p>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Campaign Submissions</h1>
+          <p className="text-gray-600 dark:text-gray-400">Track and manage user submissions, review payouts, and monitor engagement.</p>
         </div>
         
         <div className="flex gap-3">
@@ -174,61 +174,61 @@ function Submission() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card className="bg-gradient-to-r from-[#F97316]/20 to-[#713306]/20 border-[#F97316]/30">
+        <Card className="border-gray-300 bg-gradient-to-r from-[#F97316]/40 to-[#713306]/40 dark:border-[#F97316]/30">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-300 flex items-center justify-between">
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300 flex items-center justify-between">
               Submissions This Month
               <Users className="w-4 h-4 text-[#F97316]" />
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-white">{countTotal}</div>
-            <p className="text-xs text-gray-400 mt-1">All submissions</p>
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">{countTotal}</div>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">All submissions</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-r from-[#10B981]/20 to-[#065f46]/20 border-[#10B981]/30">
+        <Card className="border-gray-300 bg-gradient-to-r from-[#10B981]/40 to-[#065f46]/40 dark:border-[#10B981]/30">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-300 flex items-center justify-between">
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300 flex items-center justify-between">
               Today Submission
               <CheckCircle className="w-4 h-4 text-[#10B981]" />
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-white">{todaySubmission}</div>
-            <p className="text-xs text-gray-400 mt-1">Approved submissions</p>
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">{todaySubmission}</div>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">Approved submissions</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-r from-[#F97316]/20 to-[#713306]/20 border-[#F97316]/30">
+        <Card className="border-gray-300 bg-gradient-to-r from-[#F97316]/40 to-[#713306]/40 dark:border-[#F97316]/30">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-300 flex items-center justify-between">
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300 flex items-center justify-between">
               Pending Review
               <Clock className="w-4 h-4 text-[#F97316]" />
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-white">{stats.pending}</div>
-            <p className="text-xs text-gray-400 mt-1">Awaiting approval</p>
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">{stats.pending}</div>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">Awaiting approval</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-r from-[#155a69]/20 to-[#0c434a]/20 border-[#155a69]/30">
+        <Card className="border-gray-300 bg-gradient-to-r from-[#155a69]/40 to-[#0c434a]/40 dark:border-[#155a69]/30">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-300 flex items-center justify-between">
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300 flex items-center justify-between">
               Total Payout
               <DollarSign className="w-4 h-4 text-[#155a69]" />
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-white">₹{stats.totalPayout.toFixed(2)}</div>
-            <p className="text-xs text-gray-400 mt-1">Combined payouts</p>
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">₹{stats.totalPayout.toFixed(2)}</div>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">Combined payouts</p>
           </CardContent>
         </Card>
       </div>
 
       {/* Filters and Search */}
-      <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
+      <Card className="bg-white dark:bg-gray-800/50 border-gray-300 dark:border-gray-700 backdrop-blur-sm">
         <CardContent className="p-6">
           <div className="flex flex-col lg:flex-row gap-4">
             <div className="flex-1 relative">
@@ -237,33 +237,33 @@ function Submission() {
                 placeholder="Search by phone, UPI ID, or tracking URL..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 bg-gray-700 border-gray-600 text-white"
+                className="pl-10 bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
               />
             </div>
             <div className="flex gap-3">
               <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="w-[150px] bg-gray-700 border-gray-600 text-white">
+                <SelectTrigger className="w-[150px] bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white">
                   <Filter className="w-4 h-4 mr-2" />
                   <SelectValue placeholder="Status" />
                 </SelectTrigger>
-                <SelectContent className="bg-gray-800 border-gray-600">
-                  <SelectItem value="all" className="text-white hover:bg-gray-700">All Status</SelectItem>
-                  <SelectItem value="pending" className="text-white hover:bg-gray-700">Pending</SelectItem>
-                  <SelectItem value="approved" className="text-white hover:bg-gray-700">Approved</SelectItem>
-                  <SelectItem value="rejected" className="text-white hover:bg-gray-700">Rejected</SelectItem>
+                <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
+                  <SelectItem value="all" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">All Status</SelectItem>
+                  <SelectItem value="pending" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Pending</SelectItem>
+                  <SelectItem value="approved" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Approved</SelectItem>
+                  <SelectItem value="rejected" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Rejected</SelectItem>
                 </SelectContent>
               </Select>
               
               <Select value={dateFilter} onValueChange={setDateFilter}>
-                <SelectTrigger className="w-[130px] bg-gray-700 border-gray-600 text-white">
+                <SelectTrigger className="w-[130px] bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white">
                   <Calendar className="w-4 h-4 mr-2" />
                   <SelectValue placeholder="Date" />
                 </SelectTrigger>
-                <SelectContent className="bg-gray-800 border-gray-600">
-                  <SelectItem value="all" className="text-white hover:bg-gray-700">All Time</SelectItem>
-                  <SelectItem value="today" className="text-white hover:bg-gray-700">Today</SelectItem>
-                  <SelectItem value="week" className="text-white hover:bg-gray-700">This Week</SelectItem>
-                  <SelectItem value="month" className="text-white hover:bg-gray-700">This Month</SelectItem>
+                <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
+                  <SelectItem value="all" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">All Time</SelectItem>
+                  <SelectItem value="today" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Today</SelectItem>
+                  <SelectItem value="week" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">This Week</SelectItem>
+                  <SelectItem value="month" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">This Month</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -272,15 +272,15 @@ function Submission() {
       </Card>
 
       {/* Submissions Table */}
-      <Card className="bg-gray-800/50 border-gray-700">
+      <Card className="bg-white dark:bg-gray-800/50 border-gray-300 dark:border-gray-700">
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="text-white flex items-center gap-2">
+              <CardTitle className="text-gray-900 dark:text-white flex items-center gap-2">
                 <BarChart3 className="w-5 h-5 text-[#F97316]" />
                 Submission Records
               </CardTitle>
-              <CardDescription className="text-gray-400">
+              <CardDescription className="text-gray-600 dark:text-gray-400">
                 Showing {filteredSubmissions.length} of {stats.total} submissions
               </CardDescription>
             </div>
@@ -293,43 +293,43 @@ function Submission() {
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
-                <TableRow className="border-gray-700 hover:bg-gray-800/50">
-                  <TableHead className="text-gray-300">#</TableHead>
-                  <TableHead className="text-gray-300">Contact Info</TableHead>
-                  <TableHead className="text-gray-300">UPI Details</TableHead>
-                  <TableHead className="text-gray-300">Refer UPI ID</TableHead>
-                  <TableHead className="text-gray-300">Payout</TableHead>
-                  <TableHead className="text-gray-300">Refer Payout</TableHead>
-                  <TableHead className="text-gray-300">Tracking URL</TableHead>
-                  <TableHead className="text-gray-300">Submitted</TableHead>
-                  <TableHead className="text-gray-300">Ip address</TableHead>
-                  <TableHead className="text-gray-300">Actions</TableHead>
+                <TableRow className="border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800/50">
+                  <TableHead className="text-gray-900 dark:text-gray-300">#</TableHead>
+                  <TableHead className="text-gray-900 dark:text-gray-300">Contact Info</TableHead>
+                  <TableHead className="text-gray-900 dark:text-gray-300">UPI Details</TableHead>
+                  <TableHead className="text-gray-900 dark:text-gray-300">Refer UPI ID</TableHead>
+                  <TableHead className="text-gray-900 dark:text-gray-300">Payout</TableHead>
+                  <TableHead className="text-gray-900 dark:text-gray-300">Refer Payout</TableHead>
+                  <TableHead className="text-gray-900 dark:text-gray-300">Tracking URL</TableHead>
+                  <TableHead className="text-gray-900 dark:text-gray-300">Submitted</TableHead>
+                  <TableHead className="text-gray-900 dark:text-gray-300">Ip address</TableHead>
+                  <TableHead className="text-gray-900 dark:text-gray-300">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {filteredSubmissions.map((submission, index) => (
                   <TableRow
-                    className="border-gray-700 hover:bg-gray-800/30 transition-colors"
+                    className="border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800/30 transition-colors"
                     key={submission._id}
                   >
-                    <TableCell className="text-gray-300 font-mono">
+                    <TableCell className="text-gray-900 dark:text-gray-300 font-mono">
                       {indexCount + index + 1}
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-2">
                         <Phone className="w-4 h-4 text-gray-400" />
-                        <span className="text-white font-mono">{submission.phone}</span>
+                        <span className="text-gray-900 dark:text-white font-mono">{submission.phone}</span>
                       </div>
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-2">
                         <CreditCard className="w-4 h-4 text-gray-400" />
-                        <span className="text-white font-mono">{submission.upi}</span>
+                        <span className="text-gray-900 dark:text-white font-mono">{submission.upi}</span>
                         <Button 
                             size="sm"
                             variant="ghost"
                             onClick={() => copy(submission.upi)}
-                            className="h-6 w-6 p-0 text-gray-200 cursor-pointer hover:bg-gray-700"
+                            className="h-6 w-6 p-0 text-gray-900 dark:text-gray-200 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
                         >
                             <Clipboard className="w-3 h-3" />
                         </Button>
@@ -338,12 +338,12 @@ function Submission() {
                     <TableCell>
                       <div className="flex items-center gap-2">
                         <CreditCard className="w-4 h-4 text-[#F97316]" />
-                        <span className="text-white font-mono">{submission.refUpiId || 'N/A'}</span>
+                        <span className="text-gray-900 dark:text-white font-mono">{submission.refUpiId || 'N/A'}</span>
                         <Button 
                             size="sm"
                             variant="ghost"
                             onClick={() => copy(submission.refUpiId)}
-                            className="h-6 w-6 p-0 text-gray-200 cursor-pointer hover:bg-gray-700"
+                            className="h-6 w-6 p-0 text-gray-900 dark:text-gray-200 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
                         >
                             <Clipboard className="w-3 h-3" />
                         </Button>
@@ -352,19 +352,19 @@ function Submission() {
                     <TableCell>
                       <div className="flex items-center gap-2">
                         <IndianRupee className="w-4 h-4 text-[#10B981]" />
-                        <span className="text-white font-semibold">₹{submission.payoutRate}</span>
+                        <span className="text-gray-900 dark:text-white font-semibold">₹{submission.payoutRate}</span>
                       </div>
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-2">
                         <IndianRupee className="w-4 h-4 text-[#F97316]" />
-                        <span className="text-white font-semibold">₹{submission.referAmt || '0.00'}</span>
+                        <span className="text-gray-900 dark:text-white font-semibold">₹{submission.referAmt || '0.00'}</span>
                       </div>
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-2 max-w-[200px]">
                         <ExternalLink className="w-3 h-3 text-gray-400 flex-shrink-0" />
-                        <span className="text-gray-300 truncate text-sm">
+                        <span className="text-gray-900 dark:text-gray-300 truncate text-sm">
                           {submission.redirectUrl}
                         </span>
                       </div>
@@ -372,13 +372,13 @@ function Submission() {
                     <TableCell>
                       <div className="flex items-center gap-2">
                         <Calendar className="w-3 h-3 text-gray-400" />
-                        <span className="text-gray-300 text-sm">
+                        <span className="text-gray-900 dark:text-gray-300 text-sm">
                           {new Date(submission.createdAt).toLocaleString()}
                         </span>
                       </div>
                     </TableCell>
                     <TableCell>
-                      <span className="text-white font-mono">{submission.ip}</span>
+                      <span className="text-gray-900 dark:text-white font-mono">{submission.ip}</span>
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-2">
@@ -409,7 +409,7 @@ function Submission() {
       </Card>
 
       {/* Pagination */}
-      <Card className="bg-gray-800/50 border-gray-700">
+      <Card className="bg-white dark:bg-gray-800/50 border-gray-300 dark:border-gray-700">
         <CardContent className="p-4">
           <Pagination>
             <PaginationContent>
@@ -417,7 +417,7 @@ function Submission() {
                 {page != 1 ? 
                   <PaginationPrevious 
                     onClick={() => setPage(p => Math.max(p-1, 1))}
-                    className="hover:bg-gray-700 text-white"
+                    className="hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white"
                   /> : 
                   <></>
                 }
@@ -431,7 +431,7 @@ function Submission() {
                 {page * 10 < countTotal ? 
                   <PaginationNext 
                     onClick={() => setPage(p => p + 1)}
-                    className="hover:bg-gray-700 text-white"
+                    className="hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white"
                   /> : 
                   <></>
                 }
@@ -443,11 +443,11 @@ function Submission() {
 
       {/* Empty State */}
       {filteredSubmissions.length === 0 && !loading && (
-        <Card className="bg-gray-800/50 border-gray-700">
+        <Card className="bg-white dark:bg-gray-800/50 border-gray-300 dark:border-gray-700">
           <CardContent className="p-12 text-center">
             <FileText className="w-12 h-12 text-gray-500 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-white mb-2">No submissions found</h3>
-            <p className="text-gray-400 mb-6">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">No submissions found</h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-6">
               {searchTerm || statusFilter !== "all" || dateFilter !== "all" 
                 ? "Try adjusting your search or filter criteria" 
                 : "Submissions will appear here once users start completing campaigns"}

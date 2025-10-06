@@ -133,19 +133,19 @@ function Support() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 p-6 flex justify-center items-center">
+      <div className="min-h-screen p-6 flex justify-center items-center">
         <div className="flex flex-col items-center gap-4">
           <div className="flex animate-spin h-16 w-16 border-4 border-transparent border-t-[#F97316] border-l-[#F97316] rounded-full justify-center items-center">
             <div className="animate-spin-reverse h-12 w-12 border-4 border-transparent border-t-[#EA580C] border-l-[#EA580C] rounded-full"></div>
           </div>
-          <p className="text-white text-sm">Loading support messages...</p>
+          <p className="text-gray-900 dark:text-white text-sm">Loading support messages...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 p-6">
+    <div className="min-h-screen p-6">
       <Toaster />
       
       {/* Header */}
@@ -155,51 +155,51 @@ function Support() {
             <MessageSquare className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-white">Support Messages</h1>
-            <p className="text-gray-400">Manage customer inquiries and support requests</p>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Support Messages</h1>
+            <p className="text-gray-600 dark:text-gray-400">Manage customer inquiries and support requests</p>
           </div>
         </div>
       </div>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <Card className="bg-black/80 backdrop-blur-sm border-gray-800 text-white">
+        <Card className="border-gray-300 bg-gradient-to-r from-[#F97316]/40 to-[#713306]/40 dark:border-[#F97316]/30">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-400">Total Messages</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Messages</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-white">{messages.length}</div>
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">{messages.length}</div>
           </CardContent>
         </Card>
         
-        <Card className="bg-black/80 backdrop-blur-sm border-gray-800 text-white">
+        <Card className="border-gray-300 bg-gradient-to-r from-yellow-600/40 to-yellow-800/40 dark:border-yellow-600/30">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-400">Unread</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">Unread</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-yellow-400">
+            <div className="text-2xl font-bold text-yellow-700 dark:text-yellow-400">
               {messages.filter(msg => msg.status === 'unread').length}
             </div>
           </CardContent>
         </Card>
         
-        <Card className="bg-black/80 backdrop-blur-sm border-gray-800 text-white">
+        <Card className="border-gray-300 bg-gradient-to-r from-[#10B981]/40 to-[#065f46]/40 dark:border-[#10B981]/30">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-400">Replied</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">Replied</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-400">
+            <div className="text-2xl font-bold text-green-700 dark:text-green-400">
               {messages.filter(msg => msg.status === 'replied').length}
             </div>
           </CardContent>
         </Card>
         
-        <Card className="bg-black/80 backdrop-blur-sm border-gray-800 text-white">
+        <Card className="border-gray-300 bg-gradient-to-r from-blue-600/40 to-blue-800/40 dark:border-blue-600/30">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-400">Today</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">Today</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-400">
+            <div className="text-2xl font-bold text-blue-700 dark:text-blue-400">
               {messages.filter(msg => 
                 new Date(msg.createdAt).toDateString() === new Date().toDateString()
               ).length}
@@ -209,7 +209,7 @@ function Support() {
       </div>
 
       {/* Controls */}
-      <Card className="bg-black/80 backdrop-blur-sm border-gray-800 text-white mb-6">
+      <Card className="bg-white dark:bg-black/80 backdrop-blur-sm border-gray-300 dark:border-gray-800">
         <CardContent className="p-6">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
             <div className="flex gap-3 flex-1">
@@ -219,14 +219,14 @@ function Support() {
                   placeholder="Search messages..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 bg-gray-800 border-gray-700 text-white"
+                  className="pl-10 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white"
                 />
               </div>
               
               <select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
-                className="px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-white text-sm"
+                className="px-3 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md text-gray-900 dark:text-white text-sm"
               >
                 <option value="all">All Status</option>
                 <option value="unread">Unread</option>
@@ -258,10 +258,10 @@ function Support() {
       </Card>
 
       {/* Messages Table */}
-      <Card className="bg-black/80 backdrop-blur-sm border-gray-800 text-white">
+      <Card className="bg-white dark:bg-black/80 backdrop-blur-sm border-gray-300 dark:border-gray-800">
         <CardHeader>
-          <CardTitle className="text-white">Support Messages ({filteredMessages.length})</CardTitle>
-          <CardDescription className="text-gray-400">
+          <CardTitle className="text-gray-900 dark:text-white">Support Messages ({filteredMessages.length})</CardTitle>
+          <CardDescription className="text-gray-600 dark:text-gray-400">
             Customer inquiries and support requests
           </CardDescription>
         </CardHeader>
@@ -269,33 +269,33 @@ function Support() {
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
-                <TableRow className="border-gray-800">
-                  <TableHead className="text-gray-400">Status</TableHead>
-                  <TableHead className="text-gray-400">Name</TableHead>
-                  <TableHead className="text-gray-400">Email</TableHead>
-                  <TableHead className="text-gray-400">Subject</TableHead>
-                  <TableHead className="text-gray-400">Date</TableHead>
-                  <TableHead className="text-gray-400">Actions</TableHead>
+                <TableRow className="border-gray-300 dark:border-gray-800">
+                  <TableHead className="text-gray-700 dark:text-gray-400">Status</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-400">Name</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-400">Email</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-400">Subject</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-400">Date</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-400">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {filteredMessages.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={6} className="text-center py-8 text-gray-400">
+                    <TableCell colSpan={6} className="text-center py-8 text-gray-600 dark:text-gray-400">
                       No messages found
                     </TableCell>
                   </TableRow>
                 ) : (
                   filteredMessages.map((message) => (
-                    <TableRow key={message._id} className="border-gray-800 hover:bg-gray-800/30">
+                    <TableRow key={message._id} className="border-gray-300 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800/30">
                       <TableCell>{getStatusBadge(message.status?"read":"unread")}</TableCell>
-                      <TableCell className="font-medium text-white">
+                      <TableCell className="font-medium text-gray-900 dark:text-white">
                         <div className="flex items-center gap-2">
                           <User className="w-4 h-4 text-gray-400" />
                           {message.fullName}
                         </div>
                       </TableCell>
-                      <TableCell className="text-gray-300">
+                      <TableCell className="text-gray-700 dark:text-gray-300">
                         <div className="flex items-center gap-2">
                           <Mail className="w-4 h-4 text-gray-400" />
                           {message.email}

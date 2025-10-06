@@ -131,11 +131,11 @@ function Conversion() {
                 <div>
                     <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#F97316]/20 to-[#713306]/20 border border-[#F97316]/30 rounded-full px-4 py-2 mb-4">
                         <TrendingUp className="w-4 h-4 text-[#F97316]" />
-                        <span className="text-sm font-medium text-white">Conversion Tracking</span>
+                        <span className="text-sm font-medium text-gray-900 dark:text-white">Conversion Tracking</span>
                         <Sparkles className="w-4 h-4 text-[#F97316]" />
                     </div>
-                    <h1 className="text-3xl font-bold text-white mb-2">Conversions & Analytics</h1>
-                    <p className="text-gray-400">Track campaign performance, monitor conversions, and analyze user engagement.</p>
+                    <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Conversions & Analytics</h1>
+                    <p className="text-gray-600 dark:text-gray-400">Track campaign performance, monitor conversions, and analyze user engagement.</p>
                 </div>
                 
                 <div className="flex gap-3">
@@ -160,61 +160,61 @@ function Conversion() {
 
             {/* Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <Card className="bg-gradient-to-r from-[#F97316]/20 to-[#713306]/20 border-[#F97316]/30">
+                <Card className="border-gray-300 bg-gradient-to-r from-[#F97316]/40 to-[#713306]/40 dark:border-[#F97316]/30">
                     <CardHeader className="pb-3">
-                        <CardTitle className="text-sm font-medium text-gray-300 flex items-center justify-between">
+                        <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300 flex items-center justify-between">
                             Total Conversions
                             <Target className="w-4 h-4 text-[#F97316]" />
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold text-white">{stats.total}</div>
-                        <p className="text-xs text-gray-400 mt-1">All time conversions</p>
+                        <div className="text-2xl font-bold text-gray-900 dark:text-white">{stats.total}</div>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">All time conversions</p>
                     </CardContent>
                 </Card>
 
-                <Card className="bg-gradient-to-r from-[#10B981]/20 to-[#065f46]/20 border-[#10B981]/30">
+                <Card className="border-gray-300 bg-gradient-to-r from-[#10B981]/40 to-[#065f46]/40 dark:border-[#10B981]/30">
                     <CardHeader className="pb-3">
-                        <CardTitle className="text-sm font-medium text-gray-300 flex items-center justify-between">
+                        <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300 flex items-center justify-between">
                             Today's Conversions
                             <CheckCircle className="w-4 h-4 text-[#10B981]" />
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold text-white">{stats.todayConversions}</div>
-                        <p className="text-xs text-gray-400 mt-1">Last 24 hours</p>
+                        <div className="text-2xl font-bold text-gray-900 dark:text-white">{stats.todayConversions}</div>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">Last 24 hours</p>
                     </CardContent>
                 </Card>
 
-                <Card className="bg-gradient-to-r from-[#155a69]/20 to-[#0c434a]/20 border-[#155a69]/30">
+                <Card className="border-gray-300 bg-gradient-to-r from-[#155a69]/40 to-[#0c434a]/40 dark:border-[#155a69]/30">
                     <CardHeader className="pb-3">
-                        <CardTitle className="text-sm font-medium text-gray-300 flex items-center justify-between">
+                        <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300 flex items-center justify-between">
                             Total Payout
                             <DollarSign className="w-4 h-4 text-[#155a69]" />
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold text-white">₹{stats.totalPayout.toFixed(2)}</div>
-                        <p className="text-xs text-gray-400 mt-1">Combined earnings</p>
+                        <div className="text-2xl font-bold text-gray-900 dark:text-white">₹{stats.totalPayout.toFixed(2)}</div>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">Combined earnings</p>
                     </CardContent>
                 </Card>
 
-                <Card className="bg-gradient-to-r from-purple-600/20 to-purple-800/20 border-purple-600/30">
+                <Card className="border-gray-300 bg-gradient-to-r from-purple-600/40 to-purple-800/40 dark:border-purple-600/30">
                     <CardHeader className="pb-3">
-                        <CardTitle className="text-sm font-medium text-gray-300 flex items-center justify-between">
+                        <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300 flex items-center justify-between">
                             Avg. Payout
                             <BarChart3 className="w-4 h-4 text-purple-400" />
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold text-white">₹{stats.avgPayout}</div>
-                        <p className="text-xs text-gray-400 mt-1">Per conversion</p>
+                        <div className="text-2xl font-bold text-gray-900 dark:text-white">₹{stats.avgPayout}</div>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">Per conversion</p>
                     </CardContent>
                 </Card>
             </div>
 
             {/* Filters and Search */}
-            <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
+            <Card className="bg-white dark:bg-gray-800/50 border-gray-300 dark:border-gray-700 backdrop-blur-sm">
                 <CardContent className="p-6">
                     <div className="flex flex-col lg:flex-row gap-4">
                         <div className="flex-1 relative">
@@ -223,34 +223,34 @@ function Conversion() {
                                 placeholder="Search by campaign, phone, UPI ID..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="pl-10 bg-gray-700 border-gray-600 text-white"
+                                className="pl-10 bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
                             />
                         </div>
                         <div className="flex gap-3">
                             <Select value={providerFilter} onValueChange={setProviderFilter}>
-                                <SelectTrigger className="w-[150px] bg-gray-700 border-gray-600 text-white">
+                                <SelectTrigger className="w-[150px] bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white">
                                     <Filter className="w-4 h-4 mr-2" />
                                     <SelectValue placeholder="Provider" />
                                 </SelectTrigger>
-                                <SelectContent className="bg-gray-800 border-gray-600">
-                                    <SelectItem value="all" className="text-white hover:bg-gray-700">All Providers</SelectItem>
-                                    <SelectItem value="cpalead" className="text-white hover:bg-gray-700">CPAlead</SelectItem>
-                                    <SelectItem value="adgate" className="text-white hover:bg-gray-700">AdGate</SelectItem>
-                                    <SelectItem value="offertoro" className="text-white hover:bg-gray-700">OfferToro</SelectItem>
-                                    <SelectItem value="custom" className="text-white hover:bg-gray-700">Custom</SelectItem>
+                                <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
+                                    <SelectItem value="all" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">All Providers</SelectItem>
+                                    <SelectItem value="cpalead" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">CPAlead</SelectItem>
+                                    <SelectItem value="adgate" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">AdGate</SelectItem>
+                                    <SelectItem value="offertoro" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">OfferToro</SelectItem>
+                                    <SelectItem value="custom" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Custom</SelectItem>
                                 </SelectContent>
                             </Select>
                             
                             <Select value={dateFilter} onValueChange={setDateFilter}>
-                                <SelectTrigger className="w-[130px] bg-gray-700 border-gray-600 text-white">
+                                <SelectTrigger className="w-[130px] bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white">
                                     <Calendar className="w-4 h-4 mr-2" />
                                     <SelectValue placeholder="Date" />
                                 </SelectTrigger>
-                                <SelectContent className="bg-gray-800 border-gray-600">
-                                    <SelectItem value="all" className="text-white hover:bg-gray-700">All Time</SelectItem>
-                                    <SelectItem value="today" className="text-white hover:bg-gray-700">Today</SelectItem>
-                                    <SelectItem value="week" className="text-white hover:bg-gray-700">This Week</SelectItem>
-                                    <SelectItem value="month" className="text-white hover:bg-gray-700">This Month</SelectItem>
+                                <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
+                                    <SelectItem value="all" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">All Time</SelectItem>
+                                    <SelectItem value="today" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Today</SelectItem>
+                                    <SelectItem value="week" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">This Week</SelectItem>
+                                    <SelectItem value="month" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">This Month</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
@@ -259,15 +259,15 @@ function Conversion() {
             </Card>
 
             {/* Conversions Table */}
-            <Card className="bg-gray-800/50 border-gray-700">
+            <Card className="bg-white dark:bg-gray-800/50 border-gray-300 dark:border-gray-700">
                 <CardHeader>
                     <div className="flex items-center justify-between">
                         <div>
-                            <CardTitle className="text-white flex items-center gap-2">
+                            <CardTitle className="text-gray-900 dark:text-white flex items-center gap-2">
                                 <FileText className="w-5 h-5 text-[#F97316]" />
                                 Conversion Records
                             </CardTitle>
-                            <CardDescription className="text-gray-400">
+                            <CardDescription className="text-gray-600 dark:text-gray-400">
                                 Showing {filteredConversions.length} of {stats.total} conversions
                             </CardDescription>
                         </div>
@@ -280,48 +280,48 @@ function Conversion() {
                     <div className="overflow-x-auto">
                         <Table>
                             <TableHeader>
-                                <TableRow className="border-gray-700 hover:bg-gray-800/50">
-                                    <TableHead className="text-gray-300">#</TableHead>
-                                    <TableHead className="text-gray-300">Campaign</TableHead>
-                                    <TableHead className="text-gray-300">Offer ID</TableHead>
-                                    <TableHead className="text-gray-300">Goal</TableHead>
-                                    <TableHead className="text-gray-300">Payout</TableHead>
-                                    <TableHead className="text-gray-300">Date & Time</TableHead>
-                                    <TableHead className="text-gray-300">Provider</TableHead>
-                                    <TableHead className="text-gray-300">Refer UPI ID</TableHead>
-                                    <TableHead className="text-gray-300">UPI ID</TableHead>
+                                <TableRow className="border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800/50">
+                                    <TableHead className="text-gray-700 dark:text-gray-300">#</TableHead>
+                                    <TableHead className="text-gray-700 dark:text-gray-300">Campaign</TableHead>
+                                    <TableHead className="text-gray-700 dark:text-gray-300">Offer ID</TableHead>
+                                    <TableHead className="text-gray-700 dark:text-gray-300">Goal</TableHead>
+                                    <TableHead className="text-gray-700 dark:text-gray-300">Payout</TableHead>
+                                    <TableHead className="text-gray-700 dark:text-gray-300">Date & Time</TableHead>
+                                    <TableHead className="text-gray-700 dark:text-gray-300">Provider</TableHead>
+                                    <TableHead className="text-gray-700 dark:text-gray-300">Refer UPI ID</TableHead>
+                                    <TableHead className="text-gray-700 dark:text-gray-300">UPI ID</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
                                 {filteredConversions.map((conv, index) => (
                                     <TableRow
-                                        className="border-gray-700 hover:bg-gray-800/30 transition-colors"
+                                        className="border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800/30 transition-colors"
                                         key={index}
                                     >
-                                        <TableCell className="text-gray-300 font-mono">
+                                        <TableCell className="text-gray-700 dark:text-gray-300 font-mono">
                                             {indexCount + index + 1}
                                         </TableCell>
                                         <TableCell>
                                             <div>
-                                                <p className="text-white font-medium">{conv.cName}</p>
-                                                <p className="text-gray-400 text-sm">Campaign</p>
+                                                <p className="text-gray-900 dark:text-white font-medium">{conv.cName}</p>
+                                                <p className="text-gray-600 dark:text-gray-400 text-sm">Campaign</p>
                                             </div>
                                         </TableCell>
                                         <TableCell>
-                                            <Badge variant="outline" className="border-gray-600 bg-transparent text-gray-300 font-mono">
+                                            <Badge variant="outline" className="border-gray-400 dark:border-gray-600 bg-transparent text-gray-700 dark:text-gray-300 font-mono">
                                                 {conv.campId}
                                             </Badge>
                                         </TableCell>
                                         <TableCell>
                                             <div className="flex items-center gap-2">
                                                 <Target className="w-3 h-3 text-[#F97316]" />
-                                                <span className="text-white">{conv.goal}</span>
+                                                <span className="text-gray-900 dark:text-white">{conv.goal}</span>
                                             </div>
                                         </TableCell>
                                         <TableCell>
                                             <div className="flex items-center gap-2">
                                                 <DollarSign className="w-3 h-3 text-[#10B981]" />
-                                                <span className="text-white font-semibold">
+                                                <span className="text-gray-900 dark:text-white font-semibold">
                                                     {conv.payout ? `₹${conv.payout}` : "₹0"}
                                                 </span>
                                             </div>
@@ -329,7 +329,7 @@ function Conversion() {
                                         <TableCell>
                                             <div className="flex items-center gap-2">
                                                 <Clock className="w-3 h-3 text-gray-400" />
-                                                <span className="text-gray-300 text-sm">
+                                                <span className="text-gray-700 dark:text-gray-300 text-sm">
                                                     {new Date(conv.createdAt).toLocaleString()}
                                                 </span>
                                             </div>
@@ -345,13 +345,13 @@ function Conversion() {
                                         <TableCell>
                                             <div className="flex items-center gap-2">
                                                 <CreditCard className="w-3 h-3 text-[#F97316]" />
-                                                <span className="text-white font-mono">{conv.refUpi || 'N/A'}</span>
+                                                <span className="text-gray-900 dark:text-white font-mono">{conv.refUpi || 'N/A'}</span>
                                                 {conv.refUpi && (
                                                     <Button 
                                                         size="sm"
                                                         variant="ghost"
                                                         onClick={() => copy(conv.refUpi)}
-                                                        className="h-6 w-6 p-0 hover:bg-gray-700"
+                                                        className="h-6 w-6 p-0 hover:bg-gray-200 dark:hover:bg-gray-700"
                                                     >
                                                         <Clipboard className="w-3 h-3" />
                                                     </Button>
@@ -361,12 +361,12 @@ function Conversion() {
                                         <TableCell>
                                             <div className="flex items-center gap-2">
                                                 <CreditCard className="w-3 h-3 text-gray-400" />
-                                                <span className="text-white font-mono">{conv.upiId}</span>
+                                                <span className="text-gray-900 dark:text-white font-mono">{conv.upiId}</span>
                                                 <Button 
                                                     size="sm"
                                                     variant="ghost"
                                                     onClick={() => copy(conv.upiId)}
-                                                    className="h-6 w-6 p-0 hover:bg-gray-700"
+                                                    className="h-6 w-6 p-0 hover:bg-gray-200 dark:hover:bg-gray-700"
                                                 >
                                                     <Clipboard className="w-3 h-3" />
                                                 </Button>
@@ -381,7 +381,7 @@ function Conversion() {
             </Card>
 
             {/* Pagination */}
-            <Card className="bg-gray-800/50 border-gray-700">
+            <Card className="bg-white dark:bg-gray-800/50 border-gray-300 dark:border-gray-700">
                 <CardContent className="p-4">
                     <Pagination>
                         <PaginationContent>
@@ -389,7 +389,7 @@ function Conversion() {
                                 {page != 1 ? 
                                     <PaginationPrevious 
                                         onClick={() => setPage(p => Math.max(p-1, 1))}
-                                        className="hover:bg-gray-700 text-white"
+                                        className="hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-900 dark:text-white"
                                     /> : 
                                     <></>
                                 }
@@ -403,7 +403,7 @@ function Conversion() {
                                 {page * 10 < countTotal ? 
                                     <PaginationNext 
                                         onClick={() => setPage(p => p + 1)}
-                                        className="hover:bg-gray-700 text-white"
+                                        className="hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-900 dark:text-white"
                                     /> : 
                                     <></>
                                 }
@@ -415,11 +415,11 @@ function Conversion() {
 
             {/* Empty State */}
             {filteredConversions.length === 0 && !loading && (
-                <Card className="bg-gray-800/50 border-gray-700">
+                <Card className="bg-white dark:bg-gray-800/50 border-gray-300 dark:border-gray-700">
                     <CardContent className="p-12 text-center">
-                        <TrendingUp className="w-12 h-12 text-gray-500 mx-auto mb-4" />
-                        <h3 className="text-lg font-semibold text-white mb-2">No conversions found</h3>
-                        <p className="text-gray-400 mb-6">
+                        <TrendingUp className="w-12 h-12 text-gray-400 dark:text-gray-500 mx-auto mb-4" />
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">No conversions found</h3>
+                        <p className="text-gray-600 dark:text-gray-400 mb-6">
                             {searchTerm || providerFilter !== "all" || dateFilter !== "all" 
                                 ? "Try adjusting your search or filter criteria" 
                                 : "Conversions will appear here once campaigns start generating results"}

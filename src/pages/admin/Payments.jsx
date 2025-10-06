@@ -175,11 +175,11 @@ function Payments() {
         <div>
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#F97316]/20 to-[#713306]/20 border border-[#F97316]/30 rounded-full px-4 py-2 mb-4">
             <Wallet className="w-4 h-4 text-[#F97316]" />
-            <span className="text-sm font-medium text-white">Payment Management</span>
+            <span className="text-sm font-medium text-gray-900 dark:text-white">Payment Management</span>
             <Sparkles className="w-4 h-4 text-[#F97316]" />
           </div>
-          <h1 className="text-3xl font-bold text-white mb-2">Payments & Payouts</h1>
-          <p className="text-gray-400">Manage user payments, process payouts, and track financial transactions.</p>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Payments & Payouts</h1>
+          <p className="text-gray-600 dark:text-gray-400">Manage user payments, process payouts, and track financial transactions.</p>
         </div>
         
         <div className="flex gap-3">
@@ -210,61 +210,61 @@ function Payments() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card className="bg-gradient-to-r from-[#F97316]/20 to-[#713306]/20 border-[#F97316]/30">
+        <Card className="border-gray-300 bg-gradient-to-r from-[#F97316]/40 to-[#713306]/40 dark:border-[#F97316]/30">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-300 flex items-center justify-between">
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300 flex items-center justify-between">
               Total Payments
               <Wallet className="w-4 h-4 text-[#F97316]" />
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-white">₹{stats.totalAmount.toFixed(2)}</div>
-            <p className="text-xs text-gray-400 mt-1">{stats.total} transactions</p>
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">₹{stats.totalAmount.toFixed(2)}</div>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{stats.total} transactions</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-r from-[#10B981]/20 to-[#065f46]/20 border-[#10B981]/30">
+        <Card className="border-gray-300 bg-gradient-to-r from-[#10B981]/40 to-[#065f46]/40 dark:border-[#10B981]/30">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-300 flex items-center justify-between">
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300 flex items-center justify-between">
               Paid Amount
               <ArrowUpRight className="w-4 h-4 text-[#10B981]" />
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-white">₹{stats.paidAmount.toFixed(2)}</div>
-            <p className="text-xs text-gray-400 mt-1">{stats.paidCount} successful</p>
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">₹{stats.paidAmount.toFixed(2)}</div>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{stats.paidCount} successful</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-r from-yellow-600/20 to-yellow-800/20 border-yellow-600/30">
+        <Card className="border-gray-300 bg-gradient-to-r from-yellow-600/40 to-yellow-800/40 dark:border-yellow-600/30">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-300 flex items-center justify-between">
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300 flex items-center justify-between">
               Pending Amount
               <Clock className="w-4 h-4 text-yellow-400" />
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-white">₹{stats.pendingAmount.toFixed(2)}</div>
-            <p className="text-xs text-gray-400 mt-1">{stats.pendingCount} awaiting</p>
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">₹{stats.pendingAmount.toFixed(2)}</div>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{stats.pendingCount} awaiting</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-r from-red-600/20 to-red-800/20 border-red-600/30">
+        <Card className="border-gray-300 bg-gradient-to-r from-red-600/40 to-red-800/40 dark:border-red-600/30">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-300 flex items-center justify-between">
+            <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-300 flex items-center justify-between">
               Failed Amount
               <ArrowDownRight className="w-4 h-4 text-red-400" />
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-white">₹{stats.failedAmount.toFixed(2)}</div>
-            <p className="text-xs text-gray-400 mt-1">{stats.failedCount} failed</p>
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">₹{stats.failedAmount.toFixed(2)}</div>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{stats.failedCount} failed</p>
           </CardContent>
         </Card>
       </div>
 
       {/* Filters and Search */}
-      <Card className="bg-gray-800/50 border-gray-700 backdrop-blur-sm">
+      <Card className="bg-white dark:bg-gray-800/50 border-gray-300 dark:border-gray-700 backdrop-blur-sm">
         <CardContent className="p-6">
           <div className="flex flex-col lg:flex-row gap-4">
             <div className="flex-1 relative">
@@ -273,33 +273,33 @@ function Payments() {
                 placeholder="Search by name, UPI ID, phone, or transaction ID..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 bg-gray-700 border-gray-600 text-white"
+                className="pl-10 bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white"
               />
             </div>
             <div className="flex gap-3">
               <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="w-[150px] bg-gray-700 border-gray-600 text-white">
+                <SelectTrigger className="w-[150px] bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white">
                   <Filter className="w-4 h-4 mr-2" />
                   <SelectValue placeholder="Status" />
                 </SelectTrigger>
-                <SelectContent className="bg-gray-800 border-gray-600">
-                  <SelectItem value="all" className="text-white hover:bg-gray-700">All Status</SelectItem>
-                  <SelectItem value="paid" className="text-white hover:bg-gray-700">Paid</SelectItem>
-                  <SelectItem value="pending" className="text-white hover:bg-gray-700">Pending</SelectItem>
-                  <SelectItem value="failed" className="text-white hover:bg-gray-700">Failed</SelectItem>
+                <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
+                  <SelectItem value="all" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">All Status</SelectItem>
+                  <SelectItem value="paid" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Paid</SelectItem>
+                  <SelectItem value="pending" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Pending</SelectItem>
+                  <SelectItem value="failed" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Failed</SelectItem>
                 </SelectContent>
               </Select>
               
               <Select value={dateFilter} onValueChange={setDateFilter}>
-                <SelectTrigger className="w-[130px] bg-gray-700 border-gray-600 text-white">
+                <SelectTrigger className="w-[130px] bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white">
                   <Calendar className="w-4 h-4 mr-2" />
                   <SelectValue placeholder="Date" />
                 </SelectTrigger>
-                <SelectContent className="bg-gray-800 border-gray-600">
-                  <SelectItem value="all" className="text-white hover:bg-gray-700">All Time</SelectItem>
-                  <SelectItem value="today" className="text-white hover:bg-gray-700">Today</SelectItem>
-                  <SelectItem value="week" className="text-white hover:bg-gray-700">This Week</SelectItem>
-                  <SelectItem value="month" className="text-white hover:bg-gray-700">This Month</SelectItem>
+                <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
+                  <SelectItem value="all" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">All Time</SelectItem>
+                  <SelectItem value="today" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Today</SelectItem>
+                  <SelectItem value="week" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">This Week</SelectItem>
+                  <SelectItem value="month" className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">This Month</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -308,15 +308,15 @@ function Payments() {
       </Card>
 
       {/* Payments Table */}
-      <Card className="bg-gray-800/50 border-gray-700">
+      <Card className="bg-white dark:bg-gray-800/50 border-gray-300 dark:border-gray-700">
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="text-white flex items-center gap-2">
+              <CardTitle className="text-gray-900 dark:text-white flex items-center gap-2">
                 <BarChart3 className="w-5 h-5 text-[#F97316]" />
                 Payment Records
               </CardTitle>
-              <CardDescription className="text-gray-400">
+              <CardDescription className="text-gray-600 dark:text-gray-400">
                 Showing {filteredPayments.length} of {stats.total} payments
               </CardDescription>
             </div>
@@ -329,16 +329,16 @@ function Payments() {
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
-                <TableRow className="border-gray-700 hover:bg-gray-800/50">
-                  <TableHead className="text-gray-300">#</TableHead>
-                  <TableHead className="text-gray-300">User Details</TableHead>
-                  <TableHead className="text-gray-300">UPI ID</TableHead>
-                  <TableHead className="text-gray-300">Amount Breakdown</TableHead>
-                  <TableHead className="text-gray-300">Total Amount</TableHead>
-                  <TableHead className="text-gray-300">Transaction ID</TableHead>
-                  <TableHead className="text-gray-300">Date & Time</TableHead>
-                  <TableHead className="text-gray-300">Status</TableHead>
-                  <TableHead className="text-gray-300">Actions</TableHead>
+                <TableRow className="border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800/50">
+                  <TableHead className="text-gray-700 dark:text-gray-300">#</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300">User Details</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300">UPI ID</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300">Amount Breakdown</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300">Total Amount</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300">Transaction ID</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300">Date & Time</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300">Status</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -351,33 +351,33 @@ function Payments() {
                 ) : (
                   filteredPayments.map((payment, index) => (
                     <TableRow
-                      className="border-gray-700 hover:bg-gray-800/30 transition-colors"
+                      className="border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800/30 transition-colors"
                       key={payment._id}
                     >
-                      <TableCell className="text-gray-300 font-mono">
+                      <TableCell className="text-gray-700 dark:text-gray-300 font-mono">
                         {((page - 1) * 10) + index + 1}
                       </TableCell>
                       <TableCell>
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">
                             <Users className="w-4 h-4 text-gray-400" />
-                            <span className="text-white font-medium">{payment.userName}</span>
+                            <span className="text-gray-900 dark:text-white font-medium">{payment.userName}</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <Phone className="w-3 h-3 text-gray-400" />
-                            <span className="text-gray-400 text-sm">{payment.phone}</span>
+                            <span className="text-gray-600 dark:text-gray-400 text-sm">{payment.phone}</span>
                           </div>
                         </div>
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center gap-2">
                           <CreditCard className="w-4 h-4 text-gray-400" />
-                          <span className="text-white font-mono">{payment.upiId}</span>
+                          <span className="text-gray-900 dark:text-white font-mono">{payment.upiId}</span>
                           <Button 
                             size="sm"
                             variant="ghost"
                             onClick={() => copy(payment.upiId)}
-                            className="h-6 w-6 p-0 hover:bg-gray-700"
+                            className="h-6 w-6 p-0 hover:bg-gray-200 dark:hover:bg-gray-700"
                           >
                             <Copy className="w-3 h-3" />
                           </Button>
@@ -387,31 +387,31 @@ function Payments() {
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">
                             <div className="w-2 h-2 bg-[#10B981] rounded-full"></div>
-                            <span className="text-gray-300 text-sm">Campaign: ₹{payment.campaignAmount}</span>
+                            <span className="text-gray-700 dark:text-gray-300 text-sm">Campaign: ₹{payment.campaignAmount}</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <div className="w-2 h-2 bg-[#F97316] rounded-full"></div>
-                            <span className="text-gray-300 text-sm">Referral: ₹{payment.referralAmount}</span>
+                            <span className="text-gray-700 dark:text-gray-300 text-sm">Referral: ₹{payment.referralAmount}</span>
                           </div>
                         </div>
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center gap-2">
                           <IndianRupee className="w-4 h-4 text-[#F97316]" />
-                          <span className="text-white font-semibold text-lg">₹{payment.amount}</span>
+                          <span className="text-gray-900 dark:text-white font-semibold text-lg">₹{payment.amount}</span>
                         </div>
                       </TableCell>
                       <TableCell>
                         {payment.transactionId ? (
                           <div className="flex items-center gap-2">
-                            <Badge variant="outline" className="border-gray-600 bg-transparent text-gray-300 font-mono">
+                            <Badge variant="outline" className="border-gray-400 dark:border-gray-600 bg-transparent text-gray-700 dark:text-gray-300 font-mono">
                               {payment.transactionId}
                             </Badge>
                             <Button 
                               size="sm"
                               variant="ghost"
                               onClick={() => copy(payment.transactionId)}
-                              className="h-6 w-6 p-0 hover:bg-gray-700"
+                              className="h-6 w-6 p-0 hover:bg-gray-200 dark:hover:bg-gray-700"
                             >
                               <Copy className="w-3 h-3" />
                             </Button>
@@ -423,7 +423,7 @@ function Payments() {
                       <TableCell>
                         <div className="flex items-center gap-2">
                           <Calendar className="w-3 h-3 text-gray-400" />
-                          <span className="text-gray-300 text-sm">
+                          <span className="text-gray-700 dark:text-gray-300 text-sm">
                             {new Date(payment.paymentDate).toLocaleString()}
                           </span>
                         </div>
@@ -466,7 +466,7 @@ function Payments() {
       </Card>
 
       {/* Pagination */}
-      <Card className="bg-gray-800/50 border-gray-700">
+      <Card className="bg-white dark:bg-gray-800/50 border-gray-300 dark:border-gray-700">
         <CardContent className="p-4">
           <Pagination>
             <PaginationContent>
@@ -474,7 +474,7 @@ function Payments() {
                 {page !== 1 ? 
                   <PaginationPrevious 
                     onClick={() => setPage(p => Math.max(p-1, 1))}
-                    className="hover:bg-gray-700 text-white"
+                    className="hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-900 dark:text-white"
                   /> : 
                   <></>
                 }
@@ -488,7 +488,7 @@ function Payments() {
                 {page * 10 < countTotal ? 
                   <PaginationNext 
                     onClick={() => setPage(p => p + 1)}
-                    className="hover:bg-gray-700 text-white"
+                    className="hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-900 dark:text-white"
                   /> : 
                   <></>
                 }
