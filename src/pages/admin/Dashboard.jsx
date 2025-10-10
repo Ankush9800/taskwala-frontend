@@ -375,7 +375,7 @@ function Dashboard() {
               </CardHeader>
               <CardContent>
                 <ChartContainer config={chartConfig} className='h-full w-full'>
-                  <AreaChart data={chartData} margin={{left: 0, right: 12,}}>
+                  <AreaChart data={chartData} margin={{left: -20, right: 12,top:20}}>
                   {/* <CartesianGrid vertical={false}/> */}
                   <XAxis dataKey="date"/>
                   <YAxis dataKey="activeUsers"/>
@@ -395,12 +395,12 @@ function Dashboard() {
               </CardHeader>
               <CardContent>
                 <ChartContainer config={chartConfig} className='h-full w-full'>
-                  <AreaChart data={anaMonthSub} margin={{left: 0, right: 12,}}>
+                  <AreaChart data={anaMonthSub} margin={{left: -20, right: 12,top:20}}>
                   {/* <CartesianGrid vertical={false}/> */}
                   <XAxis dataKey="month"/>
                   <YAxis dataKey="totalSubmissions"/>
                   <ChartTooltip cursor={false} content={<ChartTooltipContent/>}/>
-                  <Area dataKey="totalSubmissions" type={"bump"} fill='#F97316' stroke='#F97316' fillOpacity={0.2}/>
+                  <Area dataKey="totalSubmissions" type="bump" fill='#F97316' stroke='#F97316' fillOpacity={0.2}/>
                   </AreaChart>
                 </ChartContainer>
               </CardContent>
