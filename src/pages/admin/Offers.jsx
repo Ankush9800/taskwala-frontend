@@ -538,6 +538,7 @@ function Offers() {
                                                             <SelectItem value="sankmo" className="text-gray-900 dark:text-white focus:bg-gray-100 dark:focus:bg-gray-600">Sankmo</SelectItem>
                                                             <SelectItem value="icd" className="text-gray-900 dark:text-white focus:bg-gray-100 dark:focus:bg-gray-600">Indian-camp</SelectItem>
                                                             <SelectItem value="jmd" className="text-gray-900 dark:text-white focus:bg-gray-100 dark:focus:bg-gray-600">JMD</SelectItem>
+                                                            <SelectItem value="foundit" className="text-gray-900 dark:text-white focus:bg-gray-100 dark:focus:bg-gray-600">fOUNDIT</SelectItem>
                                                         </SelectGroup>
                                                     </SelectContent>
                                                 </Select>
