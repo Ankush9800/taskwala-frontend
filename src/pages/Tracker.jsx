@@ -287,14 +287,6 @@ function Tracker() {
                       {/* <p className="text-gray-400">Submission ID: {trackingData.submissionId}</p> */}
                       <p className="text-gray-400 text-sm">Campaign ID: {trackingData.campId}</p>
                     </div>
-                    {/* <div className="text-right">
-                      <div className="flex items-center gap-2 text-[#0B7A75] font-semibold">
-                        <DollarSign className="w-5 h-5" />
-                        ₹{trackingData.totalReward}
-                      </div>
-                      <p className="text-sm text-gray-400">Total Reward</p>
-                      <p className="text-xs text-gray-500">Provider: {trackingData.provider}</p>
-                    </div> */}
                   </div>
                   
                   {/* Additional tracking details */}
@@ -330,15 +322,6 @@ function Tracker() {
                   <div className="space-y-6">
                     {trackingData.map((step, index) => (
                       <div key={index} className="flex gap-4">
-                        <div className="flex flex-col items-center">
-                          {/* <div className={`flex items-center justify-center w-10 h-10 rounded-full border-2 ${getStepColor(step.status)}`}>
-                            {getStepIcon(step.status)}
-                          </div> */}
-                          {/* {index !== trackingData.length - 1 && (
-                            <div className={`w-0.5 h-12 ${step.status === 'completed' ? 'bg-[#0B7A75]' : 'bg-gray-600'}`}></div>
-                          )} */}
-                        </div>
-                        
                         <div className="flex-1 pb-8">
                           <div className="flex items-center justify-between mb-2">
                             <h4 className="font-semibold text-white">{step.cName}</h4>
