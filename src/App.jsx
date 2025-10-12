@@ -12,6 +12,7 @@ function App() {
 
   useEffect(()=>{
     trackPage(location.pathname)
+    window.scrollTo(0, 0);
   },[location])
 
   const hidePaths = ['/ref','/date','/login','/camp', '/register','/admin', '/admintemp', '/admin/dashboard','/admin/offers', '/admin/submission', '/admin/submission-export', '/tracker','/admin/conversion','/404','/admin/payments','/admin/profile','/admin/support','/verify','/test'];
