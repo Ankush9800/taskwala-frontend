@@ -338,7 +338,7 @@ function AppSidebar() {
               </SidebarGroupLabel>
               <SidebarGroupContent>
                 <SidebarMenu>
-                  <SidebarMenuItem>
+                  {/* <SidebarMenuItem>
                     <SidebarMenuButton 
                       asChild 
                       className="group transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
@@ -348,7 +348,7 @@ function AppSidebar() {
                         <span className="font-medium">User Management</span>
                       </Link>
                     </SidebarMenuButton>
-                  </SidebarMenuItem>
+                  </SidebarMenuItem> */}
                   <SidebarMenuItem>
                     <SidebarMenuButton 
                       asChild 
@@ -392,7 +392,7 @@ function AppSidebar() {
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
-                  <SidebarMenuItem>
+                  {/* <SidebarMenuItem>
                     <SidebarMenuButton 
                       asChild 
                       className="group transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
@@ -413,7 +413,7 @@ function AppSidebar() {
                         <span className="font-medium">Help & Documentation</span>
                       </Link>
                     </SidebarMenuButton>
-                  </SidebarMenuItem>
+                  </SidebarMenuItem> */}
 
                 </SidebarMenu>
               </SidebarGroupContent>
