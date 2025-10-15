@@ -32,6 +32,7 @@ import {
 } from 'lucide-react';
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner';
+import { account } from '@/lib/Appwrite';
 
 function Offers() {
     const origin = window.location.origin
@@ -44,8 +45,9 @@ function Offers() {
     const [searchTerm, setSearchTerm] = useState("");
     const [statusFilter, setStatusFilter] = useState("all");
     const [providerFilter, setProviderFilter] = useState("all");
-    const [viewMode, setViewMode] = useState("table"); // table or grid
+    const [viewMode, setViewMode] = useState("table");
     const [activeTab, setActiveTab] = useState("all");
+    const [profile, setProfile] = useState(null)
 
     const [formData, setFormData] = useState({
         title: "",
@@ -59,6 +61,16 @@ function Offers() {
         steps: [""],
         trackable: false,
     });
+
+    const getProfile = async()=>{
+        const res = await account.get()
+        console.log(res)
+        setProfile(res)
+    }
+
+    useEffect(()=>{
+        getProfile()
+    },[])
 
     // Calculate statistics
     const totalCampaigns = table.length;
@@ -935,6 +947,7 @@ function Offers() {
                                                                         <AlertDialogAction
                                                                             onClick={() => deleteCampaign(camp._id)}
                                                                             className="bg-red-600 hover:bg-red-700"
+                                                                            disabled={!(profile?.labels[0]==="admin")}
                                                                         >
                                                                             Delete
                                                                         </AlertDialogAction>
