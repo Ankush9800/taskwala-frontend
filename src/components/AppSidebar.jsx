@@ -356,7 +356,7 @@ function AppSidebar() {
                     >
                       <Link to="/admin/settings" className="flex items-center gap-3 px-3 py-2.5 rounded-lg">
                         <Settings className="w-5 h-5" />
-                        <span className="font-medium">Settings</span>
+                        <Link to={'/admin/profile'} className="font-medium">Settings</Link>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -462,10 +462,6 @@ function AppSidebar() {
                   <DropdownMenuItem className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 focus:bg-gray-100 dark:focus:bg-gray-700">
                     <Shield className="w-4 h-4 mr-2" />
                     <Link to="/admin/profile" className="flex-1">Account Settings</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem className="cursor-pointer hover:bg-gray-700 focus:bg-gray-700">
-                    <Settings className="w-4 h-4 mr-2" />
-                    <span>Preferences</span>
                   </DropdownMenuItem>
                   <DropdownMenuItem 
                     className="cursor-pointer hover:bg-red-600 focus:bg-red-600 text-red-400 hover:text-white focus:text-white"
