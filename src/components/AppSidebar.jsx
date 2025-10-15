@@ -354,9 +354,9 @@ function AppSidebar() {
                       asChild 
                       className="group transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                     >
-                      <Link to="/admin/settings" className="flex items-center gap-3 px-3 py-2.5 rounded-lg">
+                      <Link to="/admin/profile" className="flex items-center gap-3 px-3 py-2.5 rounded-lg">
                         <Settings className="w-5 h-5" />
-                        <Link to={'/admin/profile'} className="font-medium">Settings</Link>
+                        <span className="font-medium">Settings</span>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>

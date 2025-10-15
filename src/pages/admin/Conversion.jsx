@@ -30,6 +30,8 @@ import {
 } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog'
+import { account } from '@/lib/Appwrite'
 
 function Conversion() {
     const [conversion, setConversion] = useState(null)
@@ -40,6 +42,7 @@ function Conversion() {
     const [searchTerm, setSearchTerm] = useState("")
     const [providerFilter, setProviderFilter] = useState("all")
     const [dateFilter, setDateFilter] = useState("all")
+    const [profile, setProfile] = useState(null)
 
     const conversionData = async() => {
         try {
@@ -57,6 +60,16 @@ function Conversion() {
         }
     }
 
+    const getProfile = async()=>{
+        const res = await account.get()
+        console.log(res.labels[0])
+        setProfile(res)
+    }
+
+    useEffect(()=>{
+        getProfile()
+    },[])
+
     useEffect(() => {
         conversionData()
     }, [page])
@@ -70,6 +83,21 @@ function Conversion() {
         } catch (error) {
             console.log(error)
             toast.error("Copy failed", {
+                duration: 2000,
+            })
+        }
+    }
+
+    const deleteConversion = async(id)=>{
+        try {
+            const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/campaign/deletepost?id=${id}`)
+            toast.success("Campaign delete successfully", {
+                duration: 2000,
+            })
+            conversionData()
+        } catch (error) {
+            console.log(error)
+            toast.error("Failed to delete campaign", {
                 duration: 2000,
             })
         }
@@ -290,6 +318,7 @@ function Conversion() {
                                     <TableHead className="text-gray-700 dark:text-gray-300">Provider</TableHead>
                                     <TableHead className="text-gray-700 dark:text-gray-300">Refer UPI ID</TableHead>
                                     <TableHead className="text-gray-700 dark:text-gray-300">UPI ID</TableHead>
+                                    {(profile?.labels[0]==="admin") && <TableHead className="text-gray-700 dark:text-gray-300">Actions</TableHead>}
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -361,17 +390,54 @@ function Conversion() {
                                         <TableCell>
                                             <div className="flex items-center gap-2">
                                                 <CreditCard className="w-3 h-3 text-gray-400" />
-                                                <span className="text-gray-900 dark:text-white font-mono">{conv.upiId}</span>
-                                                <Button 
-                                                    size="sm"
-                                                    variant="ghost"
-                                                    onClick={() => copy(conv.upiId)}
-                                                    className="h-6 w-6 p-0 hover:bg-gray-200 dark:hover:bg-gray-700"
-                                                >
-                                                    <Clipboard className="w-3 h-3" />
-                                                </Button>
+                                                <span className="text-gray-900 dark:text-white font-mono">{conv.upiId || 'N/A'}</span>
+                                                {conv.refUpi && (
+                                                    <Button 
+                                                        size="sm"
+                                                        variant="ghost"
+                                                        onClick={() => copy(conv.upiId)}
+                                                        className="h-6 w-6 p-0 hover:bg-gray-200 dark:hover:bg-gray-700"
+                                                    >
+                                                        <Clipboard className="w-3 h-3" />
+                                                    </Button>
+                                                )}
                                             </div>
                                         </TableCell>
+                                        {(profile?.labels[0]==="admin") && <TableCell>
+                                            <AlertDialog>
+                                                <AlertDialogTrigger asChild>
+                                                    <Button
+                                                        size="sm"
+                                                        variant="ghost"
+                                                        className="text-red-400 hover:text-red-300"
+                                                        title="Delete Campaign"
+                                                    >
+                                                        <Trash2 className="w-4 h-4" />
+                                                    </Button>
+                                                </AlertDialogTrigger>
+                                                <AlertDialogContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600">
+                                                    <AlertDialogHeader>
+                                                        <AlertDialogTitle className="text-gray-900 dark:text-white">
+                                                            Delete Campaign
+                                                        </AlertDialogTitle>
+                                                        <AlertDialogDescription className="text-gray-600 dark:text-gray-400">
+                                                            Are you sure you want to delete "{conv.title}"? This action cannot be undone.
+                                                        </AlertDialogDescription>
+                                                    </AlertDialogHeader>
+                                                    <AlertDialogFooter>
+                                                        <AlertDialogCancel className="border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                                            Cancel
+                                                        </AlertDialogCancel>
+                                                        <AlertDialogAction
+                                                            onClick={() => deleteConversion(conv._id)}
+                                                            className="bg-red-600 hover:bg-red-700"
+                                                        >
+                                                            Delete
+                                                        </AlertDialogAction>
+                                                    </AlertDialogFooter>
+                                                </AlertDialogContent>
+                                            </AlertDialog>
+                                        </TableCell>}
                                     </TableRow>
                                 ))}
                             </TableBody>
